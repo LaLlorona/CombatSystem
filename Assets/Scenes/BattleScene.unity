@@ -603,8 +603,8 @@ MonoBehaviour:
   lookSpeed: 0.013
   followSpeed: 10
   pivotSpeed: 0.01
-  minimumPivot: -80
-  maximumPivot: 80
+  minimumPivot: -60
+  maximumPivot: 60
   cameraSphereRadius: 0.2
   cameraCollisionOffset: 0.2
   minimumCollisionOffset: 0.6

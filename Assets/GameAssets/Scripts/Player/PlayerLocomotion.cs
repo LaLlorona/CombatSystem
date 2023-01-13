@@ -89,8 +89,9 @@ namespace KMK
 
         public void HandleMovement(float delta)
         {
-            if (inputHandler.rollFlag)
+            if (animatorHandler.anim.GetBool(isInteractingHash))
             {
+                animatorHandler.UpdateAnimatorValues(0, 0, false);
                 return;
             }
             moveDirection = cameraObject.forward * inputHandler.vertical;
@@ -134,15 +135,17 @@ namespace KMK
 
             if (inputHandler.rollFlag)
             {
-                moveDirection = cameraObject.forward * inputHandler.vertical;
-                moveDirection += cameraObject.right * inputHandler.horizontal;
-
-                if(inputHandler.moveAmount > 0)
+                
+                if (inputHandler.moveAmount > 0)
                 {
+                    moveDirection = cameraObject.forward * inputHandler.vertical;
+                    moveDirection += cameraObject.right * inputHandler.horizontal;
                     animatorHandler.PlayTargetAnimation("Rolling", true);
                     moveDirection.y = 0;
 
-                    
+                    Debug.Log(moveDirection);
+
+
 
                     Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
                     myTransform.rotation = rollRotation;
@@ -152,7 +155,7 @@ namespace KMK
                     animatorHandler.PlayTargetAnimation("Backstep", true);
                 }
 
-               
+
 
             }
            
