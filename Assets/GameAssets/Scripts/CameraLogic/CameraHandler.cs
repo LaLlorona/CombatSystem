@@ -42,6 +42,8 @@ namespace KMK
             ignoreLayers = ~(1 << 8 | 1 << 9 | 1 << 10);
         }
 
+      
+
         public void FollowTarget(float delta)
         {
             //Vector3 targetPosition = Vector3.Lerp(myTransform.position, targetTransform.position, delta / followSpeed);

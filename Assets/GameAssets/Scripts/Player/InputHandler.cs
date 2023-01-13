@@ -12,6 +12,13 @@ namespace KMK
         public float mouseX;
         public float mouseY;
 
+        public bool b_input;
+
+        public bool rollFlag;
+        public bool sprintFlag;
+        public float rollInputTimer;
+        
+
         PlayerControls inputActions;
         CameraHandler cameraHandler;
 
@@ -19,21 +26,9 @@ namespace KMK
 
         Vector2 cameraInput;
 
-        private void Awake()
-        {
-            cameraHandler = CameraHandler.singleton;
-        }
+      
 
-        private void Update()
-        {
-            float delta = Time.deltaTime;
-
-            if (cameraHandler != null)
-            {
-                cameraHandler.FollowTarget(delta);
-                cameraHandler.HandleCameraRotation(delta, mouseX, mouseY);
-            }
-        }
+       
 
         public void OnEnable()
         {
@@ -56,6 +51,7 @@ namespace KMK
         public void TickInput(float delta)
         {
             MoveInput(delta);
+            HandleRollInput(delta);
         }
 
         private void MoveInput(float delta)
@@ -67,6 +63,28 @@ namespace KMK
             mouseX = cameraInput.x;
             mouseY = cameraInput.y;
 
+        }
+
+        private void HandleRollInput(float delta)
+        {
+            Debug.Log(inputActions.PlayerActions.Roll.phase);
+            b_input = inputActions.PlayerActions.Roll.IsPressed();
+            Debug.Log(b_input);
+            if (b_input)
+            {
+                rollInputTimer += delta;
+                sprintFlag = true;
+            }
+
+            else
+            {
+                if (rollInputTimer > 0 && rollInputTimer < 0.5f)
+                {
+                    sprintFlag = false;
+                    rollFlag = true;
+                }
+                rollInputTimer = 0;
+            }
         }
     }
 }
