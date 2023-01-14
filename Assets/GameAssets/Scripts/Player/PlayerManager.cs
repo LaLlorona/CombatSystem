@@ -17,6 +17,8 @@ namespace KMK{
         [Header("Player Flags")]
         public bool isInteracting;
         public bool isSprinting;
+        public bool isInAir;
+        public bool isGrounded;
 
        
 
@@ -50,6 +52,7 @@ namespace KMK{
             
             playerLocomotion.HandleMovement(delta);
             playerLocomotion.HandleRollingAndSprinting(delta);
+            playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
 
         }
 
@@ -58,6 +61,11 @@ namespace KMK{
             inputHandler.rollFlag = false;
             inputHandler.sprintFlag = false;
             isSprinting = inputHandler.b_input;
+
+            if (isInAir)
+            {
+                playerLocomotion.inAirTimer += Time.deltaTime;
+            }
         }
 
 
