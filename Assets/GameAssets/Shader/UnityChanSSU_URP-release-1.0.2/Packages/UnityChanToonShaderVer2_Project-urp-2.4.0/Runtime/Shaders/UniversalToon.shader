@@ -1,17 +1,15 @@
-﻿﻿//UTS2/UniversalToon
-//v.2.3.0
+﻿//UTS2/UniversalToon
+//v.2.2.3
 //nobuyuki@unity3d.com
 //toshiyuki@unity3d.com (Universal RP/HDRP) 
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
-
 Shader "Universal Render Pipeline/Toon" {
     Properties{
         [HideInInspector] _simpleUI("SimpleUI", Int) = 0
-        // Versioning of material to help for upgrading
         [HideInInspector] _utsVersionX("VersionX", Float) = 2
-        [HideInInspector] _utsVersionY("VersionY", Float) = 4
-        [HideInInspector] _utsVersionZ("VersionZ", Float) = 0
+        [HideInInspector] _utsVersionY("VersionY", Float) = 2
+        [HideInInspector] _utsVersionZ("VersionZ", Float) = 3
 
         [HideInInspector] _utsTechnique("Technique", int) = 0 //DWF
         [HideInInspector] _AutoRenderQueue("Automatic Render Queue ", int) = 1
@@ -22,15 +20,6 @@ Shader "Universal Render Pipeline/Toon" {
         _StencilOpPass("Stencil Operation", Float) = 0
         _StencilOpFail("Stencil Operation", Float) = 0
         [Enum(OFF,0,ON,1)] _TransparentEnabled("Transparent Mode", int) = 0
-
-        // These three are used in Lit shader.
-        // inoorder to make the shaders compatible with SRP Batcher 
-        // The following decralation is indespensable as they are used in CBUFFER UnityPerMaterial block.
-        // 
-        [HideInInspector] _Metallic("_Metallic", Range(0.0, 1.0)) = 0
-        [HideInInspector] _Smoothness("Smoothness", Range(0.0, 1.0)) = 0.5
-        [HideInInspector] _SpecColor("_SpecColor", Color) = (1, 1, 1, 1)
-
 
         // DoubleShadeWithFeather
         // 0:_IS_CLIPPING_OFF      1:_IS_CLIPPING_MODE    2:_IS_CLIPPING_TRANSMODE
@@ -52,8 +41,6 @@ Shader "Universal Render Pipeline/Toon" {
         _Clipping_Level("Clipping_Level", Range(0, 1)) = 0
         _Tweak_transparency("Tweak_transparency", Range(-1, 1)) = 0
         // ClippingMask paramaters to Here.
-
-
 
         _MainTex ("BaseMap", 2D) = "white" {}
         [HideInInspector] _BaseMap ("BaseMap", 2D) = "white" {}
@@ -242,10 +229,8 @@ Shader "Universal Render Pipeline/Toon" {
             //V.2.0.4
             #pragma multi_compile _IS_OUTLINE_CLIPPING_NO _IS_OUTLINE_CLIPPING_YES
             #pragma multi_compile _OUTLINE_NML _OUTLINE_POS
-            // Outline is implemented in UniversalToonOutline.hlsl.
+            // Outline is implemented in UniversalToonOutline.hlslへ.
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
-            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
-            #include "UniversalToonInput.hlsl"
             #include "UniversalToonHead.hlsl"
             #include "UniversalToonOutline.hlsl"
             ENDHLSL
@@ -331,7 +316,7 @@ Shader "Universal Render Pipeline/Toon" {
             #pragma shader_feature _EMISSIVE_SIMPLE _EMISSIVE_ANIMATION
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
-            #include "UniversalToonInput.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/Shaders/LitForwardPass.hlsl"
             #include "UniversalToonHead.hlsl"
             #include "UniversalToonBody.hlsl"
@@ -367,7 +352,7 @@ Shader "Universal Render Pipeline/Toon" {
             #pragma vertex ShadowPassVertex
             #pragma fragment ShadowPassFragment
 
-            #include "UniversalToonInput.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/Shaders/ShadowCasterPass.hlsl"
             ENDHLSL
         }
@@ -399,7 +384,7 @@ Shader "Universal Render Pipeline/Toon" {
             // GPU Instancing
             #pragma multi_compile_instancing
 
-            #include "UniversalToonInput.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/Shaders/DepthOnlyPass.hlsl"
             ENDHLSL
         }

@@ -1,15 +1,5 @@
 # Changelog
 **Universal Toon Shader [a.k.a. Unity-Chan Toon Shader]**
-## [2.4.0] - 2022/01/20
-* URP:UTS materials don't receive shadows when using newer than Unity 2021.1.
-* AutoRenderQueue is canceled when material inspector is unfocused.
-
-## [2.3.0] - 2021/10/18
-### Fixed
-- The shader is compatible with SRP Batcher.
-- Outline pass is not compatible with VR when  Single Pass Instanced rendering is chosen. Thanks to tangx246.
-- Removed some warnings.
-
 ## [2.2.3] - 2021/05/09
 ### Fixed
 - A compile error on Unity 2020.2 when ShadingGradeMap is selected.

@@ -2,16 +2,43 @@
 //nobuyuki@unity3d.com
 //toshiyuki@unity3d.com (Universal RP/HDRP) 
 
+            uniform float4 _LightColor0;
+            uniform float4 _BaseColor;
+            //v.2.0.7.5
+            uniform float _Unlit_Intensity;
+            uniform fixed _Is_Filter_LightColor;
+            uniform fixed _Is_LightColor_Outline;
+            //v.2.0.5
+            uniform float4 _Color;
+            uniform sampler2D _MainTex; uniform float4 _MainTex_ST;
+            uniform float _Outline_Width;
+            uniform float _Farthest_Distance;
+            uniform float _Nearest_Distance;
+            uniform sampler2D _Outline_Sampler; uniform float4 _Outline_Sampler_ST;
+            uniform float4 _Outline_Color;
+            uniform fixed _Is_BlendBaseColor;
+            uniform float _Offset_Z;
+            //v2.0.4
+            uniform sampler2D _OutlineTex; uniform float4 _OutlineTex_ST;
+            uniform fixed _Is_OutlineTex;
+            //Baked Normal Texture for Outline
+            uniform sampler2D _BakedNormal; uniform float4 _BakedNormal_ST;
+            uniform fixed _Is_BakedNormal;
 
-            uniform float4 _LightColor0; // this is not set in c# code ?
-
+            uniform float _ZOverDrawMode;
+            //
+//v.2.0.4
+#ifdef _IS_OUTLINE_CLIPPING_YES
+            uniform sampler2D _ClippingMask; uniform float4 _ClippingMask_ST;
+            uniform float _Clipping_Level;
+            uniform fixed _Inverse_Clipping;
+            uniform fixed _IsBaseMapAlphaAsClippingMask;
+#endif
             struct VertexInput {
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;
                 float4 tangent : TANGENT;
                 float2 texcoord0 : TEXCOORD0;
-
-                UNITY_VERTEX_INPUT_INSTANCE_ID
             };
             struct VertexOutput {
                 float4 pos : SV_POSITION;
@@ -19,15 +46,9 @@
                 float3 normalDir : TEXCOORD1;
                 float3 tangentDir : TEXCOORD2;
                 float3 bitangentDir : TEXCOORD3;
-
-                UNITY_VERTEX_OUTPUT_STEREO
             };
             VertexOutput vert (VertexInput v) {
                 VertexOutput o = (VertexOutput)0;
-
-                UNITY_SETUP_INSTANCE_ID(v);
-                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
-
                 o.uv0 = v.texcoord0;
                 float4 objPos = mul ( unity_ObjectToWorld, float4(0,0,0,1) );
                 float2 Set_UV0 = o.uv0;
@@ -81,17 +102,17 @@
                 lightColor = lightColorIntensity<1 ? lightColor : lightColor/lightColorIntensity;
                 lightColor = lerp(half3(1.0,1.0,1.0), lightColor, _Is_LightColor_Outline);
                 float2 Set_UV0 = i.uv0;
-                float4 _MainTex_var = SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex, TRANSFORM_TEX(Set_UV0, _MainTex));
+                float4 _MainTex_var = tex2D(_MainTex,TRANSFORM_TEX(Set_UV0, _MainTex));
                 float3 Set_BaseColor = _BaseColor.rgb*_MainTex_var.rgb;
                 float3 _Is_BlendBaseColor_var = lerp( _Outline_Color.rgb*lightColor, (_Outline_Color.rgb*Set_BaseColor*Set_BaseColor*lightColor), _Is_BlendBaseColor );
                 //
-                float3 _OutlineTex_var = tex2D(_OutlineTex,TRANSFORM_TEX(Set_UV0, _OutlineTex)).rgb;
+                float3 _OutlineTex_var = tex2D(_OutlineTex,TRANSFORM_TEX(Set_UV0, _OutlineTex));
 //v.2.0.7.5
 #ifdef _IS_OUTLINE_CLIPPING_NO
                 float3 Set_Outline_Color = lerp(_Is_BlendBaseColor_var, _OutlineTex_var.rgb*_Outline_Color.rgb*lightColor, _Is_OutlineTex );
                 return float4(Set_Outline_Color,1.0);
 #elif _IS_OUTLINE_CLIPPING_YES
-                float4 _ClippingMask_var = SAMPLE_TEXTURE2D(_ClippingMask, sampler_MainTex, TRANSFORM_TEX(Set_UV0, _ClippingMask));
+                float4 _ClippingMask_var = tex2D(_ClippingMask,TRANSFORM_TEX(Set_UV0, _ClippingMask));
                 float Set_MainTexAlpha = _MainTex_var.a;
                 float _IsBaseMapAlphaAsClippingMask_var = lerp( _ClippingMask_var.r, Set_MainTexAlpha, _IsBaseMapAlphaAsClippingMask );
                 float _Inverse_Clipping_var = lerp( _IsBaseMapAlphaAsClippingMask_var, (1.0 - _IsBaseMapAlphaAsClippingMask_var), _Inverse_Clipping );

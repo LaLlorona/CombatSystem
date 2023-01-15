@@ -2,17 +2,14 @@
 //nobuyuki@unity3d.com
 //toshiyuki@unity3d.com (Universal RP/HDRP) 
 
-// https://forum.unity.com/threads/globally-suppress-pow-f-e-negative-f-warning.963488/
-// https://docs.microsoft.com/en-us/windows/win32/direct3dhlsl/hlsl-errors-and-warnings
-#pragma warning (disable : 3571) //  pow(f, e) will not work for negative f, use abs(f) or conditionally handle negative values if you expect them at line XXXX (on d3d11)
-#pragma warning (disable : 3206) // "Implicit Truncation of vector type" warning code to disable
-
 #ifndef UCTS_LWRP_INCLUDED
 #define UCTS_LWRP_INCLUDED
 
 #define UCTS_LWRP 1
 
-
+#define fixed  half
+#define fixed3 half3
+#define fixed4 half4
 
 
 #define MAINLIGHT_NOT_FOUND -2
@@ -23,14 +20,6 @@
 # define DIRECTIONAL
 #endif
 
-#define FP_BUFFER 1
-#if FP_BUFFER
-#define SATURATE_IF_SDR(x) (x)
-#define SATURATE_BASE_COLOR_IF_SDR(x) (x)
-#else
-#define SATURATE_IF_SDR(x) saturate(x)
-#define SATURATE_BASE_COLOR_IF_SDR(x) saturate(x)
-#endif
 
 
 
@@ -146,6 +135,8 @@ inline half3 LinearToGammaSpace(half3 linRGB)
 // Transforms 2D UV by scale/bias property
 //#define TRANSFORM_TEX(tex,name) (tex.xy * name##_ST.xy + name##_ST.zw)
 #define UCTS_TEXTURE2D(tex,name)  SAMPLE_TEXTURE2D(tex,sampler##tex,TRANSFORM_TEX(name, tex));
+
+
 
 inline float4 UnityObjectToClipPosInstanced(in float3 pos)
 {
