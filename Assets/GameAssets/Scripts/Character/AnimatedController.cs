@@ -20,7 +20,7 @@ namespace KMK
         public float sprintMultiplier = 2.0f;
 
 
-        private Animator anim;
+        public Animator anim;
         private float originalColliderHeight;
 
         public bool rootMotionEnabled = false;
@@ -88,5 +88,16 @@ namespace KMK
             Vector3 velocity = deltaPosition / delta;
             characterManager.rigidbody.velocity = velocity;
         }
+
+        public void EnableCombo()
+        {
+            anim.SetBool(canDoComboHash,true);
+        }
+
+        public void DisableCombo()
+        {
+            anim.SetBool(canDoComboHash, false);
+        }
+
     }
 }

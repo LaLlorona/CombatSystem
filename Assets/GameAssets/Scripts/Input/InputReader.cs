@@ -41,6 +41,8 @@ namespace KMK
         public bool rbInput;
         public bool rtInput;
 
+        public bool comboFlag;
+
         private float rollInputTimer;
         [SerializeField]
         private float maxTimeHoldForRoll = 0.3f;

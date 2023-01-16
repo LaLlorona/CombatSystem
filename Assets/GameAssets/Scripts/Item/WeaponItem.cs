@@ -12,7 +12,10 @@ namespace KMK
 
         [Header("One Handed Attack Animations")]
         public string oneHandHeavyAttack1;
+        public string oneHandHeavyAttack2;
+
         public string oneHandLightAttack1;
+        public string oneHandLightAttack2;
 
     }
 }
