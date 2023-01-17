@@ -7,16 +7,23 @@ namespace KMK
 {
     public class CharacterHealthbar : MonoBehaviour
     {
-        public Slider slider;
+        public Slider hpSlider;
+        public Slider staminaSlider;
 
         public void SetMaxHealth(int maxHealth)
         {
-            slider.maxValue = maxHealth;
-            slider.value = maxHealth;
+            hpSlider.maxValue = maxHealth;
+            hpSlider.value = maxHealth;
         }
         public void SetCurrentHealth(int currentHealth)
         {
-            slider.value = currentHealth;
+            hpSlider.value = currentHealth;
+        }
+
+   
+        public void SetCurrentStamina(float currentHealthPercentage)
+        {
+            staminaSlider.value = currentHealthPercentage;
         }
     }
 }

@@ -10,6 +10,11 @@ namespace KMK
         public int maxHealth;
         public int currentHealth;
 
+        public int staminaLevel = 10;
+        public float maxStamina;
+        public float currentStamina;
+        
+
         public CharacterHealthbar healthbar;
         AnimatedController animatedController;
 
@@ -23,6 +28,15 @@ namespace KMK
             maxHealth = SetMaxHealthFromHealthLevel();
             currentHealth = maxHealth;
             healthbar.SetMaxHealth(maxHealth);
+
+            maxStamina = SetMaxStaminaFromHealthLevel();
+            currentStamina = maxStamina;
+        }
+
+        private float SetMaxStaminaFromHealthLevel()
+        {
+            maxStamina = staminaLevel * 10;
+            return maxStamina;
         }
 
         private int SetMaxHealthFromHealthLevel()
@@ -45,9 +59,16 @@ namespace KMK
             {
                 animatedController.PlayTargetAnimation("Damaged", true, 0.2f);
             }
-            
+        }
 
+        public void ReduceStamina(float amount)
+        {
+            Debug.Log($"stamina reduced with ${amount}");
             
+            currentStamina -= amount;
+            healthbar.SetCurrentStamina(currentStamina / maxStamina);
+
+
         }
     }
 

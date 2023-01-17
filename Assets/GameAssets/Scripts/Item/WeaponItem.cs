@@ -17,6 +17,15 @@ namespace KMK
         public string oneHandLightAttack1;
         public string oneHandLightAttack2;
 
+        [Header("Idle Animations")]
+        public string rightHandIdle;
+        public string leftHandIdle;
+
+        [Header("Stamina cost")]
+        public int baseStaminaDrain;
+        public float lightAttackMultiplier;
+        public float heavyAttackMultiplier;
+
     }
 }
 

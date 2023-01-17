@@ -11,8 +11,15 @@ namespace KMK
         DamageCollider leftHandDamageCollider;
         DamageCollider rightHandDamageCollider;
 
+        [SerializeField]
+        QuickSlotUI quickSlotUI;
+
+        Animator anim;
+
         private void Awake()
         {
+            anim = GetComponent<Animator>();
+            quickSlotUI = FindObjectOfType<QuickSlotUI>();
             WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
 
             foreach (WeaponHolderSlot slot in weaponHolderSlots)
@@ -28,18 +35,45 @@ namespace KMK
             }
         }
 
+       
+
         public void LoadWeaponOnSlot (WeaponItem weaponItem, bool isLeft)
         {
             if (isLeft)
             {
                 leftHandSlot.LoadWeaponModel(weaponItem);
                 LoadLeftWeaponDamageCollider();
+                
+
+                #region Handle left weapon Idle Animation
+                if (weaponItem != null)
+                {
+                    anim.CrossFade(weaponItem.leftHandIdle, 0.2f);
+                }
+                else
+                {
+                    anim.CrossFade("LeftArmEmpty", 0.2f);
+                }
+                #endregion
             }
             else
             {
                 rightHandSlot.LoadWeaponModel(weaponItem);
                 LoadRightWeaponDamageCollider();
+                
+
+                #region Handle right weapon Idle Animation
+                if (weaponItem != null)
+                {
+                    anim.CrossFade(weaponItem.rightHandIdle, 0.2f);
+                }
+                else
+                {
+                    anim.CrossFade("RightArmEmpty", 0.2f);
+                }
+                #endregion
             }
+            quickSlotUI.UpdateWeaponQuickSlotsUI(isLeft, weaponItem);
         }
 
         #region Handle weapon collider

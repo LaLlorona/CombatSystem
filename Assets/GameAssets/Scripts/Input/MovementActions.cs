@@ -89,6 +89,42 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DPadUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""e2a7612e-0c40-4dd3-9669-e2728ebf0946"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DPadDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""a30f397b-954c-457d-90b7-3cbb78ea0677"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DPadLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""8ec88015-4020-48c1-b73e-043720c78ff7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DPadRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""a74845f4-bb86-4bb9-9201-2f6254ca5822"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -162,61 +198,6 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                     ""name"": ""right"",
                     ""id"": ""5bec65bd-978d-4bd3-890e-bae44bc0dbb1"",
                     ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Arrows"",
-                    ""id"": ""284a8a2e-7459-443d-8930-4712b94d670f"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""8b4f6b27-bfa2-4608-90ff-ad6abe07c69a"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""6623fcfe-17ef-44d6-ba62-4efbf720af50"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""b061d890-06ff-416f-b018-815808f60f45"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""a11bd760-885c-447d-b1aa-de6efbcd5a9f"",
-                    ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
@@ -465,6 +446,50 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                     ""action"": ""RT"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cfd84691-9b1b-4e23-ba41-887d2ddfc3fa"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DPadUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3ce31572-61a0-4635-a7de-f34a80c82684"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DPadDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6050a040-c9cd-4795-8e27-99fb9d203e01"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DPadLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3d257e8c-b53f-4802-8aa4-88c0352241b3"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DPadRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -514,6 +539,10 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         m_Gameplay_Crouch = m_Gameplay.FindAction("Crouch", throwIfNotFound: true);
         m_Gameplay_RB = m_Gameplay.FindAction("RB", throwIfNotFound: true);
         m_Gameplay_RT = m_Gameplay.FindAction("RT", throwIfNotFound: true);
+        m_Gameplay_DPadUp = m_Gameplay.FindAction("DPadUp", throwIfNotFound: true);
+        m_Gameplay_DPadDown = m_Gameplay.FindAction("DPadDown", throwIfNotFound: true);
+        m_Gameplay_DPadLeft = m_Gameplay.FindAction("DPadLeft", throwIfNotFound: true);
+        m_Gameplay_DPadRight = m_Gameplay.FindAction("DPadRight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -580,6 +609,10 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Crouch;
     private readonly InputAction m_Gameplay_RB;
     private readonly InputAction m_Gameplay_RT;
+    private readonly InputAction m_Gameplay_DPadUp;
+    private readonly InputAction m_Gameplay_DPadDown;
+    private readonly InputAction m_Gameplay_DPadLeft;
+    private readonly InputAction m_Gameplay_DPadRight;
     public struct GameplayActions
     {
         private @MovementActions m_Wrapper;
@@ -591,6 +624,10 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         public InputAction @Crouch => m_Wrapper.m_Gameplay_Crouch;
         public InputAction @RB => m_Wrapper.m_Gameplay_RB;
         public InputAction @RT => m_Wrapper.m_Gameplay_RT;
+        public InputAction @DPadUp => m_Wrapper.m_Gameplay_DPadUp;
+        public InputAction @DPadDown => m_Wrapper.m_Gameplay_DPadDown;
+        public InputAction @DPadLeft => m_Wrapper.m_Gameplay_DPadLeft;
+        public InputAction @DPadRight => m_Wrapper.m_Gameplay_DPadRight;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -621,6 +658,18 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                 @RT.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRT;
                 @RT.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRT;
                 @RT.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRT;
+                @DPadUp.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDPadUp;
+                @DPadUp.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDPadUp;
+                @DPadUp.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDPadUp;
+                @DPadDown.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDPadDown;
+                @DPadDown.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDPadDown;
+                @DPadDown.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDPadDown;
+                @DPadLeft.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDPadLeft;
+                @DPadLeft.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDPadLeft;
+                @DPadLeft.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDPadLeft;
+                @DPadRight.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDPadRight;
+                @DPadRight.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDPadRight;
+                @DPadRight.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDPadRight;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -646,6 +695,18 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                 @RT.started += instance.OnRT;
                 @RT.performed += instance.OnRT;
                 @RT.canceled += instance.OnRT;
+                @DPadUp.started += instance.OnDPadUp;
+                @DPadUp.performed += instance.OnDPadUp;
+                @DPadUp.canceled += instance.OnDPadUp;
+                @DPadDown.started += instance.OnDPadDown;
+                @DPadDown.performed += instance.OnDPadDown;
+                @DPadDown.canceled += instance.OnDPadDown;
+                @DPadLeft.started += instance.OnDPadLeft;
+                @DPadLeft.performed += instance.OnDPadLeft;
+                @DPadLeft.canceled += instance.OnDPadLeft;
+                @DPadRight.started += instance.OnDPadRight;
+                @DPadRight.performed += instance.OnDPadRight;
+                @DPadRight.canceled += instance.OnDPadRight;
             }
         }
     }
@@ -686,5 +747,9 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         void OnCrouch(InputAction.CallbackContext context);
         void OnRB(InputAction.CallbackContext context);
         void OnRT(InputAction.CallbackContext context);
+        void OnDPadUp(InputAction.CallbackContext context);
+        void OnDPadDown(InputAction.CallbackContext context);
+        void OnDPadLeft(InputAction.CallbackContext context);
+        void OnDPadRight(InputAction.CallbackContext context);
     }
 }

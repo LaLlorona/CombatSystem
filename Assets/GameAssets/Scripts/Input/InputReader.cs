@@ -41,6 +41,11 @@ namespace KMK
         public bool rbInput;
         public bool rtInput;
 
+        public bool dPadUp;
+        public bool dPadDown;
+        public bool dPadRight;
+        public bool dPadLeft;
+
         public bool comboFlag;
 
         private float rollInputTimer;
@@ -60,13 +65,13 @@ namespace KMK
 
         /**/
 
-        
+
 
 
         //DISABLE if using old input system
         private void Awake()
         {
-            
+
 
             movementActions = new MovementActions();
 
@@ -87,10 +92,24 @@ namespace KMK
             movementActions.Gameplay.Crouch.canceled += ctx => CrouchEnded(ctx);
 
             movementActions.Gameplay.RB.performed += ctx => OnLightAttack(ctx);
-            movementActions.Gameplay.RB.canceled+= ctx => LightAttackEnded(ctx);
+            movementActions.Gameplay.RB.canceled += ctx => LightAttackEnded(ctx);
 
             movementActions.Gameplay.RT.performed += ctx => OnHeavyAttack(ctx);
-            movementActions.Gameplay.RT.canceled+= ctx => HeavyAttackEnded(ctx);
+            movementActions.Gameplay.RT.canceled += ctx => HeavyAttackEnded(ctx);
+
+
+
+            movementActions.Gameplay.DPadUp.performed += ctx => OnDpadUp(ctx);
+            movementActions.Gameplay.DPadUp.canceled+= ctx => OnDpadUpEnded(ctx);
+
+            movementActions.Gameplay.DPadDown.performed += ctx => OnDpadDown(ctx);
+            movementActions.Gameplay.DPadDown.canceled+= ctx => OnDpadDownEnded(ctx);
+
+            movementActions.Gameplay.DPadRight.performed += ctx => OnDpadRight(ctx);
+            movementActions.Gameplay.DPadRight.canceled+= ctx => OnDpadRightEnded(ctx);
+
+            movementActions.Gameplay.DPadLeft.performed += ctx => OnDpadLeft(ctx);
+            movementActions.Gameplay.DPadLeft.canceled+= ctx => OnDpadLeftEnded(ctx);
         }
 
 
@@ -238,6 +257,48 @@ namespace KMK
             if (enableCrouch) crouch = true;
         }
 
+        public void OnDpadUp(InputAction.CallbackContext ctx)
+        {
+            dPadUp = true;
+        }
+
+        public void OnDpadUpEnded(InputAction.CallbackContext ctx)
+        {
+            dPadUp = false;
+        }
+
+        public void OnDpadDown(InputAction.CallbackContext ctx)
+        {
+            dPadDown = true;
+        }
+
+        public void OnDpadDownEnded(InputAction.CallbackContext ctx)
+        {
+            dPadDown = false;
+        }
+
+
+        public void OnDpadRight(InputAction.CallbackContext ctx)
+        {
+            dPadRight = true;
+        }
+
+        public void OnDpadRightEnded(InputAction.CallbackContext ctx)
+        {
+            dPadRight = false;
+        }
+       
+        public void OnDpadLeft(InputAction.CallbackContext ctx)
+        {
+            dPadLeft = true;
+        }
+
+        public void OnDpadLeftEnded(InputAction.CallbackContext ctx)
+        {
+            dPadLeft = false;
+        }
+
+
 
         //DISABLE if using old input system
         public void CrouchEnded(InputAction.CallbackContext ctx)
@@ -266,6 +327,8 @@ namespace KMK
         {
             rtInput = false;
         }
+
+        
 
         #endregion
 

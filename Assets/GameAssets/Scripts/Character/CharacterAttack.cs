@@ -10,14 +10,30 @@ namespace KMK
         CharacterInventory characterInventory;
         CharacterManager characterManager;
         public InputReader input;
+        CharacterStats characterStats;
+
+        CharacterAnimationEventHandler characterAnimationEventHandler;
 
         public string lastAttack;
+        public WeaponItem currentlyAttackingWeapon;
 
         private void Awake()
         {
             animatedController = GetComponentInChildren<AnimatedController>();
             characterInventory = GetComponent<CharacterInventory>();
             characterManager = GetComponent<CharacterManager>();
+            characterStats = GetComponent<CharacterStats>();
+            characterAnimationEventHandler = GetComponentInChildren<CharacterAnimationEventHandler>();
+        }
+
+        private void OnEnable()
+        {
+            characterAnimationEventHandler.onAttackStaminaDrain += ReduceStaminaOnAttack;
+        }
+
+        private void OnDisable()
+        {
+            characterAnimationEventHandler.onAttackStaminaDrain -= ReduceStaminaOnAttack;
         }
 
         public void HandleWeaponCombo(WeaponItem weapon)
@@ -37,14 +53,19 @@ namespace KMK
         }
         public void HandleLightAttack(WeaponItem weapon)
         {
-            
+            currentlyAttackingWeapon = weapon;
             animatedController.PlayTargetAnimation(weapon.oneHandLightAttack1, true, 0.2f);
             lastAttack = weapon.oneHandLightAttack1;
         }
         public void HandleHeavyAttack(WeaponItem weapon)
         {
+            currentlyAttackingWeapon = weapon;
             animatedController.PlayTargetAnimation(weapon.oneHandHeavyAttack1, true, 0.2f);
             lastAttack = weapon.oneHandHeavyAttack1;
+        }
+
+        public void ReduceStaminaOnAttack() {
+            characterStats.ReduceStamina(currentlyAttackingWeapon.baseStaminaDrain * currentlyAttackingWeapon.lightAttackMultiplier);
         }
 
         private void Update()
@@ -76,7 +97,10 @@ namespace KMK
 
             if (input.rtInput)
             {
-
+                if (characterManager.canDoCombo || animatedController.rootMotionEnabled)
+                {
+                    return;
+                }
                 HandleHeavyAttack(characterInventory.rightWeapon);
                 input.rtInput = false;
             }

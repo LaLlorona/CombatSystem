@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8599c6d63f1ab6649bde63c60bc3f367, type: 3}
-  m_Name: FreedomSword
+  m_Name: LionRoarSword
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: e3fbaccf07df9b64a97c63860df0d26d, type: 3}
-  itemName: FreedomSword
-  modelPrefab: {fileID: 5892145709314406469, guid: 6d4a823919146084b86bb7d785447737,
+  itemIcon: {fileID: 21300000, guid: a137e953c4d0158428a7b3a1481da564, type: 3}
+  itemName: LionRoarSword
+  modelPrefab: {fileID: 5920079301087864237, guid: e39e8d3fdbc09ef40a991f7e93bccfe1,
     type: 3}
   isUnarmed: 0
   oneHandHeavyAttack1: OneHandHeavyAttack1
@@ -23,6 +23,6 @@ MonoBehaviour:
   oneHandLightAttack2: OneHandLightAttack2
   rightHandIdle: RightArmIdle
   leftHandIdle: LeftArmIdle
-  baseStaminaDrain: 20
-  lightAttackMultiplier: 1
-  heavyAttackMultiplier: 1.5
+  baseStaminaDrain: 30
+  lightAttackMultiplier: 1.1
+  heavyAttackMultiplier: 1.4
