@@ -24,6 +24,7 @@ namespace KMK
         public int currentRightWeaponIndex = 0;
         public int currentLeftWeaponIndex = 0;
 
+        public List<WeaponItem> weaponsInventory;
 
         private void Awake()
         {

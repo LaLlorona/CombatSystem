@@ -7,6 +7,7 @@ TagManager:
   - Collide
   - Hittable
   - Enemy
+  - Interactable
   layers:
   - Default
   - TransparentFX
@@ -39,7 +40,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Interactable
   m_SortingLayers:
   - name: Default
     uniqueID: 0

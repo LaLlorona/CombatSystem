@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Scene
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 97
+  controlID: 23
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 98
+  controlID: 24
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 37
+  controlID: 25
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -189,11 +189,11 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 1439
-    height: 578
+    height: 573
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 38
+  controlID: 26
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: GameView
+  m_Name: SceneView
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -212,17 +212,17 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 1075
-    height: 578
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 15}
+    height: 573
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
   - {fileID: 15}
   - {fileID: 14}
   - {fileID: 13}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -241,7 +241,7 @@ MonoBehaviour:
     x: 1075
     y: 0
     width: 364
-    height: 578
+    height: 573
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 17}
@@ -265,11 +265,11 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 578
+    y: 573
     width: 1439
-    height: 369
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+    height: 374
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 18}
@@ -278,7 +278,7 @@ MonoBehaviour:
   - {fileID: 21}
   - {fileID: 22}
   m_Selected: 1
-  m_LastSelected: 3
+  m_LastSelected: 4
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -328,8 +328,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: -1007
-    width: 1155
-    height: 557
+    width: 1074
+    height: 552
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -358,9 +358,9 @@ MonoBehaviour:
     m_SearchString: 
   m_ActionsTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: f15f80ed
-    m_LastClickedID: -310353935
-    m_ExpandedIDs: 667220d257a268da3642a465
+    m_SelectedIDs: 7073193b
+    m_LastClickedID: 991523696
+    m_ExpandedIDs: b3de78938babe1ad667220d240b4ced447835771
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -392,6 +392,9 @@ MonoBehaviour:
         scroll: {x: 0, y: 0}
       - itemId: 403810634
         selectedIndex: 0
+        scroll: {x: 0, y: 0}
+      - itemId: 1275948795
+        selectedIndex: -1
         scroll: {x: 0, y: 0}
     m_ManualPathEditMode: 0
   m_ActionAssetManager:
@@ -431,6 +434,26 @@ MonoBehaviour:
       \"type\": \"Button\",\n                    \"id\": \"692b300b-efd0-4195-ae45-d98d43d8c3c0\",\n                   
       \"expectedControlType\": \"Button\",\n                    \"processors\": \"\",\n                   
       \"interactions\": \"\",\n                    \"initialStateCheck\": false\n               
+      },\n                {\n                    \"name\": \"DPadUp\",\n                   
+      \"type\": \"Button\",\n                    \"id\": \"e2a7612e-0c40-4dd3-9669-e2728ebf0946\",\n                   
+      \"expectedControlType\": \"Button\",\n                    \"processors\": \"\",\n                   
+      \"interactions\": \"\",\n                    \"initialStateCheck\": false\n               
+      },\n                {\n                    \"name\": \"DPadDown\",\n                   
+      \"type\": \"Button\",\n                    \"id\": \"a30f397b-954c-457d-90b7-3cbb78ea0677\",\n                   
+      \"expectedControlType\": \"Button\",\n                    \"processors\": \"\",\n                   
+      \"interactions\": \"\",\n                    \"initialStateCheck\": false\n               
+      },\n                {\n                    \"name\": \"DPadLeft\",\n                   
+      \"type\": \"Button\",\n                    \"id\": \"8ec88015-4020-48c1-b73e-043720c78ff7\",\n                   
+      \"expectedControlType\": \"Button\",\n                    \"processors\": \"\",\n                   
+      \"interactions\": \"\",\n                    \"initialStateCheck\": false\n               
+      },\n                {\n                    \"name\": \"DPadRight\",\n                   
+      \"type\": \"Button\",\n                    \"id\": \"a74845f4-bb86-4bb9-9201-2f6254ca5822\",\n                   
+      \"expectedControlType\": \"Button\",\n                    \"processors\": \"\",\n                   
+      \"interactions\": \"\",\n                    \"initialStateCheck\": false\n               
+      },\n                {\n                    \"name\": \"A\",\n                   
+      \"type\": \"Button\",\n                    \"id\": \"87b7b78d-7dac-4b9d-a0d8-e69332ccb4cc\",\n                   
+      \"expectedControlType\": \"Button\",\n                    \"processors\": \"\",\n                   
+      \"interactions\": \"\",\n                    \"initialStateCheck\": false\n               
       }\n            ],\n            \"bindings\": [\n                {\n                   
       \"name\": \"\",\n                    \"id\": \"b354c5de-ab60-41fa-9047-b66c6303a713\",\n                   
       \"path\": \"<Keyboard>/space\",\n                    \"interactions\": \"\",\n                   
@@ -468,35 +491,8 @@ MonoBehaviour:
       \"processors\": \"\",\n                    \"groups\": \"Keyboard\",\n                   
       \"action\": \"Movement\",\n                    \"isComposite\": false,\n                   
       \"isPartOfComposite\": true\n                },\n                {\n                   
-      \"name\": \"Arrows\",\n                    \"id\": \"284a8a2e-7459-443d-8930-4712b94d670f\",\n                   
+      \"name\": \"LeftStick\",\n                    \"id\": \"7c117083-350f-4721-b12f-ed62b6c13cf4\",\n                   
       \"path\": \"2DVector\",\n                    \"interactions\": \"\",\n                   
-      \"processors\": \"\",\n                    \"groups\": \"\",\n                   
-      \"action\": \"Movement\",\n                    \"isComposite\": true,\n                   
-      \"isPartOfComposite\": false\n                },\n                {\n                   
-      \"name\": \"up\",\n                    \"id\": \"8b4f6b27-bfa2-4608-90ff-ad6abe07c69a\",\n                   
-      \"path\": \"<Keyboard>/upArrow\",\n                    \"interactions\": \"\",\n                   
-      \"processors\": \"\",\n                    \"groups\": \"Keyboard\",\n                   
-      \"action\": \"Movement\",\n                    \"isComposite\": false,\n                   
-      \"isPartOfComposite\": true\n                },\n                {\n                   
-      \"name\": \"down\",\n                    \"id\": \"6623fcfe-17ef-44d6-ba62-4efbf720af50\",\n                   
-      \"path\": \"<Keyboard>/downArrow\",\n                    \"interactions\":
-      \"\",\n                    \"processors\": \"\",\n                    \"groups\":
-      \"Keyboard\",\n                    \"action\": \"Movement\",\n                   
-      \"isComposite\": false,\n                    \"isPartOfComposite\": true\n               
-      },\n                {\n                    \"name\": \"left\",\n                   
-      \"id\": \"b061d890-06ff-416f-b018-815808f60f45\",\n                    \"path\":
-      \"<Keyboard>/leftArrow\",\n                    \"interactions\": \"\",\n                   
-      \"processors\": \"\",\n                    \"groups\": \"Keyboard\",\n                   
-      \"action\": \"Movement\",\n                    \"isComposite\": false,\n                   
-      \"isPartOfComposite\": true\n                },\n                {\n                   
-      \"name\": \"right\",\n                    \"id\": \"a11bd760-885c-447d-b1aa-de6efbcd5a9f\",\n                   
-      \"path\": \"<Keyboard>/rightArrow\",\n                    \"interactions\":
-      \"\",\n                    \"processors\": \"\",\n                    \"groups\":
-      \"Keyboard\",\n                    \"action\": \"Movement\",\n                   
-      \"isComposite\": false,\n                    \"isPartOfComposite\": true\n               
-      },\n                {\n                    \"name\": \"LeftStick\",\n                   
-      \"id\": \"7c117083-350f-4721-b12f-ed62b6c13cf4\",\n                    \"path\":
-      \"2DVector\",\n                    \"interactions\": \"\",\n                   
       \"processors\": \"\",\n                    \"groups\": \"\",\n                   
       \"action\": \"Movement\",\n                    \"isComposite\": true,\n                   
       \"isPartOfComposite\": false\n                },\n                {\n                   
@@ -612,6 +608,32 @@ MonoBehaviour:
       \"path\": \"<Keyboard>/r\",\n                    \"interactions\": \"\",\n                   
       \"processors\": \"\",\n                    \"groups\": \"\",\n                   
       \"action\": \"RT\",\n                    \"isComposite\": false,\n                   
+      \"isPartOfComposite\": false\n                },\n                {\n                   
+      \"name\": \"\",\n                    \"id\": \"cfd84691-9b1b-4e23-ba41-887d2ddfc3fa\",\n                   
+      \"path\": \"<Keyboard>/upArrow\",\n                    \"interactions\": \"\",\n                   
+      \"processors\": \"\",\n                    \"groups\": \"\",\n                   
+      \"action\": \"DPadUp\",\n                    \"isComposite\": false,\n                   
+      \"isPartOfComposite\": false\n                },\n                {\n                   
+      \"name\": \"\",\n                    \"id\": \"3ce31572-61a0-4635-a7de-f34a80c82684\",\n                   
+      \"path\": \"<Keyboard>/downArrow\",\n                    \"interactions\":
+      \"\",\n                    \"processors\": \"\",\n                    \"groups\":
+      \"\",\n                    \"action\": \"DPadDown\",\n                    \"isComposite\":
+      false,\n                    \"isPartOfComposite\": false\n                },\n               
+      {\n                    \"name\": \"\",\n                    \"id\": \"6050a040-c9cd-4795-8e27-99fb9d203e01\",\n                   
+      \"path\": \"<Keyboard>/leftArrow\",\n                    \"interactions\":
+      \"\",\n                    \"processors\": \"\",\n                    \"groups\":
+      \"\",\n                    \"action\": \"DPadLeft\",\n                    \"isComposite\":
+      false,\n                    \"isPartOfComposite\": false\n                },\n               
+      {\n                    \"name\": \"\",\n                    \"id\": \"3d257e8c-b53f-4802-8aa4-88c0352241b3\",\n                   
+      \"path\": \"<Keyboard>/rightArrow\",\n                    \"interactions\":
+      \"\",\n                    \"processors\": \"\",\n                    \"groups\":
+      \"\",\n                    \"action\": \"DPadRight\",\n                   
+      \"isComposite\": false,\n                    \"isPartOfComposite\": false\n               
+      },\n                {\n                    \"name\": \"\",\n                   
+      \"id\": \"8af347c9-d178-4e94-883e-653249db1bcd\",\n                    \"path\":
+      \"<Keyboard>/q\",\n                    \"interactions\": \"\",\n                   
+      \"processors\": \"\",\n                    \"groups\": \"\",\n                   
+      \"action\": \"A\",\n                    \"isComposite\": false,\n                   
       \"isPartOfComposite\": false\n                }\n            ]\n        }\n   
       ],\n    \"controlSchemes\": [\n        {\n            \"name\": \"Keyboard\",\n           
       \"bindingGroup\": \"Keyboard\",\n            \"devices\": [\n               
@@ -708,7 +730,7 @@ MonoBehaviour:
     x: 0
     y: -1007
     width: 1074
-    height: 557
+    height: 552
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -719,7 +741,7 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 1074, y: 536}
+  m_TargetSize: {x: 1074, y: 531}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -736,8 +758,8 @@ MonoBehaviour:
     vZoomLockedByDefault: 0
     m_HBaseRangeMin: -537
     m_HBaseRangeMax: 537
-    m_VBaseRangeMin: -268
-    m_VBaseRangeMax: 268
+    m_VBaseRangeMin: -265.5
+    m_VBaseRangeMax: 265.5
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -746,7 +768,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -756,9 +778,9 @@ MonoBehaviour:
       x: 0
       y: 21
       width: 1074
-      height: 536
+      height: 531
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 537, y: 268}
+    m_Translation: {x: 537, y: 265.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
@@ -766,12 +788,12 @@ MonoBehaviour:
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
       x: -537
-      y: -268
+      y: -265.5
       width: 1074
-      height: 536
+      height: 531
     m_MinimalGUI: 1
   m_defaultScale: 1
-  m_LastWindowPixelSize: {x: 1074, y: 557}
+  m_LastWindowPixelSize: {x: 1074, y: 552}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -800,8 +822,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: -1007
-    width: 1155
-    height: 557
+    width: 1074
+    height: 552
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -1036,9 +1058,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -72.935036, y: 13.251071, z: -57.553833}
+    m_Target: {x: -83.08171, y: 9.272723, z: -65.53294}
     speed: 2
-    m_Value: {x: -72.935036, y: 13.251071, z: -57.553833}
+    m_Value: {x: -83.08171, y: 9.272723, z: -65.53294}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1085,13 +1107,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.016088467, y: -0.7114214, z: 0.016168281, w: -0.7024898}
+    m_Target: {x: -0.26870775, y: -0.13500783, z: 0.03803306, w: -0.95304465}
     speed: 2
-    m_Value: {x: -0.016087402, y: -0.7113742, z: 0.01616721, w: -0.70244324}
+    m_Value: {x: -0.26868472, y: -0.13499627, z: 0.0380298, w: -0.952963}
   m_Size:
-    m_Target: 5.9469543
+    m_Target: 8.102213
     speed: 2
-    m_Value: 5.9469543
+    m_Value: 8.102213
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1109,7 +1131,7 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 1
     m_OcclusionCulling: 0
-  m_LastSceneViewRotation: {x: 0.13042635, y: 0.016981104, z: -0.0021839747, w: 0.9913711}
+  m_LastSceneViewRotation: {x: -0.18280697, y: -0.46193665, z: 0.097771294, w: -0.8624318}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
@@ -1140,7 +1162,7 @@ MonoBehaviour:
     x: 1075
     y: -1007
     width: 362
-    height: 557
+    height: 552
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -1148,9 +1170,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 12fbffff3876000044760000
+      m_SelectedIDs: 9e710000
+      m_LastClickedID: 29086
+      m_ExpandedIDs: 5eb0fbffbabefbff028cfcffe6bcfdff96c0fdff12fbffff4a720000f87300007e740000d4740000ee7400001a7500002e7500003a750000767500007a7500004476000046760000c6760000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1196,9 +1218,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: -429
+    y: -434
     width: 1438
-    height: 348
+    height: 353
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -1229,9 +1251,9 @@ MonoBehaviour:
     m_IsLocked: 1
   m_FolderTreeState:
     scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: bc880000
-    m_LastClickedID: 35004
-    m_ExpandedIDs: 00000000d08500007e860000d4860000b2880000b488000000ca9a3b
+    m_SelectedIDs: be860000
+    m_LastClickedID: 34494
+    m_ExpandedIDs: 00000000d485000082860000968600009e860000a2860000c0860000c286000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1259,7 +1281,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000d0850000
+    m_ExpandedIDs: 00000000d4850000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1284,24 +1306,24 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 7e780000
-    m_LastClickedInstanceID: 30846
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c62300006e980000d89d0000aa9e00002e950000ae970000469c0000e29a0000a4a400003e9f000046180800745a0800ba810000f0830000f883000006840000d8830000e48300000e840000cca40000e0a40000f0a400000ca5000044a5000042a500003ea50000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: WeaponPickup
+      m_OriginalName: WeaponPickup
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 244244
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 11}
     m_CreateAssetUtility:
@@ -1337,9 +1359,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: -429
+    y: -434
     width: 1438
-    height: 348
+    height: 353
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -1366,16 +1388,16 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: -429
-    width: 1547
-    height: 348
+    y: -540
+    width: 1438
+    height: 459
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 34962
+  m_LastSelectedObjectID: 29086
 --- !u!114 &21
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1398,9 +1420,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: -429
+    y: -434
     width: 1438
-    height: 348
+    height: 353
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -1415,6 +1437,8 @@ MonoBehaviour:
     - {fileID: 5869189636510402857, guid: 65a77f8e923c36a48a060f429789b277, type: 2}
     - {fileID: -6583465286580793291, guid: 65a77f8e923c36a48a060f429789b277, type: 2}
     - {fileID: 110710218, guid: 011e5301471acda4bb229a8b7b183471, type: 2}
+    - {fileID: 2554691757942114032, guid: 65a77f8e923c36a48a060f429789b277, type: 2}
+    - {fileID: 5444289278439271899, guid: 65a77f8e923c36a48a060f429789b277, type: 2}
     m_ValueSerializationHelper:
     - e00: 0.8306951
       e01: 0
@@ -1496,14 +1520,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 0.6620283
+    - e00: 0.6948136
       e01: 0
       e02: 0
-      e03: 116.95758
+      e03: 372.66656
       e10: 0
-      e11: 0.6620283
+      e11: 0.6948136
       e12: 0
-      e13: -238.16772
+      e13: -270.18274
       e20: 0
       e21: 0
       e22: 1
@@ -1544,6 +1568,38 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    - e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: -10
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: -10
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
   m_PreviewAnimator: {fileID: 0}
   m_AnimatorController: {fileID: 9100000, guid: 65a77f8e923c36a48a060f429789b277,
     type: 2}
@@ -1559,7 +1615,7 @@ MonoBehaviour:
   m_MiniTool: 0
   m_LockTracker:
     m_IsLocked: 0
-  m_CurrentEditor: 1
+  m_CurrentEditor: 0
   m_LayerEditor:
     m_SelectedLayerIndex: 0
 --- !u!114 &22
@@ -1584,9 +1640,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: -429
-    width: 1547
-    height: 348
+    y: -434
+    width: 1438
+    height: 353
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -1604,22 +1660,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/GameAssets/Animations/HumanAnimation/Attack
+    - Assets/GameAssets/Scripts/UI
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/GameAssets/Animations/HumanAnimation/Attack
+  - Assets/GameAssets/Scripts/UI
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\myfiles\hobby\gamedefv\Combat\CombatSystem
   m_LockTracker:
-    m_IsLocked: 0
+    m_IsLocked: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 84880000
-    m_LastClickedID: 34948
-    m_ExpandedIDs: 00000000d08500007e860000888600009086000092860000ce860000d4860000d886000082880000b288000000ca9a3b
+    scrollPos: {x: 0, y: 339}
+    m_SelectedIDs: 06b30200
+    m_LastClickedID: 176902
+    m_ExpandedIDs: 00000000d4850000828600008486000094860000968600009a8600009c8600009e860000a2860000c0860000c28600007c9d0000869d0000889d0000909d0000b2a30000a4d00100a8d00100b0d00100b4d001004ab3020000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1647,7 +1703,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000d0850000
+    m_ExpandedIDs: 00000000d4850000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1672,21 +1728,21 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: b67b0000
-    m_LastClickedInstanceID: 31670
-    m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: c8a40000cea40000cca40000d2a40000d8a4000010a5000012a5000064a50000baa5000012110300
+    m_SelectedInstanceIDs: 78520400
+    m_LastClickedInstanceID: 283256
+    m_HadKeyboardFocusLastEvent: 1
+    m_ExpandedInstanceIDs: c8a40000cea40000cca40000d2a40000d8a4000010a5000012a5000064a50000baa5000012110300ee910000e69d0000ea9d0000e4a30000e0a8000010f50300
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Data
-      m_OriginalName: Data
+      m_Name: InteractablePopupUI
+      m_OriginalName: InteractablePopupUI
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 34516
+      m_UserData: 283256
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0
@@ -1735,7 +1791,7 @@ MonoBehaviour:
   m_ObjectsLockedBeforeSerialization: []
   m_InstanceIDsLockedBeforeSerialization: 
   m_PreviewResizer:
-    m_CachedPref: 514
+    m_CachedPref: 272
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1

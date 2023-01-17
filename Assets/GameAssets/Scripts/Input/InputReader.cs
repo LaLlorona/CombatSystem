@@ -38,6 +38,7 @@ namespace KMK
         public bool roll;
 
         public bool b_input;
+        public bool aInput;
         public bool rbInput;
         public bool rtInput;
 
@@ -110,6 +111,16 @@ namespace KMK
 
             movementActions.Gameplay.DPadLeft.performed += ctx => OnDpadLeft(ctx);
             movementActions.Gameplay.DPadLeft.canceled+= ctx => OnDpadLeftEnded(ctx);
+
+            movementActions.Gameplay.A.performed += ctx =>
+            {
+                aInput = true;
+            };
+
+            movementActions.Gameplay.A.canceled += ctx =>
+            {
+                aInput = false;
+            };
         }
 
 
