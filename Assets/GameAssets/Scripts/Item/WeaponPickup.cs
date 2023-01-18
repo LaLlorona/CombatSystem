@@ -28,6 +28,9 @@ namespace KMK
             animatedController.PlayTargetAnimation("PickUpItem", true, 0.2f); //play animation when looting an iteam
 
             characterInventory.weaponsInventory.Add(weapon);
+            characterManager.interactablePopupUI.SetInteractableText(weapon.itemName);
+            characterManager.interactablePopupUI.SetIcon(weapon.itemIcon);
+
 
             Destroy(gameObject);
 

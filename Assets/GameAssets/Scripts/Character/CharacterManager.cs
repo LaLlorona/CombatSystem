@@ -16,8 +16,10 @@ namespace KMK
         public LayerMask toDetect;
         public InputReader input;
 
-        public GameObject interactableUIGameobject;
+        
         public InteractablePopupUI interactablePopupUI;
+        public GameObject interactableUIGameobject;
+        public GameObject itemDescriptionUIGameobject;
 
         // Start is called before the first frame update
         void Awake()
@@ -42,8 +44,7 @@ namespace KMK
         public void CheckForInteractableObject()
         {
             RaycastHit hit;
-            LayerMask notToDetect;
-            notToDetect = ~toDetect;
+            
             if (Physics.SphereCast(transform.position, 0.3f, transform.forward, out hit, 10f, toDetect))
             {
                 Debug.Log(hit.collider.tag);
@@ -60,17 +61,27 @@ namespace KMK
                         
                         if (input.aInput)
                         {
+                            interactablePopupUI.SetItemText(interactableObject.itemDescription);
+                            itemDescriptionUIGameobject.SetActive(true);
                             interactableObject.Interact(this);
+                            
+                            
                             input.aInput = false;
+                           
                         }
                     }
                 }
             }
             else
             {
+               
                 if (interactableUIGameobject != null)
                 {
                     interactableUIGameobject.SetActive(false);
+                }
+                if (itemDescriptionUIGameobject != null && input.aInput)
+                {
+                    itemDescriptionUIGameobject.SetActive(false);
                 }
             }
         }

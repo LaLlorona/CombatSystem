@@ -9,6 +9,9 @@ namespace KMK
 {
     public class InputReader : MonoBehaviour
     {
+        public delegate void InputEvent();
+
+        public InputEvent OnInventoryInput;
         [Header("Input specs")]
         public UnityEvent changedInputToMouseAndKeyboard;
         public UnityEvent changedInputToGamepad;
@@ -46,6 +49,7 @@ namespace KMK
         public bool dPadDown;
         public bool dPadRight;
         public bool dPadLeft;
+        public bool inventoryFlag;
 
         public bool comboFlag;
 
@@ -121,6 +125,13 @@ namespace KMK
             {
                 aInput = false;
             };
+
+            movementActions.UI.Inventory.performed += ctx =>
+            {
+                OnInventoryInput?.Invoke();
+            };
+
+
         }
 
 

@@ -9,7 +9,8 @@ namespace KMK
         public float radius = 0.6f;
 
         public string interactableText;
-
+        public string itemDescription;
+        public Sprite itemIcon;
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.blue;
