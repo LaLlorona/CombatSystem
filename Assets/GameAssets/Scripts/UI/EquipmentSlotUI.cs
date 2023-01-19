@@ -8,11 +8,18 @@ namespace KMK
     public class EquipmentSlotUI : MonoBehaviour
     {
         public Image icon;
+        public UIManager uiManager;
         WeaponItem weapon;
 
         public bool isLeftHand;
 
         public int slotIndex;
+
+        public void SelectThisSlot()
+        {
+            uiManager.isLeftHand = isLeftHand;
+            uiManager.slotIndex = slotIndex;
+        }
 
         public void AddItem(WeaponItem newWeapon)
         {

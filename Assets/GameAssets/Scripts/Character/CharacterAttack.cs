@@ -8,7 +8,7 @@ namespace KMK
     {
         AnimatedController animatedController;
         CharacterInventory characterInventory;
-        CharacterManager characterManager;
+        MainCharacterManager characterManager;
         public InputReader input;
         CharacterStats characterStats;
 
@@ -21,7 +21,7 @@ namespace KMK
         {
             animatedController = GetComponentInChildren<AnimatedController>();
             characterInventory = GetComponent<CharacterInventory>();
-            characterManager = GetComponent<CharacterManager>();
+            characterManager = GetComponent<MainCharacterManager>();
             characterStats = GetComponent<CharacterStats>();
             characterAnimationEventHandler = GetComponentInChildren<CharacterAnimationEventHandler>();
         }

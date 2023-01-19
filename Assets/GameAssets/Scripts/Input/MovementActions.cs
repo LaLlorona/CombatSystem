@@ -134,6 +134,15 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LockOn"",
+                    ""type"": ""Button"",
+                    ""id"": ""20b2b8cd-524d-41e9-ac43-7dacab5d8471"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -510,6 +519,17 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                     ""action"": ""A"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d92d8550-25d4-449a-a154-872f08751a3b"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LockOn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -592,6 +612,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         m_Gameplay_DPadLeft = m_Gameplay.FindAction("DPadLeft", throwIfNotFound: true);
         m_Gameplay_DPadRight = m_Gameplay.FindAction("DPadRight", throwIfNotFound: true);
         m_Gameplay_A = m_Gameplay.FindAction("A", throwIfNotFound: true);
+        m_Gameplay_LockOn = m_Gameplay.FindAction("LockOn", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Inventory = m_UI.FindAction("Inventory", throwIfNotFound: true);
@@ -666,6 +687,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_DPadLeft;
     private readonly InputAction m_Gameplay_DPadRight;
     private readonly InputAction m_Gameplay_A;
+    private readonly InputAction m_Gameplay_LockOn;
     public struct GameplayActions
     {
         private @MovementActions m_Wrapper;
@@ -682,6 +704,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         public InputAction @DPadLeft => m_Wrapper.m_Gameplay_DPadLeft;
         public InputAction @DPadRight => m_Wrapper.m_Gameplay_DPadRight;
         public InputAction @A => m_Wrapper.m_Gameplay_A;
+        public InputAction @LockOn => m_Wrapper.m_Gameplay_LockOn;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -727,6 +750,9 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                 @A.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnA;
                 @A.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnA;
                 @A.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnA;
+                @LockOn.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLockOn;
+                @LockOn.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLockOn;
+                @LockOn.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLockOn;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -767,6 +793,9 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                 @A.started += instance.OnA;
                 @A.performed += instance.OnA;
                 @A.canceled += instance.OnA;
+                @LockOn.started += instance.OnLockOn;
+                @LockOn.performed += instance.OnLockOn;
+                @LockOn.canceled += instance.OnLockOn;
             }
         }
     }
@@ -845,6 +874,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         void OnDPadLeft(InputAction.CallbackContext context);
         void OnDPadRight(InputAction.CallbackContext context);
         void OnA(InputAction.CallbackContext context);
+        void OnLockOn(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

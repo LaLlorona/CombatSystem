@@ -487,6 +487,9 @@ namespace KMK
             if (axisInput.magnitude > movementThrashold)
             {
                 targetAngle = Mathf.Atan2(axisInput.x, axisInput.y) * Mathf.Rad2Deg + characterCamera.transform.eulerAngles.y;
+                //targetAngle = Mathf.Atan2(axisInput.x, axisInput.y) * Mathf.Rad2Deg;
+                //Debug.Log($"before applying cameratransform y is {targetAngle}");
+                //Debug.Log($"after applying camera transfom y is {targetAngle + characterCamera.transform.eulerAngles.y}");
 
                 if (!sprint) rigidbody.velocity = Vector3.SmoothDamp(rigidbody.velocity, forward * movementSpeed * crouchMultiplier, ref currVelocity, dampSpeedUp);
                 else rigidbody.velocity = Vector3.SmoothDamp(rigidbody.velocity, forward * sprintSpeed * crouchMultiplier, ref currVelocity, dampSpeedUp);

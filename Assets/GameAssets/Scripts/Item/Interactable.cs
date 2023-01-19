@@ -17,7 +17,7 @@ namespace KMK
             Gizmos.DrawWireSphere(transform.position, radius);
         }
 
-        public virtual void Interact(CharacterManager characterManager)
+        public virtual void Interact(MainCharacterManager characterManager)
         {
             Debug.Log("you interacted with object, base class");
         }

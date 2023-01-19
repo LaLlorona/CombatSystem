@@ -14,6 +14,11 @@ namespace KMK
         public GameObject selectWindow;
         public GameObject inventoryWindow;
         public GameObject hudWindow;
+        public GameObject equipmentScreenWindow;
+
+        [Header("Equipment Window Slot Selected")]
+        public bool isLeftHand;
+        public int slotIndex;
 
         [Header("Weapon Inventory")]
 
@@ -21,6 +26,10 @@ namespace KMK
         public Transform weaponInventorySlotsParent;
         List<WeaponInventorySlot> weaponInventorySlots = new List<WeaponInventorySlot>();
 
+        public void ResetAllSelectedSlots()
+        {
+            slotIndex = -1;
+        }
         public void UpdateUI()
         {
             #region Weapon inventory slots
@@ -52,6 +61,8 @@ namespace KMK
         public void CloseAllInventoryWindows()
         {
             inventoryWindow.SetActive(false);
+            equipmentScreenWindow.SetActive(false);
+            ResetAllSelectedSlots();
         }
 
 

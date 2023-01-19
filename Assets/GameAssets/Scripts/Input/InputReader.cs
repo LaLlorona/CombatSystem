@@ -12,6 +12,7 @@ namespace KMK
         public delegate void InputEvent();
 
         public InputEvent OnInventoryInput;
+        public InputEvent OnLockonInput;
         [Header("Input specs")]
         public UnityEvent changedInputToMouseAndKeyboard;
         public UnityEvent changedInputToGamepad;
@@ -129,6 +130,11 @@ namespace KMK
             movementActions.UI.Inventory.performed += ctx =>
             {
                 OnInventoryInput?.Invoke();
+            };
+
+            movementActions.Gameplay.LockOn.performed += ctx =>
+            {
+                OnLockonInput?.Invoke();
             };
 
 
@@ -368,6 +374,11 @@ namespace KMK
         private void OnDisable()
         {
             movementActions.Disable();
+        }
+
+        private void OnLockOn()
+        {
+
         }
 
     

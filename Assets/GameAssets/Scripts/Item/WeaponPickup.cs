@@ -8,13 +8,13 @@ namespace KMK
     {
         public WeaponItem weapon;
 
-        public override void Interact(CharacterManager characterManager)
+        public override void Interact(MainCharacterManager characterManager)
         {
             base.Interact(characterManager);
             PickUpItem(characterManager);
         }
 
-        private void PickUpItem(CharacterManager characterManager)
+        private void PickUpItem(MainCharacterManager characterManager)
         {
             CharacterInventory characterInventory;
             CharacterLocomotion characterLocomotion;

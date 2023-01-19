@@ -10,11 +10,11 @@ namespace KMK
         public int leftHandSelectIndex = 0;
         const int NUM_ITEM_IN_HAND = 4;
 
-        EquipmentSlotUI[] equipmentSlotUIs;
+        public EquipmentSlotUI[] equipmentSlotUIs;
 
         private void Awake()
         {
-            equipmentSlotUIs = GetComponentsInChildren<EquipmentSlotUI>();
+      
         }
 
         public void LoadWeaponsOnEquipmentScreen(CharacterInventory characterInventory)
