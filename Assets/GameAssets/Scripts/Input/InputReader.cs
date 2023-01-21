@@ -13,6 +13,8 @@ namespace KMK
 
         public InputEvent OnInventoryInput;
         public InputEvent OnLockonInput;
+        public InputEvent OnYButtonInput;
+
         [Header("Input specs")]
         public UnityEvent changedInputToMouseAndKeyboard;
         public UnityEvent changedInputToGamepad;
@@ -43,6 +45,7 @@ namespace KMK
 
         public bool b_input;
         public bool aInput;
+        public bool yInput;
         public bool rbInput;
         public bool rtInput;
 
@@ -136,6 +139,17 @@ namespace KMK
             {
                 OnLockonInput?.Invoke();
             };
+
+            movementActions.Gameplay.Y.performed += ctx =>
+            {
+                OnYButtonInput?.Invoke();
+            };
+
+            movementActions.Gameplay.Y.canceled += ctx =>
+            {
+                
+            };
+
 
 
         }

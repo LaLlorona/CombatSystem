@@ -3,7 +3,7 @@ using static KMK.AnimationNameDefine;
 
 namespace KMK
 {
-    public class AnimatedController : MonoBehaviour
+    public class AnimatedController : AnimatorManager
     {
         [Header("References")]
         public CharacterLocomotion characterManager;
@@ -20,10 +20,10 @@ namespace KMK
         public float sprintMultiplier = 2.0f;
 
 
-        public Animator anim;
+        
         private float originalColliderHeight;
 
-        public bool rootMotionEnabled = false;
+        
 
 
         /**/
@@ -66,14 +66,7 @@ namespace KMK
             return Physics.CheckSphere(characterManager.transform.position - new Vector3(0, originalColliderHeight / 2f, 0), groundCheckerThrashold, groundMask);
         }
 
-        public void PlayTargetAnimation(string targetAnim, bool isRootMotion, float crossFadeTime)
-        {
-            anim.applyRootMotion = isRootMotion;
-            anim.SetBool(isRootMotionHash, isRootMotion);
-            anim.CrossFade(targetAnim, crossFadeTime);
-            rootMotionEnabled = isRootMotion;
-
-        }
+        
         private void OnAnimatorMove()
         {
             if (!rootMotionEnabled)

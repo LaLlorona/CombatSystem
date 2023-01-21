@@ -20,6 +20,7 @@ namespace KMK
         [Header("Idle Animations")]
         public string rightHandIdle;
         public string leftHandIdle;
+        public string twoHandIdle;
 
         [Header("Stamina cost")]
         public int baseStaminaDrain;

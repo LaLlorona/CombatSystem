@@ -4,13 +4,9 @@ using UnityEngine;
 
 namespace KMK
 {
-    public class EnemyStats : MonoBehaviour
+    public class EnemyStats : CreatureStats
     {
-        public int healthLevel = 10;
-        public int maxHealth;
-        public int currentHealth;
 
-        
         Animator animator;
 
         private void Awake()

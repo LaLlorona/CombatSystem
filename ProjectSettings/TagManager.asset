@@ -38,8 +38,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Static
+  - Creature
   - Interactable
   m_SortingLayers:
   - name: Default
