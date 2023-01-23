@@ -8,6 +8,9 @@ namespace KMK
         [Header("References")]
         public CharacterLocomotion characterManager;
         public Rigidbody rigidbodyCharacter;
+        public CharacterAnimationEventHandler characterAnimationEventHandler;
+
+
         [SerializeField] LayerMask groundMask;
         [Space(10)]
 
@@ -32,8 +35,25 @@ namespace KMK
         private void Awake()
         {
             anim = this.GetComponent<Animator>();
+            characterAnimationEventHandler = GetComponent<CharacterAnimationEventHandler>();
         }
 
+        private void OnEnable()
+        {
+            characterAnimationEventHandler.onEnableRotate += EnableRotate;
+        }
+
+        private void OnDisable()
+        {
+            characterAnimationEventHandler.onEnableRotate -= EnableRotate;
+        }
+
+        public void EnableRotate()
+        {
+            anim.SetBool(canRotateHash, true);
+        }
+
+        
 
         private void Start()
         {
@@ -44,6 +64,10 @@ namespace KMK
         private void Update()
         {
             rootMotionEnabled = anim.GetBool(isRootMotionHash);
+            canRotate = anim.GetBool(canRotateHash);
+            
+
+
             anim.SetFloat("velocity", characterManager.axisInput.sqrMagnitude * (characterManager.GetSprint() ? sprintMultiplier : 1.0f), 0.2f,Time.deltaTime);
 
             anim.SetBool("isGrounded", CheckAnimationGrounded());

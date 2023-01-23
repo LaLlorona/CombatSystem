@@ -477,7 +477,7 @@ namespace KMK
 
         private void MoveWalk()
         {
-            if (anim.rootMotionEnabled)
+            if (anim.rootMotionEnabled && !anim.canRotate)
             {
                 return;
             }
@@ -500,7 +500,7 @@ namespace KMK
 
         private void MoveRotation()
         {
-            if (anim.rootMotionEnabled)
+            if (anim.rootMotionEnabled && !anim.canRotate)
             {
                 return;
             }

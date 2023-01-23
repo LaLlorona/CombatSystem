@@ -44,6 +44,7 @@ namespace KMK
             Debug.DrawRay(transform.position, transform.forward * 10, Color.red);
         }
 
+        #region Player Interaction
         public void CheckForInteractableObject()
         {
             RaycastHit hit;
@@ -88,6 +89,15 @@ namespace KMK
                 }
             }
         }
+
+        public void OpenChestInteraction(Transform playerStandingPosition)
+        {
+            characterLocomotion.rigidbody.velocity = Vector3.zero;
+            transform.position = playerStandingPosition.transform.position;
+            animatedController.PlayTargetAnimation("PickUpItem", true, 0.2f);
+        }
+
+        #endregion
     }
 }
 

@@ -130,6 +130,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "CriticalAttack",
+                    "type": "Button",
+                    "id": "9ea3a3b7-d6b0-42c5-9370-b2235690ff48",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CriticalAttackTap",
+                    "type": "Button",
+                    "id": "5bd4790c-e473-4c02-a8db-0882ad85788d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -522,10 +540,32 @@
                     "name": "",
                     "id": "e55562d1-7338-4aa0-b2da-bcda8c91439f",
                     "path": "<Keyboard>/y",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "Y",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0ea4107e-634f-4040-a851-f9fe67e48d57",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "Hold(duration=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CriticalAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f50acc43-fa73-4ed3-a773-037705d01433",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "Tap(duration=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CriticalAttackTap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

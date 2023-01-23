@@ -9,6 +9,7 @@ namespace KMK
         public static readonly int isRootMotionHash = Animator.StringToHash("IsRootMotion");
         public static readonly int isInteractingHash = Animator.StringToHash("IsInteracting");
         public static readonly int canDoComboHash = Animator.StringToHash("CanDoCombo");
+        public static readonly int canRotateHash = Animator.StringToHash("CanRotate");
     }
 
 }

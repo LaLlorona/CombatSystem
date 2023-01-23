@@ -9,9 +9,12 @@ namespace KMK
     {
         public Animator anim;
         public bool rootMotionEnabled = false;
+        public bool canRotate = true;
         public void PlayTargetAnimation(string targetAnim, bool isRootMotion, float crossFadeTime)
         {
+            
             anim.applyRootMotion = isRootMotion;
+            anim.SetBool(canRotateHash, false);
             anim.SetBool(isRootMotionHash, isRootMotion);
             anim.CrossFade(targetAnim, crossFadeTime);
             rootMotionEnabled = isRootMotion;

@@ -150,6 +150,35 @@ namespace KMK
                 
             };
 
+            movementActions.Gameplay.CriticalAttack.started += ctx =>
+            {
+                Debug.Log("long press cntrl, started");
+            };
+
+            movementActions.Gameplay.CriticalAttack.performed += ctx =>
+            {
+                Debug.Log("long press cntrl, performed");
+            };
+
+            movementActions.Gameplay.CriticalAttack.canceled += ctx =>
+            {
+                Debug.Log("long press cntrl, canceled");
+            };
+
+            movementActions.Gameplay.CriticalAttackTap.started += ctx =>
+            {
+                Debug.Log("tap started");
+            };
+
+            movementActions.Gameplay.CriticalAttackTap.performed += ctx =>
+            {
+                Debug.Log("tap performed");
+            };
+
+            movementActions.Gameplay.CriticalAttackTap.canceled += ctx =>
+            {
+                Debug.Log("tap canceled");
+            };
 
 
         }

@@ -152,6 +152,24 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CriticalAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""9ea3a3b7-d6b0-42c5-9370-b2235690ff48"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CriticalAttackTap"",
+                    ""type"": ""Button"",
+                    ""id"": ""5bd4790c-e473-4c02-a8db-0882ad85788d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -544,10 +562,32 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""e55562d1-7338-4aa0-b2da-bcda8c91439f"",
                     ""path"": ""<Keyboard>/y"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Y"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0ea4107e-634f-4040-a851-f9fe67e48d57"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": ""Hold(duration=1)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CriticalAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f50acc43-fa73-4ed3-a773-037705d01433"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": ""Tap(duration=1)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CriticalAttackTap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -634,6 +674,8 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         m_Gameplay_A = m_Gameplay.FindAction("A", throwIfNotFound: true);
         m_Gameplay_LockOn = m_Gameplay.FindAction("LockOn", throwIfNotFound: true);
         m_Gameplay_Y = m_Gameplay.FindAction("Y", throwIfNotFound: true);
+        m_Gameplay_CriticalAttack = m_Gameplay.FindAction("CriticalAttack", throwIfNotFound: true);
+        m_Gameplay_CriticalAttackTap = m_Gameplay.FindAction("CriticalAttackTap", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Inventory = m_UI.FindAction("Inventory", throwIfNotFound: true);
@@ -710,6 +752,8 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_A;
     private readonly InputAction m_Gameplay_LockOn;
     private readonly InputAction m_Gameplay_Y;
+    private readonly InputAction m_Gameplay_CriticalAttack;
+    private readonly InputAction m_Gameplay_CriticalAttackTap;
     public struct GameplayActions
     {
         private @MovementActions m_Wrapper;
@@ -728,6 +772,8 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         public InputAction @A => m_Wrapper.m_Gameplay_A;
         public InputAction @LockOn => m_Wrapper.m_Gameplay_LockOn;
         public InputAction @Y => m_Wrapper.m_Gameplay_Y;
+        public InputAction @CriticalAttack => m_Wrapper.m_Gameplay_CriticalAttack;
+        public InputAction @CriticalAttackTap => m_Wrapper.m_Gameplay_CriticalAttackTap;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -779,6 +825,12 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                 @Y.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnY;
                 @Y.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnY;
                 @Y.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnY;
+                @CriticalAttack.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCriticalAttack;
+                @CriticalAttack.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCriticalAttack;
+                @CriticalAttack.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCriticalAttack;
+                @CriticalAttackTap.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCriticalAttackTap;
+                @CriticalAttackTap.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCriticalAttackTap;
+                @CriticalAttackTap.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCriticalAttackTap;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -825,6 +877,12 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                 @Y.started += instance.OnY;
                 @Y.performed += instance.OnY;
                 @Y.canceled += instance.OnY;
+                @CriticalAttack.started += instance.OnCriticalAttack;
+                @CriticalAttack.performed += instance.OnCriticalAttack;
+                @CriticalAttack.canceled += instance.OnCriticalAttack;
+                @CriticalAttackTap.started += instance.OnCriticalAttackTap;
+                @CriticalAttackTap.performed += instance.OnCriticalAttackTap;
+                @CriticalAttackTap.canceled += instance.OnCriticalAttackTap;
             }
         }
     }
@@ -905,6 +963,8 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         void OnA(InputAction.CallbackContext context);
         void OnLockOn(InputAction.CallbackContext context);
         void OnY(InputAction.CallbackContext context);
+        void OnCriticalAttack(InputAction.CallbackContext context);
+        void OnCriticalAttackTap(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
