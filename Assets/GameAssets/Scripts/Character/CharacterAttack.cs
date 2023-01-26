@@ -17,6 +17,12 @@ namespace KMK
         public string lastAttack;
         public WeaponItem currentlyAttackingWeapon;
 
+        [Header("Attack Animations")]
+        string oneHandLightAttack1 = "OneHandLightAttack1";
+        string oneHandLightAttack2 = "OneHandLightAttack2";
+        string oneHandHeavyAttack1 = "OneHandHeavyAttack1";
+        string oneHandHeavyAttack2 = "OneHandHeavyAttack2";
+
         private void Awake()
         {
             animatedController = GetComponentInChildren<AnimatedController>();
@@ -43,10 +49,10 @@ namespace KMK
             {
                 Debug.Log("combo flag is true");
                 animatedController.anim.SetBool("CanDoCombo", false);
-                if (lastAttack == weapon.oneHandLightAttack1)
+                if (lastAttack == oneHandLightAttack1)
                 {
-                    Debug.Log("anim to play is" + weapon.oneHandLightAttack2);
-                    animatedController.PlayTargetAnimation(weapon.oneHandLightAttack2, true, 0.2f);
+                    Debug.Log("anim to play is" + oneHandLightAttack2);
+                    animatedController.PlayTargetAnimation(oneHandLightAttack2, true, 0.2f);
                 }
             }
             
@@ -54,14 +60,14 @@ namespace KMK
         public void HandleLightAttack(WeaponItem weapon)
         {
             currentlyAttackingWeapon = weapon;
-            animatedController.PlayTargetAnimation(weapon.oneHandLightAttack1, true, 0.2f);
-            lastAttack = weapon.oneHandLightAttack1;
+            animatedController.PlayTargetAnimation(oneHandLightAttack1, true, 0.2f);
+            lastAttack = oneHandLightAttack1;
         }
         public void HandleHeavyAttack(WeaponItem weapon)
         {
             currentlyAttackingWeapon = weapon;
-            animatedController.PlayTargetAnimation(weapon.oneHandHeavyAttack1, true, 0.2f);
-            lastAttack = weapon.oneHandHeavyAttack1;
+            animatedController.PlayTargetAnimation(oneHandHeavyAttack1, true, 0.2f);
+            lastAttack = oneHandHeavyAttack1;
         }
 
         public void ReduceStaminaOnAttack() {

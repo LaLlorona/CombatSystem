@@ -9,6 +9,7 @@ namespace KMK
         [Header("Item Iformaiton")]
         public Sprite itemIcon;
         public string itemName;
+
     }
 }
 

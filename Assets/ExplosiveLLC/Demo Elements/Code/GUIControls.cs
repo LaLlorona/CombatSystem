@@ -1,213 +1,243 @@
-using RPGCharacterAnims.Actions;
-using RPGCharacterAnims.Extensions;
-using RPGCharacterAnims.Lookups;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace RPGCharacterAnims
+namespace WarriorAnims
 {
-    public class GUIControls : MonoBehaviour
-    {
-        private RPGCharacterController rpgCharacterController;
-        private RPGCharacterWeaponController rpgCharacterWeaponController;
-		private float idleStatic;
-        private bool useInstant;
-        private bool useNavigation;
-        private Vector3 jumpInput;
-        public GameObject nav;
+	public class GUIControls:MonoBehaviour
+	{
+		private WarriorController warriorController;
+		private bool blockGui;
+		private bool blockToggle;
 
-        private void Start()
-        {
-            // Get other RPG Character components.
-            rpgCharacterController = GetComponent<RPGCharacterController>();
-            rpgCharacterWeaponController = GetComponent<RPGCharacterWeaponController>();
-        }
+		private void Awake()
+		{ warriorController = GetComponent<WarriorController>(); }
 
-        private void OnGUI()
-        {
-			if (rpgCharacterController.maintainingGround) { Navigation(); }
-
-	        // Character is not on the ground.
-	        if (!rpgCharacterController.maintainingGround) {
-		        Jumping();
-		        return;
-	        }
-
-			if (rpgCharacterController.canAction) {
-				Idle();
-				Attacks();
-				Damage();
-				DiveRoll();
-				WeaponSwitching();
-			}
-
-			DebugRPGCharacter();
-        }
-
-		private void Idle()
+		private void OnGUI()
 		{
-			GUI.Button(new Rect(540, 140, 60, 30), "Idle");
-			idleStatic = GUI.HorizontalSlider(new Rect(540, 170, 60, 30), idleStatic, 0.0F, 1f);
-			rpgCharacterController.animator.SetFloat(AnimationParameters.Idle, idleStatic);
+			// Character isn't dead or weapons sheathed.
+			if (!warriorController.isDead && !warriorController.sheathed) {
+				Attacking();
+				Jumping();
+				JumpAttack();
+
+				// If can act.
+				if (warriorController.canAction) {
+
+					// If grounded.
+					if (warriorController.MaintainingGround()) {
+						Blocking();
+
+						// Not Blocking.
+						if (!warriorController.isBlocking) {
+							Dashing();
+							Damage();
+							WeaponSheath();
+						}
+					}
+				}
+			}
+			Revive();
+			WeaponUnSheath();
+			DebugWarrior();
 		}
 
-		private void Navigation()
-        {
-			// Check to make sure Navigation Action exists.
-            if (!rpgCharacterController.HandlerExists(HandlerTypes.Navigation)) { return; }
-
-            useNavigation = GUI.Toggle(new Rect(550, 105, 100, 30), useNavigation, "Navigation");
-
-            var navChild = nav.transform.GetChild(0);
-            if (useNavigation) {
-
-				// Show the navigation pointer.
-	            navChild.GetComponent<MeshRenderer>().enabled = true;
-	            navChild.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
-                RaycastHit hit;
-                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100)) {
-                    nav.transform.position = hit.point;
-                    if (Input.GetMouseButtonDown(0))
-					{ rpgCharacterController.StartAction(HandlerTypes.Navigation, hit.point); }
-                }
-            }
-			else {
-				// Hide the navigation pointer.
-	            if (!rpgCharacterController.CanEndAction(HandlerTypes.Navigation)) { return; }
-	            navChild.GetComponent<MeshRenderer>().enabled = false;
-	            navChild.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
-	            rpgCharacterController.EndAction(HandlerTypes.Navigation);
-            }
-        }
-
-		private void Attacks()
+		private void Blocking()
 		{
-			// Check if Attack Action exists.
-			if (!rpgCharacterController.HandlerExists(HandlerTypes.Attack)) { return; }
-
-			// End special attack.
-			if (rpgCharacterController.CanEndAction(HandlerTypes.Attack)) {
-				if (GUI.Button(new Rect(235, 85, 100, 30), "End Special"))
-				{ rpgCharacterController.EndAction(HandlerTypes.Attack); }
+			blockGui = GUI.Toggle(new Rect(25, 215, 100, 30), blockGui, "Block");
+			if (blockGui) {
+				if (!blockToggle) {
+					blockToggle = true;
+					warriorController.isBlocking = true;
+					warriorController.AllowInput(false);
+					warriorController.LockBlock(true);
+					warriorController.LockMove(true);
+					warriorController.SetAnimatorBool("Blocking", true);
+					warriorController.SetAnimatorTrigger(AnimatorTrigger.BlockTrigger);
+					if (warriorController.warrior == Warrior.Crossbow && warriorController.ikHands != null)
+					{ warriorController.ikHands.BlendIK(false, 0, 0.1f); }
+				}
 			}
-
-			if (!rpgCharacterController.CanStartAction(HandlerTypes.Attack)) { return; }
-
-			if (rpgCharacterController.leftWeapon == Weapon.Unarmed && rpgCharacterController.rightWeapon == Weapon.Unarmed) {
-				if (GUI.Button(new Rect(25, 85, 100, 30), "Attack L"))
-				{ rpgCharacterController.StartAction(HandlerTypes.Attack, new AttackContext("Attack", Side.Left)); }
+			if (!blockGui) {
+				if (blockToggle) {
+					warriorController.isBlocking = false;
+					blockToggle = false;
+					warriorController.SetAnimatorBool("Blocking", false);
+					warriorController.LockMove(false);
+					warriorController.LockBlock(false);
+					warriorController.AllowInput(true);
+					if (warriorController.warrior == Warrior.Crossbow && warriorController.ikHands != null)
+					{ warriorController.ikHands.BlendIK(true, 0, 0.1f); }
+				}
 			}
-			if (rpgCharacterController.rightWeapon == Weapon.Unarmed && rpgCharacterController.leftWeapon == Weapon.Unarmed) {
-				if (GUI.Button(new Rect(130, 85, 100, 30), "Attack R"))
-				{ rpgCharacterController.StartAction(HandlerTypes.Attack, new AttackContext("Attack", Side.Right)); }
+			// Blocking.
+			if (blockGui) {
+				if (GUI.Button(new Rect(30, 240, 100, 30), "Get Hit")) { warriorController.GetHit(); }
+				if (GUI.Button(new Rect(30, 270, 100, 30), "Block Break")) { warriorController.BlockBreak(); }
 			}
-			if (rpgCharacterController.hasTwoHandedWeapon) {
-				if (GUI.Button(new Rect(130, 85, 100, 30), "Attack"))
-				{ rpgCharacterController.StartAction(HandlerTypes.Attack, new AttackContext("Attack", Side.None)); }
+		}
+
+		private void Attacking()
+		{
+			if (!warriorController.isBlocking) {
+				if (warriorController.MaintainingGround()) {
+					if (warriorController.isMoving && warriorController.canRunAttack) {
+						if (GUI.Button(new Rect(25, 85, 100, 30), "Running Attack")) { warriorController.RunningAttack(1); }
+					}
+					else {
+						if (warriorController.warrior != Warrior.Archer && warriorController.warrior != Warrior.Crossbow) {
+							if (GUI.Button(new Rect(25, 85, 100, 30), "Attack Chain")) { warriorController.AttackChain(); }
+						}
+						else {
+							if (GUI.Button(new Rect(25, 85, 100, 30), "Attack1")) { warriorController.Attack(1); }
+						}
+					}
+				}
+				if (warriorController.canAction && warriorController.MaintainingGround()) {
+
+					// Generic extra attacks.
+					if (GUI.Button(new Rect(340, 85, 100, 30), "Special Attack1")) { warriorController.SpecialAttack(1); }
+					if (GUI.Button(new Rect(340, 145, 100, 30), "Move Attack1")) { warriorController.MoveAttack(1); }
+					if (GUI.Button(new Rect(340, 205, 100, 30), "Range Attack1")) { warriorController.RangeAttack(1); }
+
+					// Archer Warrior.
+					if (warriorController.warrior == Warrior.Archer) {
+						if (GUI.Button(new Rect(340, 175, 100, 30), "Move Attack2")) { warriorController.MoveAttack(2); }
+					}
+					// Crossbow Warrior.
+					if (warriorController.warrior == Warrior.Crossbow) {
+						if (GUI.Button(new Rect(340, 235, 100, 30), "Range Attack2")) { warriorController.RangeAttack(2); }
+					}
+					// Karate Warrior.
+					if (warriorController.warrior == Warrior.Karate) {
+						if (GUI.Button(new Rect(130, 85, 100, 30), "Attack4")) { warriorController.Attack(4); }
+						if (GUI.Button(new Rect(130, 115, 100, 30), "Attack5")) { warriorController.Attack(5); }
+						if (GUI.Button(new Rect(130, 145, 100, 30), "Attack6")) { warriorController.Attack(6); }
+						if (GUI.Button(new Rect(235, 85, 100, 30), "Attack7")) { warriorController.Attack(7); }
+						if (GUI.Button(new Rect(235, 115, 100, 30), "Attack8")) { warriorController.Attack(8); }
+						if (GUI.Button(new Rect(235, 145, 100, 30), "Attack9")) { warriorController.Attack(9); }
+						if (GUI.Button(new Rect(340, 115, 100, 30), "Special Attack2")) { warriorController.SpecialAttack(2); }
+						if (GUI.Button(new Rect(340, 175, 100, 30), "Move Attack2")) { warriorController.MoveAttack(2); }
+						if (GUI.Button(new Rect(340, 235, 100, 30), "Range Attack2")) { warriorController.RangeAttack(2); }
+					}
+					// Knight Warrior.
+					if (warriorController.warrior == Warrior.Knight) {
+						if (GUI.Button(new Rect(340, 115, 100, 30), "Special Attack2")) { warriorController.SpecialAttack(2); }
+					}
+					// Mage Warrior.
+					if (warriorController.warrior == Warrior.Mage) {
+						if (GUI.Button(new Rect(340, 115, 100, 30), "Special Attack2")) { warriorController.SpecialAttack(2); }
+						if (GUI.Button(new Rect(340, 235, 100, 30), "Range Attack2")) { warriorController.RangeAttack(2); }
+					}
+					// Ninja Warrior.
+					if (warriorController.warrior == Warrior.Ninja) {
+						if (GUI.Button(new Rect(340, 115, 100, 30), "Special Attack2")) { warriorController.SpecialAttack(2); }
+						if (GUI.Button(new Rect(340, 235, 100, 30), "Range Attack2")) { warriorController.RangeAttack(2); }
+						if (GUI.Button(new Rect(340, 265, 100, 30), "Range Attack3")) { warriorController.RangeAttack(3); }
+					}
+					// Sorceress Warrior.
+					if (warriorController.warrior == Warrior.Sorceress) {
+						if (GUI.Button(new Rect(130, 85, 100, 30), "Attack4")) { warriorController.Attack(4); }
+						if (GUI.Button(new Rect(130, 115, 100, 30), "Attack5")) { warriorController.Attack(5); }
+						if (GUI.Button(new Rect(130, 145, 100, 30), "Attack6")) { warriorController.Attack(6); }
+						if (GUI.Button(new Rect(235, 85, 100, 30), "Attack7")) { warriorController.Attack(7); }
+						if (GUI.Button(new Rect(235, 115, 100, 30), "Attack8")) { warriorController.Attack(8); }
+						if (GUI.Button(new Rect(340, 115, 100, 30), "Special Attack2")) { warriorController.SpecialAttack(2); }
+						if (GUI.Button(new Rect(445, 115, 100, 30), "Special Attack3")) { warriorController.SpecialAttack(3); }
+						if (GUI.Button(new Rect(340, 175, 100, 30), "Move Attack2")) { warriorController.MoveAttack(2); }
+						if (GUI.Button(new Rect(445, 175, 100, 30), "Move Attack3")) { warriorController.MoveAttack(3); }
+					}
+					// Spearman Warrior.
+					if (warriorController.warrior == Warrior.Spearman) {
+						if (GUI.Button(new Rect(130, 85, 100, 30), "Attack4")) { warriorController.Attack(4); }
+						if (GUI.Button(new Rect(130, 115, 100, 30), "Attack5")) { warriorController.Attack(5); }
+					}
+				}
+			}
+		}
+
+		private void Jumping()
+		{
+			if ((warriorController.canJump || warriorController.canDoubleJump) && (!blockGui || !warriorController.isBlocking)) {
+				if (warriorController.MaintainingGround()) {
+					if (GUI.Button(new Rect(25, 175, 100, 30), "Jump")) {
+						if (warriorController.canJump) { warriorController.inputJump = true; ; }
+					}
+				}
+				if (warriorController.canDoubleJump) {
+					if (GUI.Button(new Rect(25, 175, 100, 30), "Double Jump")) { warriorController.inputJump = true; }
+				}
+			}
+		}
+
+		private void JumpAttack()
+		{
+			if (!warriorController.MaintainingGround()) {
+				if (warriorController.warrior == Warrior.Karate
+					|| warriorController.warrior == Warrior.Brute
+					|| warriorController.warrior == Warrior.Hammer
+					|| warriorController.warrior == Warrior.Spearman
+					|| warriorController.warrior == Warrior.Swordsman
+					|| warriorController.warrior == Warrior.TwoHanded
+					|| warriorController.warrior == Warrior.Crossbow
+					|| warriorController.warrior == Warrior.Mage) {
+					if (GUI.Button(new Rect(25, 85, 100, 30), "Jump Attack")) { warriorController.JumpAttack(); }
+				}
+			}
+		}
+
+		private void Dashing()
+		{
+			if (GUI.Button(new Rect(25, 15, 100, 30), "Dash Forward")) { warriorController.Dash(1); }
+			if (GUI.Button(new Rect(130, 15, 100, 30), "Dash Back")) { warriorController.Dash(3); }
+			if (GUI.Button(new Rect(25, 45, 100, 30), "Dash Left")) { warriorController.Dash(4); }
+			if (GUI.Button(new Rect(130, 45, 100, 30), "Dash Right")) { warriorController.Dash(2); }
+
+			if (warriorController.warrior == Warrior.Knight) {
+				if (GUI.Button(new Rect(255, 15, 100, 30), "Dash Forward2")) { warriorController.Dash(-1); }
+				if (GUI.Button(new Rect(360, 15, 100, 30), "Dash Back2")) { warriorController.Dash(-3); }
+				if (GUI.Button(new Rect(255, 45, 100, 30), "Dash Left2")) { warriorController.Dash(-4); }
+				if (GUI.Button(new Rect(360, 45, 100, 30), "Dash Right2")) { warriorController.Dash(-2); }
 			}
 		}
 
 		private void Damage()
-        {
-			// Check if Get Hit Action exists.
-			if (rpgCharacterController.HandlerExists(HandlerTypes.GetHit)
-				&& rpgCharacterController.CanStartAction(HandlerTypes.GetHit)) {
-					if (GUI.Button(new Rect(30, 240, 100, 30), "Get Hit"))
-					{ rpgCharacterController.StartAction(HandlerTypes.GetHit, new HitContext()); }
-			}
-			// Check if Knockback Action exists.
-			if (rpgCharacterController.HandlerExists(HandlerTypes.Knockback)
-				&& rpgCharacterController.CanStartAction(HandlerTypes.Knockback)) {
-					if (GUI.Button(new Rect(130, 240, 100, 30), "Knockback1"))
-					{ rpgCharacterController.StartAction(HandlerTypes.Knockback, new HitContext((int)KnockbackType.Knockback1, Vector3.back)); }
-					if (GUI.Button(new Rect(230, 240, 100, 30), "Knockback2"))
-					{ rpgCharacterController.StartAction(HandlerTypes.Knockback, new HitContext((int)KnockbackType.Knockback2, Vector3.back)); }
-			}
-			// Check if Knockdown Action exists.
-			if (rpgCharacterController.HandlerExists(HandlerTypes.Knockdown)
-				&& rpgCharacterController.CanStartAction(HandlerTypes.Knockdown)) {
-					if (GUI.Button(new Rect(130, 270, 100, 30), "Knockdown"))
-					{ rpgCharacterController.StartAction(HandlerTypes.Knockdown, new HitContext((int)KnockdownType.Knockdown1, Vector3.back)); }
-			}
-        }
-
-		private void DiveRoll()
 		{
-			// Check if DiveRoll Action exists.
-			if (rpgCharacterController.HandlerExists(HandlerTypes.DiveRoll)) {
-				if (rpgCharacterController.CanStartAction(HandlerTypes.DiveRoll)) {
-					if (GUI.Button(new Rect(445, 75, 100, 30), "Dive Roll"))
-					{ rpgCharacterController.StartAction(HandlerTypes.DiveRoll, DiveRollType.DiveRoll1); }
-				}
+			if (GUI.Button(new Rect(30, 240, 100, 30), "Get Hit")) { warriorController.GetHit(); }
+			if (GUI.Button(new Rect(30, 270, 100, 30), "Death")) { warriorController.Death(); }
+		}
+
+		private void Revive()
+		{
+			if (warriorController.isDead) {
+				if (GUI.Button(new Rect(30, 270, 100, 30), "Revive")) { warriorController.Revive(); }
 			}
 		}
 
-        private void Jumping()
-        {
-			// Check if Jump Action exists.
-			if (!rpgCharacterController.HandlerExists(HandlerTypes.Jump)) { return; }
-
-			if (rpgCharacterController.CanStartAction(HandlerTypes.Jump)) {
-                if (GUI.Button(new Rect(25, 175, 100, 30), "Jump")) {
-                    rpgCharacterController.SetJumpInput(Vector3.up);
-                    rpgCharacterController.StartAction(HandlerTypes.Jump);
-                }
-            }
-            if (rpgCharacterController.CanStartAction(HandlerTypes.DoubleJump)) {
-                if (GUI.Button(new Rect(25, 175, 100, 30), "Jump Flip")) {
-                    rpgCharacterController.SetJumpInput(Vector3.up);
-                    rpgCharacterController.StartAction(HandlerTypes.DoubleJump);
-                }
-            }
-        }
-
-		private void DebugRPGCharacter()
+		private void WeaponSheath()
 		{
-			if (GUI.Button(new Rect(600, 20, 120, 30), "Debug Controller"))
-			{ rpgCharacterController.DebugController(); }
-			if (GUI.Button(new Rect(600, 50, 120, 30), "Debug Animator"))
-			{ rpgCharacterController.animator.DebugAnimatorParameters(); }
+			if (warriorController.warrior == Warrior.Archer
+				|| warriorController.warrior == Warrior.Ninja
+				|| warriorController.warrior == Warrior.Knight
+				|| warriorController.warrior == Warrior.Mage
+				|| warriorController.warrior == Warrior.TwoHanded
+				|| warriorController.warrior == Warrior.Crossbow
+				|| warriorController.warrior == Warrior.Hammer
+				|| warriorController.warrior == Warrior.Spearman
+				|| warriorController.warrior == Warrior.Swordsman) {
+				if (GUI.Button(new Rect(30, 305, 100, 30), "Sheath")) { warriorController.SheathWeapons(); }
+			}
 		}
 
-        private void WeaponSwitching()
+		private void WeaponUnSheath()
 		{
-			// Check if SwitchWeapon Action exists.
-			if (!rpgCharacterController.HandlerExists(HandlerTypes.SwitchWeapon)) { return; }
-
-			var doSwitch = false;
-			var context = new SwitchWeaponContext();
-
-			if (rpgCharacterController.rightWeapon != Weapon.Unarmed
-				|| rpgCharacterController.leftWeapon != Weapon.Unarmed) {
-				if (GUI.Button(new Rect(1115, 280, 100, 30), "Unarmed")) {
-					doSwitch = true;
-					context.type = "Switch";
-					context.side = "Both";
-					context.leftWeapon = Weapon.Unarmed;
-					context.rightWeapon = Weapon.Unarmed;
-				}
+			if (warriorController.sheathed) {
+				if (GUI.Button(new Rect(30, 305, 100, 30), "UnSheath")) { warriorController.SheathWeapons(); }
 			}
-			var offset = 310;
+		}
 
-			foreach (var weapon in WeaponGroupings.TwoHandedWeapons) {
-				if (rpgCharacterController.rightWeapon != weapon) {
-					var label = weapon.ToString();
-					if (label.StartsWith("TwoHand")) { label = label.Replace("TwoHand", "2H "); }
-					if (GUI.Button(new Rect(1115, offset, 100, 30), label)) {
-						doSwitch = true;
-						context.type = "Switch";
-						context.side = "None";
-						context.leftWeapon = Weapon.Unarmed;
-						context.rightWeapon = weapon;
-					}
-				}
-				offset += 30;
-			}
-			// Instant weapon toggle.
-			useInstant = GUI.Toggle(new Rect(1000, 310, 100, 30), useInstant, "Instant");
-			if (useInstant) { context.type = "Instant"; }
-
-			// Perform the weapon switch.
-			if (doSwitch) { rpgCharacterController.TryStartAction(HandlerTypes.SwitchWeapon, context); }
+		private void DebugWarrior()
+		{
+			if (GUI.Button(new Rect(600, 20, 120, 30), "Debug Controller")) { warriorController.ControllerDebug(); }
+			if (GUI.Button(new Rect(600, 60, 120, 30), "Debug Animator")) { warriorController.AnimatorDebug(); }
 		}
 	}
 }

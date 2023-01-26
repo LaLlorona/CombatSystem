@@ -10,12 +10,18 @@ namespace KMK
         public GameObject modelPrefab;
         public bool isUnarmed;
 
-        [Header("One Handed Attack Animations")]
-        public string oneHandHeavyAttack1;
-        public string oneHandHeavyAttack2;
+        [Header("animator Replacer")]
+        public AnimatorOverrideController weaponController;
 
-        public string oneHandLightAttack1;
-        public string oneHandLightAttack2;
+        [Header("WeaponType")]
+        public WeaponType weaponType;
+
+        //[Header("One Handed Attack Animations")]
+        //public string oneHandHeavyAttack1;
+        //public string oneHandHeavyAttack2;
+
+        //public string oneHandLightAttack1;
+        //public string oneHandLightAttack2;
 
         [Header("Idle Animations")]
         public string rightHandIdle;

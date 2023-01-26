@@ -16,6 +16,10 @@ namespace KMK
         public LayerMask toDetect;
         public InputReader input;
 
+        public GameObject currentCharacterObject;
+        public int currentCharacterIndex;
+        public CharacterModelChanger characterModelChanger;
+
 
         
 
@@ -32,6 +36,7 @@ namespace KMK
             characterInventory = GetComponent<CharacterInventory>();
             characterLocomotion = GetComponent<CharacterLocomotion>();
             animatedController = GetComponentInChildren<AnimatedController>();
+            characterModelChanger = GetComponentInChildren<CharacterModelChanger>();
     
         }
 

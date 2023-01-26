@@ -9,7 +9,7 @@ namespace KMK
         WeaponHolderSlot leftHandSlot;
         WeaponHolderSlot rightHandSlot;
         WeaponHolderSlot backSlot;
-
+        AnimatedController animatedController;
         DamageCollider leftHandDamageCollider;
         DamageCollider rightHandDamageCollider;
 
@@ -28,6 +28,7 @@ namespace KMK
         {
             anim = GetComponent<Animator>();
             quickSlotUI = FindObjectOfType<QuickSlotUI>();
+            animatedController = GetComponent<AnimatedController>();
             WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
 
             foreach (WeaponHolderSlot slot in weaponHolderSlots)
@@ -111,6 +112,8 @@ namespace KMK
                 rightHandSlot.LoadWeaponModel(weaponItem);
                 LoadRightWeaponDamageCollider();
                 quickSlotUI.UpdateWeaponQuickSlotsUI(isLeft, weaponItem);
+                Debug.Log(weaponItem.weaponController);
+                animatedController.anim.runtimeAnimatorController = weaponItem.weaponController;
 
                 
 
