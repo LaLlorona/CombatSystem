@@ -240,7 +240,7 @@ namespace KMK
             MoveWalk();
             MoveRotation();
             MoveJump();
-            MoveRoll();
+            
 
             //gravity
             ApplyGravity();
@@ -557,26 +557,28 @@ namespace KMK
 
         private void MoveRoll()
         {
-            if (input.roll)
-            {
-                input.roll = false;
-                Debug.Log("roll");
+            //if (input.roll)
+            //{
+            //    input.roll = false;
+            //    Debug.Log("roll");
 
-                if (anim.rootMotionEnabled)
-                {
-                    return;
-                }
-                if(input.axisInput.sqrMagnitude > 0.1f)
-                {
-                    anim.PlayTargetAnimation("Rolling", true, 0.2f);
-                }
-                else
-                {
-                    anim.PlayTargetAnimation("Backstep", true, 0.2f);
-                }
+            //    if (anim.rootMotionEnabled)
+            //    {
+            //        return;
+            //    }
+            //    if(input.axisInput.sqrMagnitude > 0.1f)
+            //    {
+            //        anim.PlayTargetAnimation("Rolling", true, 0.2f);
+            //    }
+            //    else
+            //    {
+            //        anim.PlayTargetAnimation("Backstep", true, 0.2f);
+            //    }
                 
                 
-            }
+            //}
+
+            
         }
 
         #endregion

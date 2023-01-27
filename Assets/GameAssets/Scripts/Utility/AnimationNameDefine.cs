@@ -10,6 +10,9 @@ namespace KMK
         public static readonly int isInteractingHash = Animator.StringToHash("IsInteracting");
         public static readonly int canDoComboHash = Animator.StringToHash("CanDoCombo");
         public static readonly int canRotateHash = Animator.StringToHash("CanRotate");
+        public static readonly int canAttackHash = Animator.StringToHash("CanAttack");
+        public static readonly int weaponNumberHash = Animator.StringToHash("WeaponNumber");
+
     }
 
 }

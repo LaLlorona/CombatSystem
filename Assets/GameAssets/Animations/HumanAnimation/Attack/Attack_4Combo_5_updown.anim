@@ -699,7 +699,8 @@ AnimationClip:
         time: 1.8000001
         value: {x: 0.16353184, y: -0.1636532, z: 0.73258644, w: 0.6401501}
         inSlope: {x: -0.0000020116586, y: -0.0000029057292, z: -0.0000017881409, w: 0.000001788141}
-        outSlope: {x: -0.0000020116586, y: -0.0000029057292, z: -0.0000017881409, w: 0.000001788141}
+        outSlope: {x: -0.0000020116586, y: -0.0000029057292, z: -0.0000017881409,
+          w: 0.000001788141}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
@@ -108009,36 +108010,8 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.5
-    functionName: OnDamagePhaseBegin
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 7
-    messageOptions: 0
-  - time: 0.6
-    functionName: OnDamagePhaseEnd
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 1.1333333
-    functionName: OnDamagePhaseBegin
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 8
-    messageOptions: 0
-  - time: 1.3
-    functionName: OnDamagePhaseEnd
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 1.9333333
-    functionName: OnEnableNextAttackPhase
+  - time: 1.7666667
+    functionName: OnEnableNextbaseAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

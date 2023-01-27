@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static KMK.AnimationNameDefine;
 
 namespace KMK
 {
@@ -17,11 +18,12 @@ namespace KMK
         public string lastAttack;
         public WeaponItem currentlyAttackingWeapon;
 
-        [Header("Attack Animations")]
-        string oneHandLightAttack1 = "OneHandLightAttack1";
-        string oneHandLightAttack2 = "OneHandLightAttack2";
-        string oneHandHeavyAttack1 = "OneHandHeavyAttack1";
-        string oneHandHeavyAttack2 = "OneHandHeavyAttack2";
+        public int tempWeaponNumber = 0;
+
+        public bool isAttackButtonAlreadyPressed = false;
+       
+
+       
 
         private void Awake()
         {
@@ -34,82 +36,61 @@ namespace KMK
 
         private void OnEnable()
         {
-            characterAnimationEventHandler.onAttackStaminaDrain += ReduceStaminaOnAttack;
+            
+
+            input.OnAttackButtonInput += PressWeakAttackButton;
+            input.OnRollInput += Roll;
+
+            characterAnimationEventHandler.onEnableBaseAttack += EnableNextWeakAttack;
+            
         }
 
         private void OnDisable()
         {
-            characterAnimationEventHandler.onAttackStaminaDrain -= ReduceStaminaOnAttack;
+        
+            input.OnAttackButtonInput -= PressWeakAttackButton;
+            input.OnRollInput -= Roll;
+            characterAnimationEventHandler.onEnableBaseAttack -= EnableNextWeakAttack;
         }
 
-        public void HandleWeaponCombo(WeaponItem weapon)
+        public void EnableNextWeakAttack()
         {
-            Debug.Log("handle wewapon combo");
-            if (input.comboFlag)
-            {
-                Debug.Log("combo flag is true");
-                animatedController.anim.SetBool("CanDoCombo", false);
-                if (lastAttack == oneHandLightAttack1)
-                {
-                    Debug.Log("anim to play is" + oneHandLightAttack2);
-                    animatedController.PlayTargetAnimation(oneHandLightAttack2, true, 0.2f);
-                }
-            }
             
+            animatedController.anim.SetBool(canDoComboHash, true);
+
+            if (isAttackButtonAlreadyPressed)
+            {
+                PressWeakAttackButton();
+            }
         }
-        public void HandleLightAttack(WeaponItem weapon)
+
+        public void PressWeakAttackButton()
         {
-            currentlyAttackingWeapon = weapon;
-            animatedController.PlayTargetAnimation(oneHandLightAttack1, true, 0.2f);
-            lastAttack = oneHandLightAttack1;
+            isAttackButtonAlreadyPressed = true;
+
+            if (animatedController.anim.GetBool(canDoComboHash))
+            {
+                animatedController.PlayAttackAnimation(tempWeaponNumber);
+                isAttackButtonAlreadyPressed = false;
+                animatedController.anim.SetBool(canDoComboHash, false);
+            }
+
         }
-        public void HandleHeavyAttack(WeaponItem weapon)
-        {
-            currentlyAttackingWeapon = weapon;
-            animatedController.PlayTargetAnimation(oneHandHeavyAttack1, true, 0.2f);
-            lastAttack = oneHandHeavyAttack1;
-        }
+
 
         public void ReduceStaminaOnAttack() {
             characterStats.ReduceStamina(currentlyAttackingWeapon.baseStaminaDrain * currentlyAttackingWeapon.lightAttackMultiplier);
         }
 
+        public void Roll()
+        {
+            animatedController.EnableRootMotion();
+            animatedController.anim.SetTrigger(rollingHash);
+        }
+
         private void Update()
         {
-            if (input.rbInput)
-            {
-                if (characterManager.canDoCombo)
-                {
-                    
-                    input.comboFlag = true;
-                    HandleWeaponCombo(characterInventory.rightWeapon);
-                    input.comboFlag = false;
-                }
 
-                else
-                {
-                    if (characterManager.canDoCombo || animatedController.rootMotionEnabled)
-                    {
-                        return;
-                    }
-                    Debug.Log("first attack");
-                    HandleLightAttack(characterInventory.rightWeapon);
-                    
-                }
-                input.rbInput = false;
-
-
-            }
-
-            if (input.rtInput)
-            {
-                if (characterManager.canDoCombo || animatedController.rootMotionEnabled)
-                {
-                    return;
-                }
-                HandleHeavyAttack(characterInventory.rightWeapon);
-                input.rtInput = false;
-            }
         }
     }
 }

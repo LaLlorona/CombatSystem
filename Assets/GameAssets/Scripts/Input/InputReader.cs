@@ -14,6 +14,8 @@ namespace KMK
         public InputEvent OnInventoryInput;
         public InputEvent OnLockonInput;
         public InputEvent OnYButtonInput;
+        public InputEvent OnAttackButtonInput;
+        public InputEvent OnRollInput;
 
         [Header("Input specs")]
         public UnityEvent changedInputToMouseAndKeyboard;
@@ -97,6 +99,8 @@ namespace KMK
             };
             movementActions.Gameplay.Sprint.canceled += ctx => SprintEnded(ctx);
 
+            movementActions.Gameplay.Roll.performed += ctx => OnRoll(ctx);
+
             movementActions.Gameplay.Crouch.performed += ctx => OnCrouch(ctx);
             movementActions.Gameplay.Crouch.canceled += ctx => CrouchEnded(ctx);
 
@@ -150,35 +154,15 @@ namespace KMK
                 
             };
 
-            movementActions.Gameplay.CriticalAttack.started += ctx =>
+            
+
+           
+
+            movementActions.Gameplay.BaseAttack.performed += ctx =>
             {
-                Debug.Log("long press cntrl, started");
+                OnAttackButtonInput?.Invoke();
             };
 
-            movementActions.Gameplay.CriticalAttack.performed += ctx =>
-            {
-                Debug.Log("long press cntrl, performed");
-            };
-
-            movementActions.Gameplay.CriticalAttack.canceled += ctx =>
-            {
-                Debug.Log("long press cntrl, canceled");
-            };
-
-            movementActions.Gameplay.CriticalAttackTap.started += ctx =>
-            {
-                Debug.Log("tap started");
-            };
-
-            movementActions.Gameplay.CriticalAttackTap.performed += ctx =>
-            {
-                Debug.Log("tap performed");
-            };
-
-            movementActions.Gameplay.CriticalAttackTap.canceled += ctx =>
-            {
-                Debug.Log("tap canceled");
-            };
 
 
         }
@@ -293,32 +277,22 @@ namespace KMK
         public void OnSprint(InputAction.CallbackContext ctx)
         {
             if (enableSprint) sprint = true;
-            StartCoroutine("StartRollTimer");
+         
         }
 
-        IEnumerator StartRollTimer()
-        {
-            while (true)
-            {
-                rollInputTimer += Time.deltaTime;
-                yield return new WaitForSeconds(Time.deltaTime);
-            }
-        }
+      
 
 
         //DISABLE if using old input system
         public void SprintEnded(InputAction.CallbackContext ctx)
         {
             sprint = false;
-            Debug.Log(rollInputTimer);
+            
+        }
 
-            StopCoroutine("StartRollTimer");
-            if (rollInputTimer > 0 && rollInputTimer < maxTimeHoldForRoll)
-            {
-                
-                roll = true;
-            }
-            rollInputTimer = 0;
+        public void OnRoll(InputAction.CallbackContext ctx)
+        {
+            OnRollInput?.Invoke();
         }
 
 

@@ -10,6 +10,7 @@ namespace KMK
         public Animator anim;
         public bool rootMotionEnabled = false;
         public bool canRotate = true;
+        public bool canDoCombo = true;
         public void PlayTargetAnimation(string targetAnim, bool isRootMotion, float crossFadeTime)
         {
             

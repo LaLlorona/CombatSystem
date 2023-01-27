@@ -154,18 +154,18 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""CriticalAttack"",
+                    ""name"": ""BaseAttack"",
                     ""type"": ""Button"",
-                    ""id"": ""9ea3a3b7-d6b0-42c5-9370-b2235690ff48"",
+                    ""id"": ""315dd9d8-72b5-479e-9c83-749f66c7d68a"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""CriticalAttackTap"",
+                    ""name"": ""Roll"",
                     ""type"": ""Button"",
-                    ""id"": ""5bd4790c-e473-4c02-a8db-0882ad85788d"",
+                    ""id"": ""273886ef-dbeb-4a84-913a-02d1f71a462a"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -430,7 +430,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""7127d6f5-dd11-482b-991f-89a44f33f107"",
                     ""path"": ""<Keyboard>/shift"",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Sprint"",
@@ -441,7 +441,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""21785121-b03a-4601-8950-4197d77f8d99"",
                     ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": ""GamePad"",
                     ""action"": ""Sprint"",
@@ -571,23 +571,23 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""0ea4107e-634f-4040-a851-f9fe67e48d57"",
-                    ""path"": ""<Keyboard>/ctrl"",
-                    ""interactions"": ""Hold(duration=1)"",
+                    ""id"": ""f2ff884b-0bb0-4632-9019-8fbff31ef5d7"",
+                    ""path"": ""<Mouse>/press"",
+                    ""interactions"": ""Tap"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CriticalAttack"",
+                    ""action"": ""BaseAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""f50acc43-fa73-4ed3-a773-037705d01433"",
-                    ""path"": ""<Keyboard>/ctrl"",
-                    ""interactions"": ""Tap(duration=1)"",
+                    ""id"": ""86892156-1555-4649-9a24-5794f947bc57"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": ""Tap"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CriticalAttackTap"",
+                    ""action"": ""Roll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -674,8 +674,8 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         m_Gameplay_A = m_Gameplay.FindAction("A", throwIfNotFound: true);
         m_Gameplay_LockOn = m_Gameplay.FindAction("LockOn", throwIfNotFound: true);
         m_Gameplay_Y = m_Gameplay.FindAction("Y", throwIfNotFound: true);
-        m_Gameplay_CriticalAttack = m_Gameplay.FindAction("CriticalAttack", throwIfNotFound: true);
-        m_Gameplay_CriticalAttackTap = m_Gameplay.FindAction("CriticalAttackTap", throwIfNotFound: true);
+        m_Gameplay_BaseAttack = m_Gameplay.FindAction("BaseAttack", throwIfNotFound: true);
+        m_Gameplay_Roll = m_Gameplay.FindAction("Roll", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Inventory = m_UI.FindAction("Inventory", throwIfNotFound: true);
@@ -752,8 +752,8 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_A;
     private readonly InputAction m_Gameplay_LockOn;
     private readonly InputAction m_Gameplay_Y;
-    private readonly InputAction m_Gameplay_CriticalAttack;
-    private readonly InputAction m_Gameplay_CriticalAttackTap;
+    private readonly InputAction m_Gameplay_BaseAttack;
+    private readonly InputAction m_Gameplay_Roll;
     public struct GameplayActions
     {
         private @MovementActions m_Wrapper;
@@ -772,8 +772,8 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         public InputAction @A => m_Wrapper.m_Gameplay_A;
         public InputAction @LockOn => m_Wrapper.m_Gameplay_LockOn;
         public InputAction @Y => m_Wrapper.m_Gameplay_Y;
-        public InputAction @CriticalAttack => m_Wrapper.m_Gameplay_CriticalAttack;
-        public InputAction @CriticalAttackTap => m_Wrapper.m_Gameplay_CriticalAttackTap;
+        public InputAction @BaseAttack => m_Wrapper.m_Gameplay_BaseAttack;
+        public InputAction @Roll => m_Wrapper.m_Gameplay_Roll;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -825,12 +825,12 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                 @Y.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnY;
                 @Y.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnY;
                 @Y.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnY;
-                @CriticalAttack.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCriticalAttack;
-                @CriticalAttack.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCriticalAttack;
-                @CriticalAttack.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCriticalAttack;
-                @CriticalAttackTap.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCriticalAttackTap;
-                @CriticalAttackTap.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCriticalAttackTap;
-                @CriticalAttackTap.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCriticalAttackTap;
+                @BaseAttack.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBaseAttack;
+                @BaseAttack.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBaseAttack;
+                @BaseAttack.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBaseAttack;
+                @Roll.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRoll;
+                @Roll.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRoll;
+                @Roll.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRoll;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -877,12 +877,12 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                 @Y.started += instance.OnY;
                 @Y.performed += instance.OnY;
                 @Y.canceled += instance.OnY;
-                @CriticalAttack.started += instance.OnCriticalAttack;
-                @CriticalAttack.performed += instance.OnCriticalAttack;
-                @CriticalAttack.canceled += instance.OnCriticalAttack;
-                @CriticalAttackTap.started += instance.OnCriticalAttackTap;
-                @CriticalAttackTap.performed += instance.OnCriticalAttackTap;
-                @CriticalAttackTap.canceled += instance.OnCriticalAttackTap;
+                @BaseAttack.started += instance.OnBaseAttack;
+                @BaseAttack.performed += instance.OnBaseAttack;
+                @BaseAttack.canceled += instance.OnBaseAttack;
+                @Roll.started += instance.OnRoll;
+                @Roll.performed += instance.OnRoll;
+                @Roll.canceled += instance.OnRoll;
             }
         }
     }
@@ -963,8 +963,8 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         void OnA(InputAction.CallbackContext context);
         void OnLockOn(InputAction.CallbackContext context);
         void OnY(InputAction.CallbackContext context);
-        void OnCriticalAttack(InputAction.CallbackContext context);
-        void OnCriticalAttackTap(InputAction.CallbackContext context);
+        void OnBaseAttack(InputAction.CallbackContext context);
+        void OnRoll(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

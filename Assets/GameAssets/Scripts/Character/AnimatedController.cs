@@ -48,9 +48,21 @@ namespace KMK
             characterAnimationEventHandler.onEnableRotate -= EnableRotate;
         }
 
+        public void EnableRootMotion()
+        {
+            anim.SetBool(isRootMotionHash, true);
+        }
+
         public void EnableRotate()
         {
             anim.SetBool(canRotateHash, true);
+        }
+
+        public void PlayAttackAnimation(int weaponNumber)
+        {
+            anim.SetBool(isRootMotionHash, true);
+            anim.SetInteger(weaponNumberHash, weaponNumber);
+            anim.SetTrigger(canAttackHash);
         }
 
         
@@ -65,6 +77,7 @@ namespace KMK
         {
             rootMotionEnabled = anim.GetBool(isRootMotionHash);
             canRotate = anim.GetBool(canRotateHash);
+            canDoCombo = anim.GetBool(canDoComboHash);
             
 
 
