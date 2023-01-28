@@ -22,7 +22,7 @@ namespace KMK
 
             characterInventory = characterManager.characterInventory;
             characterLocomotion = characterManager.characterLocomotion;
-            animatedController = characterManager.animatedController;
+            animatedController = characterManager.currentCharacterAnimatedController;
 
             characterLocomotion.rigidbody.velocity = Vector3.zero;
             animatedController.PlayTargetAnimation("PickUpItem", true, 0.2f); //play animation when looting an iteam

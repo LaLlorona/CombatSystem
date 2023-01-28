@@ -9,11 +9,13 @@ namespace KMK
         
 
         public CharacterHealthbar healthbar;
-        AnimatedController animatedController;
+        MainCharacterManager mainCharacterManager;
+
 
         private void Awake()
         {
-            animatedController = GetComponentInChildren<AnimatedController>();
+            mainCharacterManager = GetComponent<MainCharacterManager>();
+         
         }
         // Start is called before the first frame update
         void Start()
@@ -46,11 +48,11 @@ namespace KMK
             if (currentHealth <= 0)
             {
                 currentHealth = 0;
-                animatedController.PlayTargetAnimation("Death", true, 0.2f);
+                mainCharacterManager.currentCharacterAnimatedController.PlayTargetAnimation("Death", true, 0.2f);
             }
             else
             {
-                animatedController.PlayTargetAnimation("Damaged", true, 0.2f);
+                mainCharacterManager.currentCharacterAnimatedController.PlayTargetAnimation("Damaged", true, 0.2f);
             }
         }
 

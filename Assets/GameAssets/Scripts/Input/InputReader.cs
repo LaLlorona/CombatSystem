@@ -9,13 +9,21 @@ namespace KMK
 {
     public class InputReader : MonoBehaviour
     {
+        #region InputEvent Definition
         public delegate void InputEvent();
+        public delegate void CharacterChangeInputEvent(int characterIndex);
 
         public InputEvent OnInventoryInput;
         public InputEvent OnLockonInput;
         public InputEvent OnYButtonInput;
         public InputEvent OnAttackButtonInput;
         public InputEvent OnRollInput;
+
+        public CharacterChangeInputEvent OnCharacterChange;
+
+        #endregion
+
+
 
         [Header("Input specs")]
         public UnityEvent changedInputToMouseAndKeyboard;
@@ -154,13 +162,27 @@ namespace KMK
                 
             };
 
-            
-
-           
-
             movementActions.Gameplay.BaseAttack.performed += ctx =>
             {
                 OnAttackButtonInput?.Invoke();
+            };
+
+            movementActions.Gameplay.CharacterChange1.performed += ctx =>
+            {
+                OnCharacterChange?.Invoke(0);
+              
+            };
+
+            movementActions.Gameplay.CharacterChange2.performed += ctx =>
+            {
+                OnCharacterChange?.Invoke(1);
+            
+            };
+
+            movementActions.Gameplay.CharacterChange3.performed += ctx =>
+            {
+                OnCharacterChange?.Invoke(2);
+            
             };
 
 

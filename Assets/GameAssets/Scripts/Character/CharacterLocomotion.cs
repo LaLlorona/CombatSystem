@@ -155,7 +155,8 @@ namespace KMK
         [SerializeField] UnityEvent OnCrouch;
         [Space(15)]
 
-        public AnimatedController anim;
+        //public AnimatedController anim;
+        MainCharacterManager mainCharacterManager;
 
 
 
@@ -208,7 +209,9 @@ namespace KMK
         {
             rigidbody = this.GetComponent<Rigidbody>();
             collider = this.GetComponent<CapsuleCollider>();
-            anim = GetComponentInChildren<AnimatedController>();
+            //anim = GetComponentInChildren<AnimatedController>();
+            mainCharacterManager = GetComponent<MainCharacterManager>();
+
             originalColliderHeight = collider.height;
 
             SetFriction(frictionAgainstFloor, true);
@@ -353,7 +356,7 @@ namespace KMK
             wallNormal = tmpWallNormal;
         }
 
-
+        
         private void CheckSlopeAndDirections()
         {
             prevGroundNormal = groundNormal;
@@ -477,7 +480,7 @@ namespace KMK
 
         private void MoveWalk()
         {
-            if (anim.rootMotionEnabled && !anim.canRotate)
+            if (mainCharacterManager.currentCharacterAnimatedController.rootMotionEnabled && !mainCharacterManager.currentCharacterAnimatedController.canRotate)
             {
                 return;
             }
@@ -500,7 +503,7 @@ namespace KMK
 
         private void MoveRotation()
         {
-            if (anim.rootMotionEnabled && !anim.canRotate)
+            if (mainCharacterManager.currentCharacterAnimatedController.rootMotionEnabled && !mainCharacterManager.currentCharacterAnimatedController.canRotate)
             {
                 return;
             }

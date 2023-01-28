@@ -12,18 +12,26 @@ namespace KMK
         public Animator anim;
         public CharacterInventory characterInventory;
         public CharacterLocomotion characterLocomotion;
-        public AnimatedController animatedController;
+        public AnimatedController currentCharacterAnimatedController;
         public LayerMask toDetect;
-        public InputReader input;
+        public InputReader inputReader;
 
+
+        [Header("To update when changing the character")]
+        public CharacterAnimationEventHandler currentCharacterAnimationEventHandler;
         public GameObject currentCharacterObject;
         public int currentCharacterIndex;
-        public CharacterModelChanger characterModelChanger;
-
+        public IndividualCharacterManager[] individualCharacterManagers;
+        public IndividualCharacterManager currentIndividualCharacterManager;
+        public CharacterCombatHandler characterCombatHandler;
+        public WeaponType currentWeaponType;
 
         
 
-        
+
+
+
+
         public InteractablePopupUI interactablePopupUI;
         public GameObject interactableUIGameobject;
         public GameObject itemDescriptionUIGameobject;
@@ -35,9 +43,52 @@ namespace KMK
             
             characterInventory = GetComponent<CharacterInventory>();
             characterLocomotion = GetComponent<CharacterLocomotion>();
-            animatedController = GetComponentInChildren<AnimatedController>();
-            characterModelChanger = GetComponentInChildren<CharacterModelChanger>();
+
+            characterCombatHandler = GetComponent<CharacterCombatHandler>();
     
+        }
+
+        private void Start()
+        {
+            individualCharacterManagers = GetComponentsInChildren<IndividualCharacterManager>();
+            currentIndividualCharacterManager = individualCharacterManagers[0];
+            currentCharacterAnimationEventHandler = currentIndividualCharacterManager.characterAnimationEventHandler;
+            currentCharacterAnimatedController = currentIndividualCharacterManager.animatedController;
+            characterCombatHandler.AssignAttackInput();
+            EnableCharacterWithIndex(0);
+        }
+
+        public void HideAllCharacterGameobjects()
+        {
+            characterCombatHandler.RemoveAttackInput();
+            for (int i = 0; i < individualCharacterManagers.Length; i++)
+            {
+                individualCharacterManagers[i].individualCharacterGameobject.SetActive(false);
+            }
+        }
+
+        private void OnEnable()
+        {
+            inputReader.OnCharacterChange += EnableCharacterWithIndex;
+        }
+
+        private void OnDisable()
+        {
+            inputReader.OnCharacterChange -= EnableCharacterWithIndex;
+        }
+        public void EnableCharacterWithIndex(int index)
+        {
+            HideAllCharacterGameobjects();
+            currentIndividualCharacterManager = individualCharacterManagers[index];
+
+            currentIndividualCharacterManager.individualCharacterGameobject.SetActive(true);
+
+            currentCharacterAnimatedController = currentIndividualCharacterManager.animatedController;
+            currentCharacterAnimationEventHandler = currentIndividualCharacterManager.characterAnimationEventHandler;
+
+            currentWeaponType = currentIndividualCharacterManager.characterWeaponType;
+
+            characterCombatHandler.AssignAttackInput();
         }
 
         // Update is called once per frame
@@ -48,6 +99,8 @@ namespace KMK
 
             Debug.DrawRay(transform.position, transform.forward * 10, Color.red);
         }
+
+
 
         #region Player Interaction
         public void CheckForInteractableObject()
@@ -68,14 +121,14 @@ namespace KMK
                         interactableUIGameobject.SetActive(true);
                         interactablePopupUI.SetInteractableText(interactableText);
                         
-                        if (input.aInput)
+                        if (inputReader.aInput)
                         {
                             interactablePopupUI.SetItemText(interactableObject.itemDescription);
                             itemDescriptionUIGameobject.SetActive(true);
                             interactableObject.Interact(this);
                             
                             
-                            input.aInput = false;
+                            inputReader.aInput = false;
                            
                         }
                     }
@@ -88,7 +141,7 @@ namespace KMK
                 {
                     interactableUIGameobject.SetActive(false);
                 }
-                if (itemDescriptionUIGameobject != null && input.aInput)
+                if (itemDescriptionUIGameobject != null && inputReader.aInput)
                 {
                     itemDescriptionUIGameobject.SetActive(false);
                 }
@@ -99,7 +152,7 @@ namespace KMK
         {
             characterLocomotion.rigidbody.velocity = Vector3.zero;
             transform.position = playerStandingPosition.transform.position;
-            animatedController.PlayTargetAnimation("PickUpItem", true, 0.2f);
+            currentCharacterAnimatedController.PlayTargetAnimation("PickUpItem", true, 0.2f);
         }
 
         #endregion

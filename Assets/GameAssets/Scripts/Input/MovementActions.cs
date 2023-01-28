@@ -170,6 +170,33 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CharacterChange1"",
+                    ""type"": ""Button"",
+                    ""id"": ""c55247cf-97aa-4a49-92b9-4d1f4199aeb9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CharacterChange2"",
+                    ""type"": ""Button"",
+                    ""id"": ""642baed4-3d92-4881-bfdc-b650cc2016b3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CharacterChange3"",
+                    ""type"": ""Button"",
+                    ""id"": ""0bb01798-5ccc-496a-a6f9-1daf1db74c7a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -590,6 +617,39 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                     ""action"": ""Roll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cea17730-8dd5-4702-90e4-c0b5d579b0b1"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CharacterChange1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""22b96113-4862-4951-9763-ff22cb60c453"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CharacterChange2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a5cdf5af-e0e8-453e-872e-d56c741a155a"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CharacterChange3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -676,6 +736,9 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         m_Gameplay_Y = m_Gameplay.FindAction("Y", throwIfNotFound: true);
         m_Gameplay_BaseAttack = m_Gameplay.FindAction("BaseAttack", throwIfNotFound: true);
         m_Gameplay_Roll = m_Gameplay.FindAction("Roll", throwIfNotFound: true);
+        m_Gameplay_CharacterChange1 = m_Gameplay.FindAction("CharacterChange1", throwIfNotFound: true);
+        m_Gameplay_CharacterChange2 = m_Gameplay.FindAction("CharacterChange2", throwIfNotFound: true);
+        m_Gameplay_CharacterChange3 = m_Gameplay.FindAction("CharacterChange3", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Inventory = m_UI.FindAction("Inventory", throwIfNotFound: true);
@@ -754,6 +817,9 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Y;
     private readonly InputAction m_Gameplay_BaseAttack;
     private readonly InputAction m_Gameplay_Roll;
+    private readonly InputAction m_Gameplay_CharacterChange1;
+    private readonly InputAction m_Gameplay_CharacterChange2;
+    private readonly InputAction m_Gameplay_CharacterChange3;
     public struct GameplayActions
     {
         private @MovementActions m_Wrapper;
@@ -774,6 +840,9 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         public InputAction @Y => m_Wrapper.m_Gameplay_Y;
         public InputAction @BaseAttack => m_Wrapper.m_Gameplay_BaseAttack;
         public InputAction @Roll => m_Wrapper.m_Gameplay_Roll;
+        public InputAction @CharacterChange1 => m_Wrapper.m_Gameplay_CharacterChange1;
+        public InputAction @CharacterChange2 => m_Wrapper.m_Gameplay_CharacterChange2;
+        public InputAction @CharacterChange3 => m_Wrapper.m_Gameplay_CharacterChange3;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -831,6 +900,15 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                 @Roll.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRoll;
                 @Roll.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRoll;
                 @Roll.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRoll;
+                @CharacterChange1.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCharacterChange1;
+                @CharacterChange1.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCharacterChange1;
+                @CharacterChange1.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCharacterChange1;
+                @CharacterChange2.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCharacterChange2;
+                @CharacterChange2.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCharacterChange2;
+                @CharacterChange2.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCharacterChange2;
+                @CharacterChange3.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCharacterChange3;
+                @CharacterChange3.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCharacterChange3;
+                @CharacterChange3.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCharacterChange3;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -883,6 +961,15 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                 @Roll.started += instance.OnRoll;
                 @Roll.performed += instance.OnRoll;
                 @Roll.canceled += instance.OnRoll;
+                @CharacterChange1.started += instance.OnCharacterChange1;
+                @CharacterChange1.performed += instance.OnCharacterChange1;
+                @CharacterChange1.canceled += instance.OnCharacterChange1;
+                @CharacterChange2.started += instance.OnCharacterChange2;
+                @CharacterChange2.performed += instance.OnCharacterChange2;
+                @CharacterChange2.canceled += instance.OnCharacterChange2;
+                @CharacterChange3.started += instance.OnCharacterChange3;
+                @CharacterChange3.performed += instance.OnCharacterChange3;
+                @CharacterChange3.canceled += instance.OnCharacterChange3;
             }
         }
     }
@@ -965,6 +1052,9 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         void OnY(InputAction.CallbackContext context);
         void OnBaseAttack(InputAction.CallbackContext context);
         void OnRoll(InputAction.CallbackContext context);
+        void OnCharacterChange1(InputAction.CallbackContext context);
+        void OnCharacterChange2(InputAction.CallbackContext context);
+        void OnCharacterChange3(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

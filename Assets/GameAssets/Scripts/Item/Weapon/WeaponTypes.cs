@@ -6,9 +6,10 @@ namespace KMK
 {
     public enum WeaponType
     {
-        Knuckle,
-        SingleHandSword,
-        Catalyst
+        
+        Sword,
+        Fist,
+        Wand,
 
     }
 }

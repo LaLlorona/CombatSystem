@@ -148,6 +148,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "CharacterChange1",
+                    "type": "Button",
+                    "id": "c55247cf-97aa-4a49-92b9-4d1f4199aeb9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CharacterChange2",
+                    "type": "Button",
+                    "id": "642baed4-3d92-4881-bfdc-b650cc2016b3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CharacterChange3",
+                    "type": "Button",
+                    "id": "0bb01798-5ccc-496a-a6f9-1daf1db74c7a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -566,6 +593,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "Roll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cea17730-8dd5-4702-90e4-c0b5d579b0b1",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CharacterChange1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "22b96113-4862-4951-9763-ff22cb60c453",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CharacterChange2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a5cdf5af-e0e8-453e-872e-d56c741a155a",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CharacterChange3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
