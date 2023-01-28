@@ -86,7 +86,7 @@ namespace KMK
             currentCharacterAnimatedController = currentIndividualCharacterManager.animatedController;
             currentCharacterAnimationEventHandler = currentIndividualCharacterManager.characterAnimationEventHandler;
 
-            currentWeaponType = currentIndividualCharacterManager.characterWeaponType;
+            currentWeaponType = currentIndividualCharacterManager.characterWeapon.weaponType;
 
             characterCombatHandler.AssignAttackInput();
         }

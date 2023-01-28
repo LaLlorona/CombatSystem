@@ -49,97 +49,97 @@ namespace KMK
             }
         }
 
-        private void OnEnable()
-        {
-            input.OnYButtonInput += ToggleIsTwoHanded;
-        }
+        //private void OnEnable()
+        //{
+        //    input.onYbuttonInput += ToggleIsTwoHanded;
+        //}
 
-        private void OnDisable()
-        {
-            input.OnYButtonInput -= ToggleIsTwoHanded;
-        }
-
-
-
-        public void LoadWeaponOnSlot (WeaponItem weaponItem, bool isLeft)
-        {
-            if (isLeft)
-            {
-                leftHandSlot.currentWeapon = weaponItem;
-                leftHandSlot.LoadWeaponModel(weaponItem);
-                LoadLeftWeaponDamageCollider();
-                quickSlotUI.UpdateWeaponQuickSlotsUI(isLeft, weaponItem);
-
-                #region Handle left weapon Idle Animation
-                if (weaponItem != null)
-                {
-                    anim.CrossFade(weaponItem.leftHandIdle, 0.2f);
-                }
-                else
-                {
-                    anim.CrossFade("LeftArmEmpty", 0.2f);
-                }
-                #endregion
-            }
-            else
-            {
-                if (isTwoHandedHolding)
-                {
-                    backSlot.LoadWeaponModel(leftHandSlot.currentWeapon);
-                    leftHandSlot.UnloadWeaponAndDestroy();
-                    anim.CrossFade(weaponItem.twoHandIdle, 0.2f);
-                }
-                else
-                {
-                    anim.CrossFade("Both Arms Empty", 0.2f);
-
-                    backSlot.UnloadWeaponAndDestroy();
-
-                    #region Handle right weapon Idle Animation
-                    if (weaponItem != null)
-                    {
-                        anim.CrossFade(weaponItem.rightHandIdle, 0.2f);
-                    }
-                    else
-                    {
-                        anim.CrossFade("RightArmEmpty", 0.2f);
-                    }
+        //private void OnDisable()
+        //{
+        //    input.onYbuttonInput -= ToggleIsTwoHanded;
+        //}
 
 
-                    #endregion
-                }
-                rightHandSlot.currentWeapon = weaponItem;
-                rightHandSlot.LoadWeaponModel(weaponItem);
-                LoadRightWeaponDamageCollider();
-                quickSlotUI.UpdateWeaponQuickSlotsUI(isLeft, weaponItem);
-                Debug.Log(weaponItem.weaponController);
-                animatedController.anim.runtimeAnimatorController = weaponItem.weaponController;
+
+        //public void LoadWeaponOnSlot (WeaponItem weaponItem, bool isLeft)
+        //{
+        //    if (isLeft)
+        //    {
+        //        leftHandSlot.currentWeapon = weaponItem;
+        //        leftHandSlot.LoadWeaponModel(weaponItem);
+        //        LoadLeftWeaponDamageCollider();
+        //        quickSlotUI.UpdateWeaponQuickSlotsUI(isLeft, weaponItem);
+
+        //        #region Handle left weapon Idle Animation
+        //        if (weaponItem != null)
+        //        {
+        //            anim.CrossFade(weaponItem.leftHandIdle, 0.2f);
+        //        }
+        //        else
+        //        {
+        //            anim.CrossFade("LeftArmEmpty", 0.2f);
+        //        }
+        //        #endregion
+        //    }
+        //    else
+        //    {
+        //        if (isTwoHandedHolding)
+        //        {
+        //            backSlot.LoadWeaponModel(leftHandSlot.currentWeapon);
+        //            leftHandSlot.UnloadWeaponAndDestroy();
+        //            anim.CrossFade(weaponItem.twoHandIdle, 0.2f);
+        //        }
+        //        else
+        //        {
+        //            anim.CrossFade("Both Arms Empty", 0.2f);
+
+        //            backSlot.UnloadWeaponAndDestroy();
+
+        //            #region Handle right weapon Idle Animation
+        //            if (weaponItem != null)
+        //            {
+        //                anim.CrossFade(weaponItem.rightHandIdle, 0.2f);
+        //            }
+        //            else
+        //            {
+        //                anim.CrossFade("RightArmEmpty", 0.2f);
+        //            }
+
+
+        //            #endregion
+        //        }
+        //        rightHandSlot.currentWeapon = weaponItem;
+        //        rightHandSlot.LoadWeaponModel(weaponItem);
+        //        LoadRightWeaponDamageCollider();
+        //        quickSlotUI.UpdateWeaponQuickSlotsUI(isLeft, weaponItem);
+        //        Debug.Log(weaponItem.weaponController);
+        //        animatedController.anim.runtimeAnimatorController = weaponItem.weaponController;
 
                 
 
-            }
-        }
+        //    }
+        //}
 
-        public void ToggleIsTwoHanded()
-        {
-            isTwoHandedHolding = !isTwoHandedHolding;
+        //public void ToggleIsTwoHanded()
+        //{
+        //    isTwoHandedHolding = !isTwoHandedHolding;
 
-            if (isTwoHandedHolding)
-            {
-                LoadWeaponOnSlot(characterInventory.rightWeapon, false);
-            }
-            else
-            {
-                LoadWeaponOnSlot(characterInventory.rightWeapon, false);
-                LoadWeaponOnSlot(characterInventory.leftWeapon, true);
-            }
-        }
+        //    if (isTwoHandedHolding)
+        //    {
+        //        LoadWeaponOnSlot(characterInventory.rightWeapon, false);
+        //    }
+        //    else
+        //    {
+        //        LoadWeaponOnSlot(characterInventory.rightWeapon, false);
+        //        LoadWeaponOnSlot(characterInventory.leftWeapon, true);
+        //    }
+        //}
 
-        public void TwoHandGrap(WeaponItem weaponItem)
-        {
-            anim.CrossFade(weaponItem.twoHandIdle, 0.2f);
+        //public void TwoHandGrap(WeaponItem weaponItem)
+        //{
+        //    anim.CrossFade(weaponItem.twoHandIdle, 0.2f);
             
-        }
+        //}
 
         #region Handle weapon collider
         private void LoadLeftWeaponDamageCollider()

@@ -13,9 +13,7 @@ namespace KMK
         public InputReader input;
         CharacterStats characterStats;
 
-        //[Header("CharacterSpecificReference")]
-        //public AnimatedController animatedController;
-        //public CharacterAnimationEventHandler characterAnimationEventHandler;
+
 
         public string lastAttack;
         public WeaponItem currentlyAttackingWeapon;
@@ -29,41 +27,45 @@ namespace KMK
 
         private void Awake()
         {
-            //animatedController = GetComponentInChildren<AnimatedController>();
+
             characterInventory = GetComponent<CharacterInventory>();
             mainCharacterManager = GetComponent<MainCharacterManager>();
-            //characterStats = GetComponent<CharacterStats>();
-            //characterAnimationEventHandler = GetComponentInChildren<CharacterAnimationEventHandler>();
+
         }
 
         private void OnEnable()
         {
             
 
-            input.OnAttackButtonInput += PressWeakAttackButton;
-            input.OnRollInput += Roll;
+            input.onAttackButtonInput += PressWeakAttackButton;
+            input.onRollInput += Roll;
+            input.onWeaponArtInput += UseWeaponArt;
 
-            //AssignAttackInput();
-            
         }
 
         private void OnDisable()
         {
         
-            input.OnAttackButtonInput -= PressWeakAttackButton;
-            input.OnRollInput -= Roll;
-            //RemoveAttackInput();
+            input.onAttackButtonInput -= PressWeakAttackButton;
+            input.onRollInput -= Roll;
+            input.onWeaponArtInput -= UseWeaponArt;
+
         }
+
+        
 
         public void AssignAttackInput()
         {
             mainCharacterManager.currentCharacterAnimationEventHandler.onEnableBaseAttack += EnableNextWeakAttack;
+            
         }
 
         public void RemoveAttackInput()
         {
             mainCharacterManager.currentCharacterAnimationEventHandler.onEnableBaseAttack -= EnableNextWeakAttack;
         }
+
+       
 
         public void EnableNextWeakAttack()
         {
@@ -90,14 +92,18 @@ namespace KMK
         }
 
 
-        public void ReduceStaminaOnAttack() {
-            characterStats.ReduceStamina(currentlyAttackingWeapon.baseStaminaDrain * currentlyAttackingWeapon.lightAttackMultiplier);
-        }
 
         public void Roll()
         {
             mainCharacterManager.currentCharacterAnimatedController.EnableRootMotion();
             mainCharacterManager.currentCharacterAnimatedController.anim.SetTrigger(rollingHash);
+        }
+
+        public void UseWeaponArt()
+        {
+            Debug.Log($"current character name is {mainCharacterManager.currentIndividualCharacterManager.characterItemInfo.itemName}");
+            mainCharacterManager.currentCharacterAnimatedController.PlayTargetAnimation(mainCharacterManager.currentIndividualCharacterManager.characterWeapon.weaponArtName,
+               true, 0.2f);
         }
 
         private void Update()

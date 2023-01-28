@@ -48,12 +48,12 @@ namespace KMK
         /**/
         private void OnEnable()
         {
-            input.OnLockonInput += ToggleLockon;
+            input.onLockOnInput += ToggleLockon;
         }
 
         private void OnDisable()
         {
-            input.OnLockonInput -= ToggleLockon;
+            input.onLockOnInput -= ToggleLockon;
         }
 
         private void Awake()

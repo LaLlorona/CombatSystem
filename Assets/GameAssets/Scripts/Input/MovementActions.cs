@@ -127,7 +127,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""A"",
+                    ""name"": ""WeaponArt"",
                     ""type"": ""Button"",
                     ""id"": ""87b7b78d-7dac-4b9d-a0d8-e69332ccb4cc"",
                     ""expectedControlType"": ""Button"",
@@ -193,6 +193,15 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                     ""name"": ""CharacterChange3"",
                     ""type"": ""Button"",
                     ""id"": ""0bb01798-5ccc-496a-a6f9-1daf1db74c7a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""cfb3e23b-2174-4e91-b42e-b6d24e92359a"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -570,7 +579,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""A"",
+                    ""action"": ""WeaponArt"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -648,6 +657,17 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""CharacterChange3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4944425f-310b-480b-9726-cb8f995288d9"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -731,7 +751,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         m_Gameplay_DPadDown = m_Gameplay.FindAction("DPadDown", throwIfNotFound: true);
         m_Gameplay_DPadLeft = m_Gameplay.FindAction("DPadLeft", throwIfNotFound: true);
         m_Gameplay_DPadRight = m_Gameplay.FindAction("DPadRight", throwIfNotFound: true);
-        m_Gameplay_A = m_Gameplay.FindAction("A", throwIfNotFound: true);
+        m_Gameplay_WeaponArt = m_Gameplay.FindAction("WeaponArt", throwIfNotFound: true);
         m_Gameplay_LockOn = m_Gameplay.FindAction("LockOn", throwIfNotFound: true);
         m_Gameplay_Y = m_Gameplay.FindAction("Y", throwIfNotFound: true);
         m_Gameplay_BaseAttack = m_Gameplay.FindAction("BaseAttack", throwIfNotFound: true);
@@ -739,6 +759,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         m_Gameplay_CharacterChange1 = m_Gameplay.FindAction("CharacterChange1", throwIfNotFound: true);
         m_Gameplay_CharacterChange2 = m_Gameplay.FindAction("CharacterChange2", throwIfNotFound: true);
         m_Gameplay_CharacterChange3 = m_Gameplay.FindAction("CharacterChange3", throwIfNotFound: true);
+        m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Inventory = m_UI.FindAction("Inventory", throwIfNotFound: true);
@@ -812,7 +833,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_DPadDown;
     private readonly InputAction m_Gameplay_DPadLeft;
     private readonly InputAction m_Gameplay_DPadRight;
-    private readonly InputAction m_Gameplay_A;
+    private readonly InputAction m_Gameplay_WeaponArt;
     private readonly InputAction m_Gameplay_LockOn;
     private readonly InputAction m_Gameplay_Y;
     private readonly InputAction m_Gameplay_BaseAttack;
@@ -820,6 +841,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_CharacterChange1;
     private readonly InputAction m_Gameplay_CharacterChange2;
     private readonly InputAction m_Gameplay_CharacterChange3;
+    private readonly InputAction m_Gameplay_Interact;
     public struct GameplayActions
     {
         private @MovementActions m_Wrapper;
@@ -835,7 +857,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         public InputAction @DPadDown => m_Wrapper.m_Gameplay_DPadDown;
         public InputAction @DPadLeft => m_Wrapper.m_Gameplay_DPadLeft;
         public InputAction @DPadRight => m_Wrapper.m_Gameplay_DPadRight;
-        public InputAction @A => m_Wrapper.m_Gameplay_A;
+        public InputAction @WeaponArt => m_Wrapper.m_Gameplay_WeaponArt;
         public InputAction @LockOn => m_Wrapper.m_Gameplay_LockOn;
         public InputAction @Y => m_Wrapper.m_Gameplay_Y;
         public InputAction @BaseAttack => m_Wrapper.m_Gameplay_BaseAttack;
@@ -843,6 +865,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         public InputAction @CharacterChange1 => m_Wrapper.m_Gameplay_CharacterChange1;
         public InputAction @CharacterChange2 => m_Wrapper.m_Gameplay_CharacterChange2;
         public InputAction @CharacterChange3 => m_Wrapper.m_Gameplay_CharacterChange3;
+        public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -885,9 +908,9 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                 @DPadRight.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDPadRight;
                 @DPadRight.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDPadRight;
                 @DPadRight.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDPadRight;
-                @A.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnA;
-                @A.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnA;
-                @A.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnA;
+                @WeaponArt.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnWeaponArt;
+                @WeaponArt.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnWeaponArt;
+                @WeaponArt.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnWeaponArt;
                 @LockOn.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLockOn;
                 @LockOn.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLockOn;
                 @LockOn.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLockOn;
@@ -909,6 +932,9 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                 @CharacterChange3.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCharacterChange3;
                 @CharacterChange3.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCharacterChange3;
                 @CharacterChange3.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCharacterChange3;
+                @Interact.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -946,9 +972,9 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                 @DPadRight.started += instance.OnDPadRight;
                 @DPadRight.performed += instance.OnDPadRight;
                 @DPadRight.canceled += instance.OnDPadRight;
-                @A.started += instance.OnA;
-                @A.performed += instance.OnA;
-                @A.canceled += instance.OnA;
+                @WeaponArt.started += instance.OnWeaponArt;
+                @WeaponArt.performed += instance.OnWeaponArt;
+                @WeaponArt.canceled += instance.OnWeaponArt;
                 @LockOn.started += instance.OnLockOn;
                 @LockOn.performed += instance.OnLockOn;
                 @LockOn.canceled += instance.OnLockOn;
@@ -970,6 +996,9 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                 @CharacterChange3.started += instance.OnCharacterChange3;
                 @CharacterChange3.performed += instance.OnCharacterChange3;
                 @CharacterChange3.canceled += instance.OnCharacterChange3;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -1047,7 +1076,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         void OnDPadDown(InputAction.CallbackContext context);
         void OnDPadLeft(InputAction.CallbackContext context);
         void OnDPadRight(InputAction.CallbackContext context);
-        void OnA(InputAction.CallbackContext context);
+        void OnWeaponArt(InputAction.CallbackContext context);
         void OnLockOn(InputAction.CallbackContext context);
         void OnY(InputAction.CallbackContext context);
         void OnBaseAttack(InputAction.CallbackContext context);
@@ -1055,6 +1084,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         void OnCharacterChange1(InputAction.CallbackContext context);
         void OnCharacterChange2(InputAction.CallbackContext context);
         void OnCharacterChange3(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

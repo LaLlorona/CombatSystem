@@ -55,7 +55,7 @@ namespace KMK
 
         private void Start()
         {
-            equipmentWindowUI.LoadWeaponsOnEquipmentScreen(characterInventory);
+            //equipmentWindowUI.LoadWeaponsOnEquipmentScreen(characterInventory);
         }
 
         public void CloseAllInventoryWindows()
@@ -68,13 +68,13 @@ namespace KMK
 
         private void OnEnable()
         {
-            input.OnInventoryInput += ToggleSelectWindow;
+            input.onInventoryInput += ToggleSelectWindow;
             
         }
 
         private void OnDisable()
         {
-            input.OnInventoryInput -= ToggleSelectWindow;
+            input.onInventoryInput -= ToggleSelectWindow;
         }
 
 

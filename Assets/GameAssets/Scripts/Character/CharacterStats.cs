@@ -52,7 +52,7 @@ namespace KMK
             }
             else
             {
-                mainCharacterManager.currentCharacterAnimatedController.PlayTargetAnimation("Damaged", true, 0.2f);
+                mainCharacterManager.currentCharacterAnimatedController.PlayTargetAnimation("Damaged", true, 0.2f, false);
             }
         }
 

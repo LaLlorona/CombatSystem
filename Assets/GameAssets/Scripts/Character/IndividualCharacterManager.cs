@@ -12,7 +12,7 @@ namespace KMK
         public GameObject individualCharacterGameobject;
 
         [Header("Character Info")]
-        public string characterName;
+        
 
         public float maxHp;
         public float currentHP;
@@ -20,7 +20,8 @@ namespace KMK
         public float maxMp;
         public float currentMp;
 
-        public WeaponType characterWeaponType;
+        public WeaponItem characterWeapon;
+        public CharacterItem characterItemInfo;
 
         private void Awake()
         {

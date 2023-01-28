@@ -78,6 +78,7 @@ namespace KMK
             rootMotionEnabled = anim.GetBool(isRootMotionHash);
             canRotate = anim.GetBool(canRotateHash);
             canDoCombo = anim.GetBool(canDoComboHash);
+            canBeInterrupted = anim.GetBool(canBeInterruptedHash);
             
 
 

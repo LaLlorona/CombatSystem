@@ -32,56 +32,56 @@ namespace KMK
             
         }
 
-        private void Start()
-        {
-            rightWeapon = weaponsInRightHandSlots[currentRightWeaponIndex];
-            leftWeapon = weaponsInLeftHandSlots[currentLeftWeaponIndex];
-            weaponSlotManager.LoadWeaponOnSlot(rightWeapon, false);
-            weaponSlotManager.LoadWeaponOnSlot(leftWeapon, true);
-        }
+        //private void Start()
+        //{
+        //    rightWeapon = weaponsInRightHandSlots[currentRightWeaponIndex];
+        //    leftWeapon = weaponsInLeftHandSlots[currentLeftWeaponIndex];
+        //    weaponSlotManager.LoadWeaponOnSlot(rightWeapon, false);
+        //    weaponSlotManager.LoadWeaponOnSlot(leftWeapon, true);
+        //}
 
-        private void Update()
-        {
-            HandleQuickSlotInput();
+        //private void Update()
+        //{
+        //    HandleQuickSlotInput();
 
-        }
+        //}
 
-        public void ChangeRightWeapon()
-        {
-            currentRightWeaponIndex += 1;
-            if (currentRightWeaponIndex >= NUM_ITEM_IN_HAND || weaponsInRightHandSlots[currentRightWeaponIndex] == null) 
-            {
-                currentRightWeaponIndex = 0;
-            }   
-            rightWeapon = weaponsInRightHandSlots[currentRightWeaponIndex];
-            weaponSlotManager.LoadWeaponOnSlot(rightWeapon, false); 
-        }
+        //public void ChangeRightWeapon()
+        //{
+        //    currentRightWeaponIndex += 1;
+        //    if (currentRightWeaponIndex >= NUM_ITEM_IN_HAND || weaponsInRightHandSlots[currentRightWeaponIndex] == null) 
+        //    {
+        //        currentRightWeaponIndex = 0;
+        //    }   
+        //    rightWeapon = weaponsInRightHandSlots[currentRightWeaponIndex];
+        //    weaponSlotManager.LoadWeaponOnSlot(rightWeapon, false); 
+        //}
 
-        public void ChangeLeftWeapon()
-        {
-            currentLeftWeaponIndex += 1;
-            if (currentLeftWeaponIndex >= NUM_ITEM_IN_HAND || weaponsInLeftHandSlots[currentLeftWeaponIndex] == null)
-            {
-                currentLeftWeaponIndex = 0;
-            }
-            leftWeapon = weaponsInLeftHandSlots[currentLeftWeaponIndex];
-            weaponSlotManager.LoadWeaponOnSlot(leftWeapon, true);
-        }
+        //public void ChangeLeftWeapon()
+        //{
+        //    currentLeftWeaponIndex += 1;
+        //    if (currentLeftWeaponIndex >= NUM_ITEM_IN_HAND || weaponsInLeftHandSlots[currentLeftWeaponIndex] == null)
+        //    {
+        //        currentLeftWeaponIndex = 0;
+        //    }
+        //    leftWeapon = weaponsInLeftHandSlots[currentLeftWeaponIndex];
+        //    weaponSlotManager.LoadWeaponOnSlot(leftWeapon, true);
+        //}
 
-        private void HandleQuickSlotInput()
-        {
-            if (input.dPadRight)
-            {
-                ChangeRightWeapon();
-                input.dPadRight = false;
-            }
+        //private void HandleQuickSlotInput()
+        //{
+        //    if (input.dPadRight)
+        //    {
+        //        ChangeRightWeapon();
+        //        input.dPadRight = false;
+        //    }
 
-            if (input.dPadLeft)
-            {
-                ChangeLeftWeapon();
-                input.dPadLeft = false;
-            }
-        }
+        //    if (input.dPadLeft)
+        //    {
+        //        ChangeLeftWeapon();
+        //        input.dPadLeft = false;
+        //    }
+        //}
     }
 
 }

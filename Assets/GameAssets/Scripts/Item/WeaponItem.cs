@@ -8,13 +8,20 @@ namespace KMK
     public class WeaponItem :Item
     {
         public GameObject modelPrefab;
-        public bool isUnarmed;
+        //public bool isUnarmed;
 
-        [Header("animator Replacer")]
-        public AnimatorOverrideController weaponController;
+        
 
         [Header("WeaponType")]
         public WeaponType weaponType;
+
+        [Header("Weapon Art Animation Name")]
+        public string weaponArtName = "weaponArtAnimation"; //weapon art is a skill played when user press 'weapon art' button
+        
+
+        
+
+        
 
         //[Header("One Handed Attack Animations")]
         //public string oneHandHeavyAttack1;
@@ -23,15 +30,15 @@ namespace KMK
         //public string oneHandLightAttack1;
         //public string oneHandLightAttack2;
 
-        [Header("Idle Animations")]
-        public string rightHandIdle;
-        public string leftHandIdle;
-        public string twoHandIdle;
+        //[Header("Idle Animations")]
+        //public string rightHandIdle;
+        //public string leftHandIdle;
+        //public string twoHandIdle;
 
-        [Header("Stamina cost")]
-        public int baseStaminaDrain;
-        public float lightAttackMultiplier;
-        public float heavyAttackMultiplier;
+        //[Header("Stamina cost")]
+        //public int baseStaminaDrain;
+        //public float lightAttackMultiplier;
+        //public float heavyAttackMultiplier;
 
     }
 }

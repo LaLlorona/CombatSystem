@@ -3926,7 +3926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7b6f11d60bcc504ca625751a0f24f3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterInventory: {fileID: 6212462411358609128}
+  characterInventory: {fileID: 0}
   equipmentWindowUI: {fileID: 2081362978}
   input: {fileID: 1092220204}
   selectWindow: {fileID: 1980829807}
@@ -7548,7 +7548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab5e89e8d166d7f499109a53a91b5764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterInventory: {fileID: 6212462411358609128}
+  characterInventory: {fileID: 0}
   quickSlotUI: {fileID: 0}
   input: {fileID: 1092220204}
   isTwoHandedHolding: 0
@@ -13565,12 +13565,12 @@ MonoBehaviour:
   animatedController: {fileID: 0}
   characterAnimationEventHandler: {fileID: 0}
   individualCharacterGameobject: {fileID: 0}
-  characterName: 
   maxHp: 0
   currentHP: 0
   maxMp: 0
   currentMp: 0
-  characterWeaponType: 2
+  characterWeapon: {fileID: 11400000, guid: a5600542f2033c54385c0423df4e0596, type: 2}
+  characterItemInfo: {fileID: 11400000, guid: e146fb1ac26114f4e9fdb4356f3f13f1, type: 2}
 --- !u!1 &1549547108 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -4777350932304270908, guid: ec9555ac8ed01f146bbd87d322ee9326,
@@ -14488,12 +14488,12 @@ MonoBehaviour:
   animatedController: {fileID: 0}
   characterAnimationEventHandler: {fileID: 0}
   individualCharacterGameobject: {fileID: 0}
-  characterName: 
   maxHp: 0
   currentHP: 0
   maxMp: 0
   currentMp: 0
-  characterWeaponType: 1
+  characterWeapon: {fileID: 11400000, guid: 679190a97635e434482843f59187c18f, type: 2}
+  characterItemInfo: {fileID: 11400000, guid: 9a0fd486dae513a40a2deca8b914147c, type: 2}
 --- !u!1001 &1637903371
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17330,12 +17330,12 @@ MonoBehaviour:
   animatedController: {fileID: 0}
   characterAnimationEventHandler: {fileID: 0}
   individualCharacterGameobject: {fileID: 0}
-  characterName: 
   maxHp: 0
   currentHP: 0
   maxMp: 0
   currentMp: 0
-  characterWeaponType: 0
+  characterWeapon: {fileID: 11400000, guid: f31997469d2e71746b90b886e4c15d42, type: 2}
+  characterItemInfo: {fileID: 11400000, guid: 699a989dce6239e4ab2343fc97152b5f, type: 2}
 --- !u!1 &1958441482
 GameObject:
   m_ObjectHideFlags: 0
@@ -27257,7 +27257,6 @@ GameObject:
   - component: {fileID: 6212462411358609125}
   - component: {fileID: 6212462411358609121}
   - component: {fileID: 6212462411358609127}
-  - component: {fileID: 6212462411358609128}
   - component: {fileID: 6212462411358609129}
   - component: {fileID: 6212462411358609130}
   m_Layer: 30
@@ -27290,7 +27289,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483648
   inputReader: {fileID: 1092220204}
-  characterModelChanger: {fileID: 0}
   currentCharacterAnimationEventHandler: {fileID: 0}
   currentCharacterObject: {fileID: 0}
   currentCharacterIndex: 0
@@ -27301,35 +27299,6 @@ MonoBehaviour:
   interactablePopupUI: {fileID: 662445793}
   interactableUIGameobject: {fileID: 1795710532}
   itemDescriptionUIGameobject: {fileID: 1788660156}
---- !u!114 &6212462411358609128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6212462411358609126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6359020515eee3d489a9f53c56add35d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rightWeapon: {fileID: 0}
-  leftWeapon: {fileID: 0}
-  unarmedWeapon: {fileID: 11400000, guid: 4ee1c73c9fb01a14491788f71fb82515, type: 2}
-  input: {fileID: 1092220204}
-  weaponsInRightHandSlots:
-  - {fileID: 11400000, guid: 38ce1682b89bae94b8f5746d0fe26cef, type: 2}
-  - {fileID: 11400000, guid: f31997469d2e71746b90b886e4c15d42, type: 2}
-  - {fileID: 11400000, guid: f9365f99c28810442ad09430ea74599d, type: 2}
-  - {fileID: 0}
-  weaponsInLeftHandSlots:
-  - {fileID: 11400000, guid: 38ce1682b89bae94b8f5746d0fe26cef, type: 2}
-  - {fileID: 11400000, guid: f31997469d2e71746b90b886e4c15d42, type: 2}
-  - {fileID: 11400000, guid: f9365f99c28810442ad09430ea74599d, type: 2}
-  - {fileID: 0}
-  currentRightWeaponIndex: 0
-  currentLeftWeaponIndex: 0
-  weaponsInventory: []
 --- !u!114 &6212462411358609129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27393,7 +27362,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6212462411439235675}
-  - component: {fileID: 6212462411439235677}
   m_Layer: 8
   m_Name: Mesh
   m_TagString: Untagged
@@ -27401,22 +27369,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &6212462411439235677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6212462411439235676}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d428ad0a730a55f40a84db565a266bc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterModels: []
-  inputReader: {fileID: 1092220204}
-  characterCombatHandler: {fileID: 6212462411358609129}
-  mainCharacterManager: {fileID: 0}
 --- !u!1 &6214014939520325715
 GameObject:
   m_ObjectHideFlags: 0
@@ -30648,7 +30600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab5e89e8d166d7f499109a53a91b5764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterInventory: {fileID: 6212462411358609128}
+  characterInventory: {fileID: 0}
   quickSlotUI: {fileID: 0}
   input: {fileID: 1092220204}
   isTwoHandedHolding: 0

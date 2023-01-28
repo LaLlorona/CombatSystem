@@ -12,7 +12,7 @@ namespace KMK
         public static readonly int canRotateHash = Animator.StringToHash("CanRotate");
         public static readonly int canAttackHash = Animator.StringToHash("CanAttack");
         public static readonly int weaponNumberHash = Animator.StringToHash("WeaponNumber");
-
+        public static readonly int canBeInterruptedHash = Animator.StringToHash("CanBeInterrupted");
     }
 
 }

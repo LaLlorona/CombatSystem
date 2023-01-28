@@ -13,11 +13,14 @@ namespace KMK
         public delegate void InputEvent();
         public delegate void CharacterChangeInputEvent(int characterIndex);
 
-        public InputEvent OnInventoryInput;
-        public InputEvent OnLockonInput;
-        public InputEvent OnYButtonInput;
-        public InputEvent OnAttackButtonInput;
-        public InputEvent OnRollInput;
+        public InputEvent onInventoryInput;
+        public InputEvent onLockOnInput;
+        public InputEvent onYbuttonInput;
+
+
+        public InputEvent onAttackButtonInput;
+        public InputEvent onRollInput;
+        public InputEvent onWeaponArtInput;
 
         public CharacterChangeInputEvent OnCharacterChange;
 
@@ -54,6 +57,7 @@ namespace KMK
         public bool roll;
 
         public bool b_input;
+
         public bool aInput;
         public bool yInput;
         public bool rbInput;
@@ -132,29 +136,29 @@ namespace KMK
             movementActions.Gameplay.DPadLeft.performed += ctx => OnDpadLeft(ctx);
             movementActions.Gameplay.DPadLeft.canceled+= ctx => OnDpadLeftEnded(ctx);
 
-            movementActions.Gameplay.A.performed += ctx =>
+            movementActions.Gameplay.Interact.performed += ctx =>
             {
                 aInput = true;
             };
 
-            movementActions.Gameplay.A.canceled += ctx =>
+            movementActions.Gameplay.Interact.canceled += ctx =>
             {
                 aInput = false;
             };
 
             movementActions.UI.Inventory.performed += ctx =>
             {
-                OnInventoryInput?.Invoke();
+                onInventoryInput?.Invoke();
             };
 
             movementActions.Gameplay.LockOn.performed += ctx =>
             {
-                OnLockonInput?.Invoke();
+                onLockOnInput?.Invoke();
             };
 
             movementActions.Gameplay.Y.performed += ctx =>
             {
-                OnYButtonInput?.Invoke();
+                onYbuttonInput?.Invoke();
             };
 
             movementActions.Gameplay.Y.canceled += ctx =>
@@ -164,7 +168,7 @@ namespace KMK
 
             movementActions.Gameplay.BaseAttack.performed += ctx =>
             {
-                OnAttackButtonInput?.Invoke();
+                onAttackButtonInput?.Invoke();
             };
 
             movementActions.Gameplay.CharacterChange1.performed += ctx =>
@@ -183,6 +187,12 @@ namespace KMK
             {
                 OnCharacterChange?.Invoke(2);
             
+            };
+
+            movementActions.Gameplay.WeaponArt.performed += ctx =>
+            {
+                Debug.Log("weapon art used");
+                onWeaponArtInput?.Invoke();
             };
 
 
@@ -314,7 +324,7 @@ namespace KMK
 
         public void OnRoll(InputAction.CallbackContext ctx)
         {
-            OnRollInput?.Invoke();
+            onRollInput?.Invoke();
         }
 
 

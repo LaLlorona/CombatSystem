@@ -69,8 +69,8 @@ namespace KMK
 
 
             }
-            weaponSlotManager.LoadWeaponOnSlot(characterInventory.rightWeapon, false);
-            weaponSlotManager.LoadWeaponOnSlot(characterInventory.leftWeapon, true);
+            //weaponSlotManager.LoadWeaponOnSlot(characterInventory.rightWeapon, false);
+            //weaponSlotManager.LoadWeaponOnSlot(characterInventory.leftWeapon, true);
 
             uiManager.equipmentWindowUI.LoadWeaponsOnEquipmentScreen(characterInventory);
             uiManager.ResetAllSelectedSlots();
