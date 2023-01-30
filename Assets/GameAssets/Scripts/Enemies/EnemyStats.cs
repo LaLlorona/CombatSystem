@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace KMK
 {
-    public class EnemyStats : CreatureStats
+    public class EnemyStats : Creature
     {
 
         Animator animator;
@@ -21,7 +21,7 @@ namespace KMK
 
         }
 
-        private int SetMaxHealthFromHealthLevel()
+        private float SetMaxHealthFromHealthLevel()
         {
             maxHealth = healthLevel * 10;
             return maxHealth;

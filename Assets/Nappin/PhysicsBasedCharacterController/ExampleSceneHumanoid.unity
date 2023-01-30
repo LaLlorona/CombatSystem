@@ -2203,6 +2203,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &213753347
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 213753348}
+  - component: {fileID: 213753349}
+  - component: {fileID: 213753350}
+  m_Layer: 8
+  m_Name: SwordDamageCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &213753348
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213753347}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6212462411439235675}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &213753349
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213753347}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 3, z: 3}
+  m_Center: {x: 0, y: 0, z: 2.25}
+--- !u!114 &213753350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213753347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d85305741ebc4344185c8cabe5734319, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1 &241894643
 GameObject:
   m_ObjectHideFlags: 0
@@ -2309,6 +2368,7 @@ MonoBehaviour:
   rootMotionEnabled: 0
   canRotate: 1
   canDoCombo: 1
+  canBeInterrupted: 1
   characterManager: {fileID: 6212462411358609121}
   rigidbodyCharacter: {fileID: 6212462411358609125}
   characterAnimationEventHandler: {fileID: 249258235}
@@ -5628,6 +5688,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 586920657}
+  - component: {fileID: 586920658}
   m_Layer: 0
   m_Name: ----------MANAGER----------
   m_TagString: Untagged
@@ -5651,6 +5712,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &586920658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586920656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a316ddc1349224fa3f9e5a88ca6006, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &600655056
 GameObject:
   m_ObjectHideFlags: 0
@@ -7568,6 +7641,7 @@ MonoBehaviour:
   rootMotionEnabled: 0
   canRotate: 1
   canDoCombo: 1
+  canBeInterrupted: 1
   characterManager: {fileID: 6212462411358609121}
   rigidbodyCharacter: {fileID: 6212462411358609125}
   characterAnimationEventHandler: {fileID: 0}
@@ -11143,6 +11217,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1139549785}
   m_CullTransparentMesh: 1
+--- !u!1 &1156082795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1156082796}
+  - component: {fileID: 1156082797}
+  - component: {fileID: 1156082798}
+  m_Layer: 8
+  m_Name: FistDamageCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1156082796
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156082795}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6212462411439235675}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1156082797
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156082795}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 3, z: 3}
+  m_Center: {x: 0, y: 0, z: 2.25}
+--- !u!114 &1156082798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156082795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d85305741ebc4344185c8cabe5734319, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1 &1179808151
 GameObject:
   m_ObjectHideFlags: 0
@@ -15056,12 +15189,12 @@ PrefabInstance:
     - target: {fileID: 7966254385995832477, guid: 137b138e691d7cf498a079289a296460,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.064252526
+      value: 0.06425253
       objectReference: {fileID: 0}
     - target: {fileID: 7966254385995832477, guid: 137b138e691d7cf498a079289a296460,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.009996338
+      value: 0.009996339
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 137b138e691d7cf498a079289a296460, type: 3}
@@ -15786,6 +15919,12 @@ MonoBehaviour:
   staminaLevel: 10
   maxStamina: 0
   currentStamina: 0
+  creatureType: 0
+  isAlive: 1
+  canTakeDamage: 1
+  canBeAirborned: 1
+  canBeGrounded: 1
+  canBeShieldBreaked: 1
 --- !u!54 &1768960264
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15878,6 +16017,31 @@ MonoBehaviour:
   rootMotionEnabled: 0
   canRotate: 1
   canDoCombo: 1
+  canBeInterrupted: 1
+--- !u!114 &1768960272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768960260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da8d0b702aae124bb669d6002d2b080, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthLevel: 10
+  maxHealth: 0
+  currentHealth: 0
+  staminaLevel: 10
+  maxStamina: 0
+  currentStamina: 0
+  creatureType: 1
+  isAlive: 1
+  canTakeDamage: 1
+  canBeAirborned: 1
+  canBeGrounded: 1
+  canBeShieldBreaked: 1
 --- !u!1 &1774282257
 GameObject:
   m_ObjectHideFlags: 0
@@ -26009,7 +26173,7 @@ SkinnedMeshRenderer:
   - 0
   - 0
   - 0
-  - 0
+  - 100
   - 0
   - 0
   - 0
@@ -27312,9 +27476,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 1092220204}
-  lastAttack: 
-  currentlyAttackingWeapon: {fileID: 0}
-  tempWeaponNumber: 0
+  swordCollider: {fileID: 213753350}
+  fistCollider: {fileID: 1156082798}
   isAttackButtonAlreadyPressed: 0
 --- !u!114 &6212462411358609130
 MonoBehaviour:
@@ -27334,6 +27497,12 @@ MonoBehaviour:
   staminaLevel: 10
   maxStamina: 0
   currentStamina: 0
+  creatureType: 0
+  isAlive: 1
+  canTakeDamage: 1
+  canBeAirborned: 1
+  canBeGrounded: 1
+  canBeShieldBreaked: 1
   healthbar: {fileID: 407315707}
 --- !u!4 &6212462411439235675
 Transform:
@@ -27350,6 +27519,8 @@ Transform:
   - {fileID: 1948633442}
   - {fileID: 1634661754}
   - {fileID: 1540378214}
+  - {fileID: 213753348}
+  - {fileID: 1156082796}
   m_Father: {fileID: 6212462411358609124}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -30577,6 +30748,7 @@ MonoBehaviour:
   rootMotionEnabled: 0
   canRotate: 1
   canDoCombo: 1
+  canBeInterrupted: 1
   characterManager: {fileID: 6212462411358609121}
   rigidbodyCharacter: {fileID: 6212462411358609125}
   characterAnimationEventHandler: {fileID: 0}

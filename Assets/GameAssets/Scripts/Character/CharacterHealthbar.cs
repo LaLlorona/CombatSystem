@@ -10,12 +10,12 @@ namespace KMK
         public Slider hpSlider;
         public Slider staminaSlider;
 
-        public void SetMaxHealth(int maxHealth)
+        public void SetMaxHealth(float maxHealth)
         {
             hpSlider.maxValue = maxHealth;
             hpSlider.value = maxHealth;
         }
-        public void SetCurrentHealth(int currentHealth)
+        public void SetCurrentHealth(float currentHealth)
         {
             hpSlider.value = currentHealth;
         }

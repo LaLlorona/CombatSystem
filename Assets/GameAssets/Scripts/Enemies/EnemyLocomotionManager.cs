@@ -11,7 +11,7 @@ namespace KMK
 
         NavMeshAgent navmeshAgent;
 
-        public CreatureStats currentTarget;
+        public Creature currentTarget;
 
         public LayerMask detectionLayer;
 
@@ -29,7 +29,7 @@ namespace KMK
             Collider[] colliders = Physics.OverlapSphere(transform.position, enemyManager.detectionRadius, detectionLayer);
             for (int i = 0; i < colliders.Length; i++)
             {
-                CreatureStats creatureStats = colliders[i].transform.GetComponent<CreatureStats>();
+                Creature creatureStats = colliders[i].transform.GetComponent<Creature>();
 
                 if (creatureStats != null)
                 {

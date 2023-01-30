@@ -14,11 +14,9 @@ namespace KMK
         CharacterStats characterStats;
 
 
-
-        public string lastAttack;
-        public WeaponItem currentlyAttackingWeapon;
-
-        public int tempWeaponNumber = 0;
+        public MeleeDamageCollider swordCollider;
+        public MeleeDamageCollider fistCollider;
+        
 
         public bool isAttackButtonAlreadyPressed = false;
        
@@ -52,17 +50,62 @@ namespace KMK
 
         }
 
+        public void HandleAttackOpen()
+        {
+           
+            WeaponType currentWeaponType = mainCharacterManager.currentIndividualCharacterManager.characterWeapon.weaponType;
+            if (currentWeaponType == WeaponType.Fist)
+            {
+                fistCollider.EnableDamageCollider();
+            }
+
+            else if (currentWeaponType == WeaponType.Sword)
+            {
+                swordCollider.EnableDamageCollider();
+            }
+
+            else
+            {
+                Debug.Log("projectile weapon");
+            }
+
+            
+        }
+
+        public void HandleAttackClose()
+        {
+            WeaponType currentWeaponType = mainCharacterManager.currentIndividualCharacterManager.characterWeapon.weaponType;
+            if (currentWeaponType == WeaponType.Fist)
+            {
+                fistCollider.DisableDamageCollider();
+            }
+
+            else if (currentWeaponType == WeaponType.Sword)
+            {
+                swordCollider.DisableDamageCollider();
+            }
+
+            else
+            {
+                Debug.Log("nothing to do, since this is projectile weapon");
+            }
+        }
+
         
 
         public void AssignAttackInput()
         {
             mainCharacterManager.currentCharacterAnimationEventHandler.onEnableBaseAttack += EnableNextWeakAttack;
-            
+            mainCharacterManager.currentCharacterAnimationEventHandler.onAttackOpen += HandleAttackOpen;
+            mainCharacterManager.currentCharacterAnimationEventHandler.onAttackClose += HandleAttackClose;
+
         }
 
         public void RemoveAttackInput()
         {
             mainCharacterManager.currentCharacterAnimationEventHandler.onEnableBaseAttack -= EnableNextWeakAttack;
+            mainCharacterManager.currentCharacterAnimationEventHandler.onAttackOpen -= HandleAttackOpen;
+            mainCharacterManager.currentCharacterAnimationEventHandler.onAttackClose -= HandleAttackClose;
         }
 
        
@@ -90,6 +133,8 @@ namespace KMK
             }
 
         }
+
+
 
 
 

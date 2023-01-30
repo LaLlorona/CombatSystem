@@ -9,7 +9,7 @@ namespace KMK
     {
         Collider damageCollider;
 
-        public int currentWeaponDamage = 25;
+        public float damage = 10f;
 
         private void Awake()
         {
@@ -29,28 +29,7 @@ namespace KMK
             damageCollider.enabled = false;
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            //if (other.gameObject.CompareTag("Player"))
-            //{
-            //    CharacterStats characterStats = other.GetComponent<CharacterStats>();
-
-            //    if (characterStats != null)
-            //    {
-            //        characterStats.TakeDamage(currentWeaponDamage);
-            //    }
-            //}
-
-            if (other.gameObject.CompareTag("Enemy"))
-            {
-                EnemyStats enemyStats = other.GetComponent<EnemyStats>();
-
-                if (enemyStats != null)
-                {
-                    enemyStats.TakeDamage(currentWeaponDamage);
-                }
-            }
-        }
+     
 
     }
 }
