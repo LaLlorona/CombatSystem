@@ -8,7 +8,7 @@ namespace KMK
     {
         
         Sword,
-        Fist,
+        Knuckle,
         Wand,
 
     }

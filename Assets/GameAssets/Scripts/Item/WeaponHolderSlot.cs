@@ -53,7 +53,7 @@ namespace KMK
 
                 model.transform.localPosition = Vector3.zero;
                 model.transform.localRotation = Quaternion.identity;
-                model.transform.localScale = Vector3.one;
+                //model.transform.localScale = Vector3.one;
             }
             currentWeaponModel = model;
         }

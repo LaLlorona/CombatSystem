@@ -13,6 +13,7 @@ namespace KMK
         public CharacterInventory characterInventory;
         public CharacterLocomotion characterLocomotion;
         public AnimatedController currentCharacterAnimatedController;
+        public WeaponSlotManager weaponSlotManager;
         public LayerMask toDetect;
         public InputReader inputReader;
 
@@ -40,11 +41,12 @@ namespace KMK
         void Awake()
         {
             anim = GetComponentInChildren<Animator>();
-            
+
             characterInventory = GetComponent<CharacterInventory>();
             characterLocomotion = GetComponent<CharacterLocomotion>();
 
             characterCombatHandler = GetComponent<CharacterCombatHandler>();
+            weaponSlotManager = GetComponent<WeaponSlotManager>();
     
         }
 
@@ -89,6 +91,9 @@ namespace KMK
             currentWeaponType = currentIndividualCharacterManager.characterWeapon.weaponType;
 
             characterCombatHandler.AssignAttackInput();
+
+            weaponSlotManager.LoadWeaponOnHand(currentIndividualCharacterManager.characterWeapon);
+
         }
 
         // Update is called once per frame

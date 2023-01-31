@@ -54,7 +54,7 @@ namespace KMK
         {
            
             WeaponType currentWeaponType = mainCharacterManager.currentIndividualCharacterManager.characterWeapon.weaponType;
-            if (currentWeaponType == WeaponType.Fist)
+            if (currentWeaponType == WeaponType.Knuckle)
             {
                 fistCollider.EnableDamageCollider();
             }
@@ -67,15 +67,28 @@ namespace KMK
             else
             {
                 Debug.Log("projectile weapon");
+                FireProjectile();
             }
 
-            
+        }
+
+        public void FireProjectile()
+        {
+            WandItem wandItem = (WandItem)mainCharacterManager.currentIndividualCharacterManager.characterWeapon;
+            Vector3 launchTransform = wandItem.modelPrefab.GetComponentInChildren<ProjectileLocation>().transform.position
+                + mainCharacterManager.weaponSlotManager.rightHandSlot.transform.position;
+            Debug.Log(launchTransform);
+            GameObject projectile = Instantiate(wandItem.projectileItem.projectileItemModel, launchTransform, mainCharacterManager.transform.rotation);
+
+            projectile.transform.rotation = Quaternion.Euler(mainCharacterManager.transform.eulerAngles.x, mainCharacterManager.transform.eulerAngles.y, 0);
+
+            projectile.transform.parent = null;
         }
 
         public void HandleAttackClose()
         {
             WeaponType currentWeaponType = mainCharacterManager.currentIndividualCharacterManager.characterWeapon.weaponType;
-            if (currentWeaponType == WeaponType.Fist)
+            if (currentWeaponType == WeaponType.Knuckle)
             {
                 fistCollider.DisableDamageCollider();
             }

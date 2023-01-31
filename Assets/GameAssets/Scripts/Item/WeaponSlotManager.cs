@@ -6,31 +6,19 @@ namespace KMK
 {
     public class WeaponSlotManager : MonoBehaviour
     {
-        WeaponHolderSlot leftHandSlot;
-        WeaponHolderSlot rightHandSlot;
-        WeaponHolderSlot backSlot;
-        AnimatedController animatedController;
-        DamageCollider leftHandDamageCollider;
-        DamageCollider rightHandDamageCollider;
+        public WeaponHolderSlot leftHandSlot;
+        public WeaponHolderSlot rightHandSlot;
+        public WeaponHolderSlot backSlot;
+
 
         public CharacterInventory characterInventory;
+        public MainCharacterManager mainCharacterManager;
 
-        [SerializeField]
-        QuickSlotUI quickSlotUI;
-
-        Animator anim;
-
-        public InputReader input;
-
-        public bool isTwoHandedHolding = false;
-
-        private void Awake()
+  
+        public void FindWeaponSlotsOfCurrentCharacter()
         {
-            anim = GetComponent<Animator>();
-            quickSlotUI = FindObjectOfType<QuickSlotUI>();
-            animatedController = GetComponent<AnimatedController>();
-            WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
-
+            WeaponHolderSlot[] weaponHolderSlots = mainCharacterManager.currentIndividualCharacterManager.gameObject.GetComponentsInChildren<WeaponHolderSlot>();
+          
             foreach (WeaponHolderSlot slot in weaponHolderSlots)
             {
                 if (slot.isLeftHandSlot)
@@ -48,6 +36,44 @@ namespace KMK
                 }
             }
         }
+
+        public void LoadWeaponOnHand(WeaponItem weaponItem)
+        {
+            FindWeaponSlotsOfCurrentCharacter();
+            
+            if (mainCharacterManager.currentWeaponType == WeaponType.Sword || mainCharacterManager.currentWeaponType == WeaponType.Wand)
+            {
+                rightHandSlot.currentWeapon = weaponItem;
+                rightHandSlot.LoadWeaponModel(weaponItem);
+
+            }
+
+            else if (mainCharacterManager.currentWeaponType == WeaponType.Knuckle)
+            {
+                rightHandSlot.currentWeapon = weaponItem;
+                rightHandSlot.LoadWeaponModel(weaponItem);
+
+                Debug.Log(mainCharacterManager.currentIndividualCharacterManager.gameObject.name);
+                leftHandSlot.currentWeapon = weaponItem;
+                leftHandSlot.LoadWeaponModel(weaponItem);
+            }
+            
+        }
+
+        public void LoadWeaponOnBack(WeaponItem weaponItem)
+        {
+            if (mainCharacterManager.currentWeaponType == WeaponType.Sword || mainCharacterManager.currentWeaponType == WeaponType.Wand)
+            {
+
+            }
+
+            else if (mainCharacterManager.currentWeaponType == WeaponType.Knuckle)
+            {
+                Debug.Log("this character do not need to unload weapon");
+            }
+        }
+
+        
 
         //private void OnEnable()
         //{
@@ -141,37 +167,6 @@ namespace KMK
             
         //}
 
-        #region Handle weapon collider
-        private void LoadLeftWeaponDamageCollider()
-        {
-            leftHandDamageCollider = leftHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
-        }
-
-        private void LoadRightWeaponDamageCollider()
-        {
-            rightHandDamageCollider = rightHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
-        }
-
-        public void OpenLeftDamageCollider()
-        {
-            leftHandDamageCollider.EnableDamageCollider();
-        }
-
-        public void OpenRightDamageCollider()
-        {
-            rightHandDamageCollider.EnableDamageCollider();
-        }
-
-        public void CloseLeftDamageCollider()
-        {
-            leftHandDamageCollider.DisableDamageCollider();
-        }
-
-        public void CloseRightDamageCollider()
-        {
-            rightHandDamageCollider.DisableDamageCollider();
-        }
-        #endregion
 
 
 
