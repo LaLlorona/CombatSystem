@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 0}
   itemName: 
-  forwardVelocity: 550
+  forwardVelocity: 30
   upwardVelocity: 0
   mass: 0
   useGravity: 0
   damage: 50
-  projectileItemModel: {fileID: 790036099776519015, guid: 62f9d2e3b26d5a84cba9b0c6886550a4,
+  projectileItem: {fileID: 5495496457291726536, guid: 34c222eec2b2c8b46b37078fb9bba9fd,
     type: 3}

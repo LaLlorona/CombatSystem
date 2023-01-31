@@ -18,7 +18,9 @@ namespace KMK
 
         [Header("Item Model")]
 
-        public GameObject projectileItemModel;
+        public GameObject projectileItem;
+
+        
     }
 
 }

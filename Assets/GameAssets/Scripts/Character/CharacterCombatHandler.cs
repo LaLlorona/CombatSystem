@@ -75,14 +75,22 @@ namespace KMK
         public void FireProjectile()
         {
             WandItem wandItem = (WandItem)mainCharacterManager.currentIndividualCharacterManager.characterWeapon;
+            ProjectileItem projectileItem = wandItem.projectileItem;
+
             Vector3 launchTransform = wandItem.modelPrefab.GetComponentInChildren<ProjectileLocation>().transform.position
                 + mainCharacterManager.weaponSlotManager.rightHandSlot.transform.position;
             Debug.Log(launchTransform);
-            GameObject projectile = Instantiate(wandItem.projectileItem.projectileItemModel, launchTransform, mainCharacterManager.transform.rotation);
+            GameObject projectile = Instantiate(projectileItem.projectileItem, launchTransform, mainCharacterManager.transform.rotation);
 
-            projectile.transform.rotation = Quaternion.Euler(mainCharacterManager.transform.eulerAngles.x, mainCharacterManager.transform.eulerAngles.y, 0);
+            projectile.transform.rotation = Quaternion.Euler(0, mainCharacterManager.transform.eulerAngles.y, 0);
 
             projectile.transform.parent = null;
+
+            projectile.GetComponent<Rigidbody>().velocity = projectile.transform.forward * projectileItem.forwardVelocity;
+
+
+
+            //projectile.GetComponent<Rigidbody>().velocity = Vector3.forward * 4f;
         }
 
         public void HandleAttackClose()
