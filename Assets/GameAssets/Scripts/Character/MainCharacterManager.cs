@@ -5,7 +5,7 @@ using static KMK.AnimationNameDefine;
 
 namespace KMK
 {
-    public class MainCharacterManager : CharacterManager
+    public class MainCharacterManager : Singleton<MainCharacterManager>
     {
         public bool isInteracting;
         public bool canDoCombo;
@@ -26,6 +26,8 @@ namespace KMK
         public IndividualCharacterManager currentIndividualCharacterManager;
         public CharacterCombatHandler characterCombatHandler;
         public WeaponType currentWeaponType;
+
+        public GameObject targetEnemy;
 
         
 

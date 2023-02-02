@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Scene
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 34
+  controlID: 141
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 35
+  controlID: 142
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: GameView
+  m_Name: SceneView
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -215,14 +215,14 @@ MonoBehaviour:
     height: 572
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 17}
+  m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 15}
   - {fileID: 16}
   - {fileID: 17}
   - {fileID: 18}
-  m_Selected: 2
-  m_LastSelected: 3
+  m_Selected: 3
+  m_LastSelected: 2
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -242,8 +242,8 @@ MonoBehaviour:
     y: 0
     width: 508
     height: 572
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
+  m_Name: AnimatorControllerTool
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -268,18 +268,18 @@ MonoBehaviour:
     y: 572
     width: 1474
     height: 375
-  m_MinSize: {x: 231, y: 271}
-  m_MaxSize: {x: 10001, y: 10021}
-  m_ActualView: {fileID: 23}
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 20}
-  - {fileID: 23}
   - {fileID: 13}
+  - {fileID: 23}
   - {fileID: 21}
   - {fileID: 22}
   - {fileID: 14}
-  m_Selected: 1
-  m_LastSelected: 2
+  m_Selected: 5
+  m_LastSelected: 1
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -337,7 +337,7 @@ MonoBehaviour:
     m_LastAppliedPresetName: Default
     m_SaveData: []
   m_SearchFilter:
-    m_NameFilter: 
+    m_NameFilter: combat
     m_ClassNames: []
     m_AssetLabels: []
     m_AssetBundleNames: []
@@ -347,24 +347,24 @@ MonoBehaviour:
     m_SceneHandles: 
     m_ShowAllHits: 0
     m_SkipHidden: 0
-    m_SearchArea: 0
+    m_SearchArea: 1
     m_Folders:
-    - Assets/GameAssets/Scripts/Character
+    - Assets/GameAssets/Scripts/Item
     m_Globs: []
-    m_OriginalText: 
+    m_OriginalText: combat
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/GameAssets/Scripts/Character
+  - Assets/GameAssets/Scripts/Item
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\myfiles\hobby\gamedefv\Combat\CombatSystem
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 82}
-    m_SelectedIDs: 1e960000
-    m_LastClickedID: 38430
-    m_ExpandedIDs: 0000000096930000fe9500001096000000ca9a3b
+    scrollPos: {x: 0, y: 159}
+    m_SelectedIDs: f47b0100
+    m_LastClickedID: 97268
+    m_ExpandedIDs: 00000000f8950000789800008e98000090980000a498000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -392,7 +392,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000096930000
+    m_ExpandedIDs: 00000000f8950000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -417,21 +417,21 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 6607ffff
-    m_LastClickedInstanceID: -63642
+    m_SelectedInstanceIDs: f6efffff
+    m_LastClickedInstanceID: -4106
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: MeleeDamageCollider
-      m_OriginalName: MeleeDamageCollider
+      m_Name: Curves
+      m_OriginalName: Curves
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 53814
+      m_UserData: 337604
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0
@@ -578,14 +578,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 0.43929744
+    - e00: 0.4403808
       e01: 0
       e02: 0
-      e03: 125.3963
+      e03: 71.77948
       e10: 0
-      e11: 0.43929744
+      e11: 0.4403808
       e12: 0
-      e13: -7.1967163
+      e13: -167.80724
       e20: 0
       e21: 0
       e22: 1
@@ -706,14 +706,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 1.0292938
+    - e00: 0.9514054
       e01: 0
       e02: 0
-      e03: 158.40677
+      e03: 8.385834
       e10: 0
-      e11: 1.0292938
+      e11: 0.9514054
       e12: 0
-      e13: -204.72034
+      e13: -152.87039
       e20: 0
       e21: 0
       e22: 1
@@ -729,7 +729,7 @@ MonoBehaviour:
       e10: 0
       e11: 0.7868646
       e12: 0
-      e13: 47.97499
+      e13: 47.974983
       e20: 0
       e21: 0
       e22: 1
@@ -738,14 +738,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 0.63656056
+    - e00: 0.9463461
       e01: 0
       e02: 0
-      e03: 86.95697
+      e03: -19.421997
       e10: 0
-      e11: 0.63656056
+      e11: 0.9463461
       e12: 0
-      e13: 155.22775
+      e13: 161.54404
       e20: 0
       e21: 0
       e22: 1
@@ -757,7 +757,7 @@ MonoBehaviour:
     - e00: 0.62688637
       e01: 0
       e02: 0
-      e03: 38.65547
+      e03: 38.655457
       e10: 0
       e11: 0.62688637
       e12: 0
@@ -770,14 +770,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 1.0638113
+    - e00: 0.55531627
       e01: 0
       e02: 0
-      e03: -156.9523
+      e03: 127.909424
       e10: 0
-      e11: 1.0638113
+      e11: 0.55531627
       e12: 0
-      e13: 60.783546
+      e13: 96.60608
       e20: 0
       e21: 0
       e22: 1
@@ -790,7 +790,7 @@ MonoBehaviour:
   m_AnimatorController: {fileID: 9100000, guid: 65a77f8e923c36a48a060f429789b277,
     type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: 5869189636510402857, guid: 65a77f8e923c36a48a060f429789b277,
+  - m_Target: {fileID: 2016722334209180555, guid: 65a77f8e923c36a48a060f429789b277,
       type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
@@ -801,9 +801,9 @@ MonoBehaviour:
   m_MiniTool: 0
   m_LockTracker:
     m_IsLocked: 0
-  m_CurrentEditor: 0
+  m_CurrentEditor: 1
   m_LayerEditor:
-    m_SelectedLayerIndex: 0
+    m_SelectedLayerIndex: 4
 --- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1349,7 +1349,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -1601,7 +1601,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 0
-      snapOffset: {x: 0, y: 0}
+      snapOffset: {x: 0, y: 25}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Particles
@@ -1630,7 +1630,7 @@ MonoBehaviour:
       index: 12
       layout: 4
   m_WindowGUID: cc27987af1a868c49b0894db9c0f5429
-  m_Gizmos: 0
+  m_Gizmos: 1
   m_OverrideSceneCullingMask: 6917529027641081856
   m_SceneIsLit: 1
   m_SceneLighting: 1
@@ -1639,9 +1639,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -80.145, y: 13.21, z: -59.289528}
+    m_Target: {x: -119.03247, y: 13.325507, z: -54.740147}
     speed: 2
-    m_Value: {x: -80.145, y: 13.21, z: -59.289528}
+    m_Value: {x: -119.03247, y: 13.325507, z: -54.740147}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1688,13 +1688,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.17613775, y: -0.18667094, z: 0.033855047, w: -0.96606976}
+    m_Target: {x: 0.008826936, y: 0.9914893, z: -0.101767786, w: 0.08279347}
     speed: 2
-    m_Value: {x: -0.17611068, y: -0.18664226, z: 0.033849847, w: -0.96592134}
+    m_Value: {x: 0.008825434, y: 0.99132067, z: -0.10175048, w: 0.082779385}
   m_Size:
-    m_Target: 1.5262549
+    m_Target: 9.538399
     speed: 2
-    m_Value: 1.5262549
+    m_Value: 9.538399
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1751,23 +1751,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: b8970500
-      m_LastClickedID: 366520
-      m_ExpandedIDs: 027cfeff5687feff8288feff548dfeffae91feffa6a6feffd4acfeffc0affeff02b0feffa8b4fefff4b9feff0ebbfeff8abbfeffcabcfeffdabffeff2ec1feffd4d0fefffed2feffbed7feff9cdefeff46dffefff2e2feff52e6feff44e7feff8ae7feff10eafeff1eedfeff8eedfeff54f1feff8607ffff12fbffff6a73000084760000787700005a7a0000647a0000
+      m_SelectedIDs: f6efffff
+      m_LastClickedID: -4106
+      m_ExpandedIDs: 18cffcffb418fdff3c26fdff84c1fdffd8e3fdff12fbffff90770000da770000da780000bc7b0000c87b0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: EnemyTarget(Clone)
+        m_OriginalName: EnemyTarget(Clone)
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: -209128
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 10}
       m_SearchString: 
@@ -1819,22 +1819,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Blobcreate/Projectile Toolkit/Demos
+    - Assets/GameAssets/Data/Prefabs/InGameUI
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Blobcreate/Projectile Toolkit/Demos
+  - Assets/GameAssets/Data/Prefabs/InGameUI
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\myfiles\hobby\gamedefv\Combat\CombatSystem
   m_LockTracker:
     m_IsLocked: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 8e780100
-    m_LastClickedID: 96398
-    m_ExpandedIDs: 0000000096930000fe9500000296000012960000347501008e780100aa780100ac780100c0780100dc78010000ca9a3b
+    scrollPos: {x: 0, y: 479}
+    m_SelectedIDs: 2a490500
+    m_LastClickedID: 346410
+    m_ExpandedIDs: 00000000f895000072980000789800009098000094980000a0980000a49800001e620100206201000c31050000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1862,7 +1862,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000096930000
+    m_ExpandedIDs: 00000000f8950000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1887,21 +1887,21 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 6607ffff
-    m_LastClickedInstanceID: -63642
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c62300006e980000d89d0000aa9e00002e950000ae970000469c0000e29a0000a4a400003e9f000046180800745a0800ba810000f0830000f883000006840000d8830000e48300000e840000cca40000e0a40000f0a400000ca5000044a5000042a500003ea5000016fc0100f8fc01004e1d0200841d0200821d02005a1d02005e1d0200281002002a0002004aff01006afe010088fd0100b80102002cd4010062d30100a20b0200a00b02009e0b02009c0b02009a0b0200980b0200960b0200940b0200920b0200900b0200a2b40900
+    m_ExpandedInstanceIDs: c62300006e980000d89d0000aa9e00002e950000ae970000469c0000e29a0000a4a400003e9f000046180800745a0800ba810000f0830000f883000006840000d8830000e48300000e840000cca40000e0a40000f0a400000ca5000044a5000042a500003ea5000016fc0100f8fc01004e1d0200841d0200821d02005a1d02005e1d0200281002002a0002004aff01006afe010088fd0100b80102002cd4010062d30100a20b0200a00b02009e0b02009c0b02009a0b0200980b0200960b0200940b0200920b0200900b0200a2b40900fa7f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 03 Cannon-Like Weapons
-      m_OriginalName: 03 Cannon-Like Weapons
+      m_Name: EnemyTarget
+      m_OriginalName: EnemyTarget
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 96478
+      m_UserData: 346414
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0
@@ -1978,7 +1978,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 31054
+  m_LastSelectedObjectID: -4106
 --- !u!114 &23
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -2009,7 +2009,7 @@ MonoBehaviour:
     m_LastAppliedPresetName: Default
     m_SaveData: []
   m_SearchFilter:
-    m_NameFilter: 
+    m_NameFilter: ice
     m_ClassNames: []
     m_AssetLabels: []
     m_AssetBundleNames: []
@@ -2019,24 +2019,24 @@ MonoBehaviour:
     m_SceneHandles: 
     m_ShowAllHits: 0
     m_SkipHidden: 0
-    m_SearchArea: 1
+    m_SearchArea: 2
     m_Folders:
-    - Assets/Nappin/PhysicsBasedCharacterController
+    - Assets/GameAssets/Data/Items/Weapons/Projectile
     m_Globs: []
-    m_OriginalText: 
+    m_OriginalText: ice
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Nappin/PhysicsBasedCharacterController
+  - Assets/GameAssets/Data/Items/Weapons/Projectile
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\myfiles\hobby\gamedefv\Combat\CombatSystem
   m_LockTracker:
     m_IsLocked: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 5c630500
-    m_LastClickedID: 353116
-    m_ExpandedIDs: 0000000096930000fe9500000296000000ca9a3b
+    scrollPos: {x: 0, y: 230}
+    m_SelectedIDs: 8a980000
+    m_LastClickedID: 39050
+    m_ExpandedIDs: 00000000f8950000789800008c9800008e9800009098000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2064,7 +2064,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000096930000
+    m_ExpandedIDs: 00000000f8950000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2089,9 +2089,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_SelectedInstanceIDs: 18cffcff
+    m_LastClickedInstanceID: -209128
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c8a40000cea40000cca40000d2a40000d8a4000010a5000012a5000064a50000baa5000012110300ee910000e69d0000ea9d0000e4a30000e0a8000010f5030022d60000cad5000066d50000fcd500001ad5000020d500004cd50000e6e80100eee80100f6e801000ee9010016e9010058e80100d6e80100bee8010030e8010020e8010018e8010010e8010008e80100b8e701001ad40100760b0200540b0200880b0200a2b40900
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -2152,7 +2152,7 @@ MonoBehaviour:
   m_ObjectsLockedBeforeSerialization: []
   m_InstanceIDsLockedBeforeSerialization: 
   m_PreviewResizer:
-    m_CachedPref: 393
+    m_CachedPref: -393
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1

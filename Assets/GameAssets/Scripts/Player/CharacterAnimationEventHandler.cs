@@ -7,21 +7,19 @@ public class CharacterAnimationEventHandler : MonoBehaviour
     public delegate void CharacterAnimationEvent();
 
     public CharacterAnimationEvent onAttackStaminaDrain;
-    public CharacterAnimationEvent onEnableRotate;
+
+
     public CharacterAnimationEvent onEnableBaseAttack;
     public CharacterAnimationEvent onAttackOpen;
     public CharacterAnimationEvent onAttackClose;
 
     
 
+    
+
     public void DrainStaminaOnAttack()
     {
         onAttackStaminaDrain?.Invoke();
-    }
-
-    public void TurnOnRotate()
-    {
-        onEnableRotate?.Invoke();
     }
 
     public void OnEnableNextbaseAttack()
@@ -38,4 +36,6 @@ public class CharacterAnimationEventHandler : MonoBehaviour
     {
         onAttackClose?.Invoke();
     }
+
+
 }

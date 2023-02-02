@@ -148,6 +148,8 @@ namespace KMK
 
             if (mainCharacterManager.currentCharacterAnimatedController.anim.GetBool(canDoComboHash))
             {
+        
+              
                 mainCharacterManager.currentCharacterAnimatedController.PlayAttackAnimation((int)mainCharacterManager.currentWeaponType);
                 isAttackButtonAlreadyPressed = false;
                 mainCharacterManager.currentCharacterAnimatedController.anim.SetBool(canDoComboHash, false);
@@ -161,7 +163,9 @@ namespace KMK
 
         public void Roll()
         {
+            mainCharacterManager.characterLocomotion.MoveRoll(); //change direction of the character
             mainCharacterManager.currentCharacterAnimatedController.EnableRootMotion();
+            mainCharacterManager.currentCharacterAnimatedController.anim.SetBool(canRotateHash, false);
             mainCharacterManager.currentCharacterAnimatedController.anim.SetTrigger(rollingHash);
         }
 

@@ -40,12 +40,14 @@ namespace KMK
 
         private void OnEnable()
         {
-            characterAnimationEventHandler.onEnableRotate += EnableRotate;
+
+            characterAnimationEventHandler.onAttackOpen += DisableRotate;
         }
 
         private void OnDisable()
         {
-            characterAnimationEventHandler.onEnableRotate -= EnableRotate;
+
+            characterAnimationEventHandler.onAttackOpen -= DisableRotate;
         }
 
         public void EnableRootMotion()
@@ -58,9 +60,16 @@ namespace KMK
             anim.SetBool(canRotateHash, true);
         }
 
+        public void DisableRotate()
+        {
+            anim.SetBool(canRotateHash, false);
+        }
+
         public void PlayAttackAnimation(int weaponNumber)
         {
             anim.SetBool(isRootMotionHash, true);
+            anim.SetBool(canRotateHash, true);
+            anim.SetBool(isAttackingHash, true);
             anim.SetInteger(weaponNumberHash, weaponNumber);
             anim.SetTrigger(canAttackHash);
         }
@@ -79,6 +88,7 @@ namespace KMK
             canRotate = anim.GetBool(canRotateHash);
             canDoCombo = anim.GetBool(canDoComboHash);
             canBeInterrupted = anim.GetBool(canBeInterruptedHash);
+            isAttacking = anim.GetBool(isAttackingHash);
             
 
 

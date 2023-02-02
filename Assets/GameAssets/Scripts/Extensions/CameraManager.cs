@@ -164,7 +164,7 @@ namespace KMK
 
             for (int i = 0; i < avaiableTargets.Count; i++)
             {
-                Debug.Log(avaiableTargets[i].name);
+                
                 float distanceFromTarget = Vector3.SqrMagnitude(avaiableTargets[i].transform.position - characterLocomotion.transform.position);
 
                 if (distanceFromTarget < shortestDistance)

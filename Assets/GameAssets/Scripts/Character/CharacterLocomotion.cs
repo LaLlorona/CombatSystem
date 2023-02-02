@@ -129,6 +129,8 @@ namespace KMK
 
         [Tooltip("Input reference")]
         public InputReader input;
+
+        public GameObject enemyTarget;
         [Space(10)]
 
         public bool debug = true;
@@ -189,6 +191,8 @@ namespace KMK
         private bool crouch;
 
         public Vector2 axisInput;
+
+        
         
 
         [HideInInspector]
@@ -477,22 +481,42 @@ namespace KMK
             }
         }
 
+       
+
 
         private void MoveWalk()
         {
             if (mainCharacterManager.currentCharacterAnimatedController.rootMotionEnabled && !mainCharacterManager.currentCharacterAnimatedController.canRotate)
-            {
+            {//roll, skills... etc
+                
                 return;
             }
+
+            else if (mainCharacterManager.currentCharacterAnimatedController.isAttacking)
+            {//player attack
+                GameObject targetEnemy = MainCharacterManager.Instance.targetEnemy;
+                if (MainCharacterManager.Instance.targetEnemy != null)
+                {
+                    Vector3 enemyPos = targetEnemy.transform.position;
+                    Vector3 playerToEnemy = enemyPos - gameObject.transform.position;
+                    targetAngle = Quaternion.LookRotation(playerToEnemy).eulerAngles.y;
+                    return;
+                }
+                
+            }
+
+            //when there is no target
             float crouchMultiplier = 1f;
             if (isCrouch) crouchMultiplier = crouchSpeedMultiplier;
+
+            
+
+            
 
             if (axisInput.magnitude > movementThrashold)
             {
                 targetAngle = Mathf.Atan2(axisInput.x, axisInput.y) * Mathf.Rad2Deg + characterCamera.transform.eulerAngles.y;
-                //targetAngle = Mathf.Atan2(axisInput.x, axisInput.y) * Mathf.Rad2Deg;
-                //Debug.Log($"before applying cameratransform y is {targetAngle}");
-                //Debug.Log($"after applying camera transfom y is {targetAngle + characterCamera.transform.eulerAngles.y}");
+               
 
                 if (!sprint) rigidbody.velocity = Vector3.SmoothDamp(rigidbody.velocity, forward * movementSpeed * crouchMultiplier, ref currVelocity, dampSpeedUp);
                 else rigidbody.velocity = Vector3.SmoothDamp(rigidbody.velocity, forward * sprintSpeed * crouchMultiplier, ref currVelocity, dampSpeedUp);
@@ -503,10 +527,7 @@ namespace KMK
 
         private void MoveRotation()
         {
-            if (mainCharacterManager.currentCharacterAnimatedController.rootMotionEnabled && !mainCharacterManager.currentCharacterAnimatedController.canRotate)
-            {
-                return;
-            }
+           
             float angle = Mathf.SmoothDampAngle(characterModel.transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, characterModelRotationSmooth);
             transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
 
@@ -557,31 +578,14 @@ namespace KMK
                 coyoteJumpMultiplier = 1f;
             }
         }
+    
 
-        private void MoveRoll()
+        public void MoveRoll()
         {
-            //if (input.roll)
-            //{
-            //    input.roll = false;
-            //    Debug.Log("roll");
 
-            //    if (anim.rootMotionEnabled)
-            //    {
-            //        return;
-            //    }
-            //    if(input.axisInput.sqrMagnitude > 0.1f)
-            //    {
-            //        anim.PlayTargetAnimation("Rolling", true, 0.2f);
-            //    }
-            //    else
-            //    {
-            //        anim.PlayTargetAnimation("Backstep", true, 0.2f);
-            //    }
-                
-                
-            //}
+            targetAngle = Mathf.Atan2(axisInput.x, axisInput.y) * Mathf.Rad2Deg + characterCamera.transform.eulerAngles.y;
+            characterModel.transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
 
-            
         }
 
         #endregion
