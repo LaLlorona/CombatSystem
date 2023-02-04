@@ -9,6 +9,7 @@ namespace KMK
         public GameObject impactParticles;
         public GameObject projectileParticles;
         public GameObject muzzleParticles;
+        public float hitDuration = 5f;
 
         bool hasCollided = false;
         public float destrotyAfter = 10f;
@@ -26,10 +27,12 @@ namespace KMK
                 Destroy(muzzleParticles, 2f);
             }
         }
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter(Collider collision)
         {
-            if (other.gameObject.layer == LayerMask.NameToLayer("Static") || other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Static") || collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
             {
+                Attack attack = new Attack(damage, CrowdControl.None, hitDuration);
+                CombatManager.Instance.DamageObject(collision.gameObject, attack);
                 DestroyThisObjectWithEffect();
 
             }

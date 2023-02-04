@@ -6,6 +6,11 @@ namespace KMK
 {
     public class Creature : MonoBehaviour, IDamageable
     {
+        public delegate void CreatureEvent();
+
+        public event CreatureEvent onCreatureDeath;
+        public event CreatureEvent onCreatureDamaged;
+
         public int healthLevel = 10;
         public float maxHealth;
         public float currentHealth;
@@ -42,23 +47,24 @@ namespace KMK
                 canBeGrounded = true;
                 canBeShieldBreaked = true;
             }
+
+            
         }
-        public void OnDamage(Attack attack)
+        public virtual void OnDamage(Attack attack)
         {
             if (canTakeDamage)
             {
                 currentHealth -= attack.damage;
+                onCreatureDamaged?.Invoke();
 
-                if (currentHealth <= 0)
-                {
-                    currentHealth = 0;
-                }
+                
 
-                if (currentHealth <= 0 || isAlive)
-                {
-                    isAlive = false;
-                    
-                }
+            }
+            if (currentHealth <= 0)
+            {
+                currentHealth = 0;
+                isAlive = false;
+                onCreatureDeath?.Invoke();
             }
         }
     }

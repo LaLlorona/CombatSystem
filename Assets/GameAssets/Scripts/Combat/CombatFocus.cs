@@ -16,8 +16,6 @@ namespace KMK
 
 
         #region private variables
-        private List<Creature> nearbyEnemies;
-        private List<Creature> nearbyEnemiesWithinDetectionAngle;
 
         private Transform currentFocus;
         private AnimatedObjectActiveHandler targetAnimation;
@@ -28,65 +26,26 @@ namespace KMK
         private SphereCollider detectionTrigger;
         private Creature closestCreature = null;
 
+        public LayerMask enemyLayer;
+
         #endregion
 
 
         private void Start()
         {
             targetHighlightGraphics = Instantiate(targetHighlightGraphics, transform);
+            
             targetAnimation = targetHighlightGraphics.GetComponent<AnimatedObjectActiveHandler>();
-
-            detectionTrigger = gameObject.AddComponent<SphereCollider>();
-            detectionTrigger.isTrigger = true;
-            detectionTrigger.radius = detectionRange;
-
-            nearbyEnemies = new List<Creature>();
-            nearbyEnemiesWithinDetectionAngle = new List<Creature>();
 
         }
 
         void Update()
         {
-            //Debug.Log(nearbyEnemies);
-            //if (nearbyEnemies.Count > 0)
-            //{
-
-            //    UpdateFocus();
-            //    if (!targetAnimation.isActive)
-            //    {
-            //        targetAnimation.EnableObject(0.4f);
-            //    }
-
-
-            //}
-
-            //else
-            //{
-            //    if (targetAnimation.isActive)
-            //    {
-            //        targetAnimation.DisableObject(0.5f);
-            //    }
-            //}
-
             FindEnemiesWithinAngle();
-            if (closestCreature != null) // currently, there is a target
-            {
-                if (!targetAnimation.isActive)
-                {
-                    targetAnimation.EnableObject(0.4f);
-                }
-            }
-            else //there is no target
-            {
-                if (targetAnimation.isActive)
-                {
-                    targetAnimation.DisableObject(0.5f);
-                }
-            }
-
-
-
+            HandleTargetAnimation();
         }
+
+
 
         private void LateUpdate()
         {
@@ -96,40 +55,43 @@ namespace KMK
             }
         }
 
-        private void OnTriggerEnter(Collider other)
+   
+
+        void HandleTargetAnimation()
         {
-            Creature creatureInFocus = other.GetComponent<Creature>();
-
-            if (creatureInFocus != null)
+            if (closestCreature != null)
             {
-                
-                nearbyEnemies.Add(creatureInFocus);
-                
-            }
-            //UpdateFocus();
-        }
 
-        private void OnTriggerExit(Collider other)
-        {
-            Creature creatureInFocus = other.GetComponent<Creature>();
-
-            if (creatureInFocus != null)
-            {
-                if (nearbyEnemies.Contains(creatureInFocus))
+                if (!targetAnimation.isActive)
                 {
-                    nearbyEnemies.Remove(creatureInFocus);
+                    targetAnimation.EnableObject(0.4f);
+                }
+
+
+            }
+
+            else //there is no target
+            {
+                if (targetAnimation.isActive)
+                {
+                    targetAnimation.DisableObject(0.5f);
                 }
             }
-            //UpdateFocus();
         }
 
         void FindEnemiesWithinAngle()
         {
+
+            Collider[] enemyColliderInRange = Physics.OverlapSphere(transform.position, detectionRange, enemyLayer);
             float nearestAngleValue = detectionAngle;
             int nearestEnemyIndex = -1;
-            for (int i = 0; i < nearbyEnemies.Count; i++)
+            for (int i = 0; i < enemyColliderInRange.Length; i++)
             {
-                Vector3 lookDirection = nearbyEnemies[i].transform.position - transform.position;
+                if (!enemyColliderInRange[i].gameObject.GetComponent<Creature>().isAlive)
+                {//skip when the enemy is dead
+                    continue;
+                }
+                Vector3 lookDirection = enemyColliderInRange[i].transform.position - transform.position;
                 float viewableAngle = Vector3.Angle(lookDirection, Camera.main.transform.forward);
                 if (viewableAngle < nearestAngleValue)
                 {
@@ -141,12 +103,11 @@ namespace KMK
             if (nearestEnemyIndex == -1)
             {
                 closestCreature = null;
-                currentFocus = null;
                 MainCharacterManager.Instance.targetEnemy = null;
             }
             else
             {
-                closestCreature = nearbyEnemies[nearestEnemyIndex];
+                closestCreature = enemyColliderInRange[nearestEnemyIndex].gameObject.GetComponent<Creature>();
                 currentFocus = closestCreature.transform;
                 MainCharacterManager.Instance.targetEnemy = currentFocus.gameObject;
             }
@@ -156,66 +117,6 @@ namespace KMK
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, detectionRange);
         }
-
-
-        //}
-
-        //void UpdateFocus()
-        //{
-
-
-        //    if (nearbyEnemies.Count > 0)
-        //    {
-        //        FindNearestEnemy();
-        //        FindAngularNearestEnemy();
-        //        return;
-
-        //    }
-        //    closestCreature = null;
-        //    MainCharacterManager.Instance.targetEnemy = null;
-        //}
-
-        //public void FindNearestEnemy()
-        //{
-        //    nearbyEnemies.RemoveAll(x => x == null);
-        //    closestCreature = nearbyEnemies.OrderBy(x => Vector3.SqrMagnitude(x.transform.position - transform.position)).FirstOrDefault();
-        //    currentFocus = closestCreature.transform;
-        //    MainCharacterManager.Instance.targetEnemy = currentFocus.gameObject;
-        //    Debug.Log($"current focus is {currentFocus.name}");
-        //}
-
-        //public void FindAngularNearestEnemy()
-        //{
-        //    float nearestAngleValue = Mathf.Infinity;
-        //    int nearestEnemyIndex = -1;
-        //    for (int i = 0; i <nearbyEnemies.Count; i++)
-        //    {
-        //        Vector3 lookDirection = nearbyEnemies[i].transform.position - transform.position;
-        //        float viewableAngle = Vector3.Angle(lookDirection, Camera.main.transform.forward);
-        //        if (viewableAngle < nearestAngleValue)
-        //        {
-        //            nearestAngleValue = viewableAngle;
-        //            nearestEnemyIndex = i;
-        //        }
-        //    }
-
-        //    if (nearestEnemyIndex == -1)
-        //    {
-        //        closestCreature = null;
-        //        currentFocus = null;
-        //        MainCharacterManager.Instance.targetEnemy = null;
-        //    }
-        //    else
-        //    {
-        //        closestCreature = nearbyEnemies[nearestEnemyIndex];
-        //        currentFocus = closestCreature.transform;
-        //        MainCharacterManager.Instance.targetEnemy = currentFocus.gameObject;
-        //    }
-
-
-
-        //}
-
 
     }
 
