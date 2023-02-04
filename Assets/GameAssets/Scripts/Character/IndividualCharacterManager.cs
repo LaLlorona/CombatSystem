@@ -15,7 +15,7 @@ namespace KMK
         
 
         public float maxHp;
-        public float currentHP;
+        public float currentHp;
 
         public float maxMp;
         public float currentMp;

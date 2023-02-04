@@ -16,6 +16,8 @@ namespace KMK
         public WeaponSlotManager weaponSlotManager;
         public LayerMask toDetect;
         public InputReader inputReader;
+         
+
 
 
         [Header("To update when changing the character")]
@@ -29,6 +31,8 @@ namespace KMK
 
         public GameObject targetEnemy;
 
+        public UIManager uiManager;
+
         
 
 
@@ -40,8 +44,9 @@ namespace KMK
         public GameObject itemDescriptionUIGameobject;
 
         // Start is called before the first frame update
-        void Awake()
+        public override void Awake()
         {
+            base.Awake();
             anim = GetComponentInChildren<Animator>();
 
             characterInventory = GetComponent<CharacterInventory>();
@@ -49,7 +54,6 @@ namespace KMK
 
             characterCombatHandler = GetComponent<CharacterCombatHandler>();
             weaponSlotManager = GetComponent<WeaponSlotManager>();
-    
         }
 
         private void Start()
@@ -95,6 +99,12 @@ namespace KMK
             characterCombatHandler.AssignAttackInput();
 
             weaponSlotManager.LoadWeaponOnHand(currentIndividualCharacterManager.characterWeapon);
+
+            uiManager.SetHPUI();
+            //uiManager.SetMPUI();
+
+
+            
 
         }
 
