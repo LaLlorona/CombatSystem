@@ -10,12 +10,14 @@ namespace KMK
     {
         public float damage;
         public float hitDuration;
-        public List<CrowdControl> crowdControls;
+        public CrowdControl crowdControl;
+        public List<Debuff> debuffs;
 
-        public Attack (float damage, List<CrowdControl> crowdControls, float hitDuration = 0.25f)
+        public Attack (float damage, CrowdControl crowdControl, List<Debuff> debuffs, float hitDuration = 0.25f)
         {
             this.damage = damage;
-            this.crowdControls = crowdControls;
+            this.debuffs = debuffs;
+            this.crowdControl = crowdControl;
             this.hitDuration = hitDuration;
         }
     }

@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace KMK
 {
-    [CreateAssetMenu(menuName = "CrowdControls")]
-    public class CrowdControl : ScriptableObject
+    [CreateAssetMenu(menuName = "AttackAdditionalEffect/CrowdControls")]
+    public class CrowdControl : AttackAdditionalEffect
     {
         
         public CrowdControlType crowdControlType;
-        public float duration;
-        public float ccValuePercent;
+        
+       
     }
 
 }

@@ -34,8 +34,9 @@ namespace KMK
 
         public void SetHPUI()
         {
-            currentHp = MainCharacterManager.Instance.currentIndividualCharacterManager.currentHp;
-            maxHp = MainCharacterManager.Instance.currentIndividualCharacterManager.maxHp;
+            CharacterCreature currentCreature = MainCharacterManager.Instance.currentIndividualCharacterManager.characterCreature;
+            currentHp = currentCreature.currentHealth;
+            maxHp = currentCreature.maxHealth;
             hpSlider.value = currentHp / maxHp;
             hpNumber.text = BuildText(currentHp, maxHp);
 
@@ -45,8 +46,10 @@ namespace KMK
 
         public void SetMPUI()
         {
-            currentMp = MainCharacterManager.Instance.currentIndividualCharacterManager.currentMp;
-            maxMp = MainCharacterManager.Instance.currentIndividualCharacterManager.maxMp;
+            CharacterCreature currentCreature = MainCharacterManager.Instance.currentIndividualCharacterManager.characterCreature;
+
+            currentMp = 0;
+            maxMp = currentCreature.maxMana;
             mpSlider.value = currentMp / maxMp;
             mpNumber.text = BuildText(currentMp, maxMp);
 

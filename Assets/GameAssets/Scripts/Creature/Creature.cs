@@ -11,13 +11,25 @@ namespace KMK
         public event CreatureEvent onCreatureDeath;
         public event CreatureEvent onCreatureDamaged;
 
-        public int healthLevel = 10;
-        public float maxHealth;
+   
+
+        //public int healthLevel = 10;
+        //public float maxHealth;
         public float currentHealth;
 
-        public int staminaLevel = 10;
-        public float maxStamina;
-        public float currentStamina;
+        //public int staminaLevel = 10;
+        //public float maxStamina;
+        //public float currentStamina;
+
+        [Header ("Creature Stat")]
+        public CreatureBaseStat creatureBaseStat;
+        public int maxHealth;
+        public int strength;
+        public int magic;
+        public int defense;
+        public int magicDefense;
+        public int maxMana;
+
 
         [Header("CreatureStatus")]
         public CreatureType creatureType;
@@ -36,12 +48,19 @@ namespace KMK
         public bool isShieldBreaked = false;
 
         [Header("CC Timer")]
-        public float shieldBreakLeftTime = 0f;
+        public float shieldBreakTimer = 0f;
         public float shieldBreakAmount = 0f;
-        
+
+        public virtual void Awake()
+        {
+            SetCharacterStat();
+        }
 
         private void Start()
         {
+            
+
+
             if (creatureType == CreatureType.Player || creatureType == CreatureType.Player)
             {
                 isAlive = true;
@@ -60,13 +79,10 @@ namespace KMK
         }
         public virtual void OnDamage(Attack attack)
         {
-            for (int i = 0; i < attack.crowdControls.Count; i++)
-            {
-                Debug.Log(attack.crowdControls[i]);
-            }
+            
             if (canTakeDamage)
             {
-                currentHealth -= attack.damage;
+                currentHealth -= (attack.damage - defense);
                 onCreatureDamaged?.Invoke();
 
                 
@@ -80,7 +96,7 @@ namespace KMK
             }
         }
 
-        IEnumerator ApplyStunRoutineForSeconds(float time)
+        IEnumerator ApplyGroggyRoutineForSeconds(float time)
         {
             isGroggy = true;
             yield return new WaitForSeconds(time);
@@ -92,13 +108,41 @@ namespace KMK
             {
                 StopCoroutine(groggyRoutine);
             }
-            groggyRoutine = ApplyStunRoutineForSeconds(time);
+            groggyRoutine = ApplyGroggyRoutineForSeconds(time);
             StartCoroutine(groggyRoutine);
 
 
         }
+        private void SetCharacterStat()
+        {
+            maxHealth = creatureBaseStat.maxHealth;
+            currentHealth = maxHealth;
+            strength = creatureBaseStat.strength;
+            magic = creatureBaseStat.magic;
+            defense = creatureBaseStat.defense;
+            magicDefense = creatureBaseStat.magicDefense;
+            maxMana = creatureBaseStat.maxMana;
+        }
 
-        
+        private void Update()
+        {
+            CheckDebuffTimer();
+        }
+
+        private void CheckDebuffTimer()
+        {
+            if (shieldBreakTimer > 0)
+            {
+                shieldBreakTimer -= Time.deltaTime;
+            }
+
+            if (shieldBreakTimer <=0)
+            {
+                defense = creatureBaseStat.defense;
+            }
+        }
+
+
     }
 }
 

@@ -8,33 +8,36 @@ namespace KMK
     public class EnemyCreature : Creature
     {
         public BlazeAI enemyAI;
+        
         BlazeAISpace.HitStateBehaviour hitStateBehaviour;
+        
 
-        private void Awake()
+        public override void Awake()
         {
+            base.Awake();
             enemyAI = GetComponent<BlazeAI>();
             hitStateBehaviour = enemyAI.hitStateBehaviour.GetComponent<BlazeAISpace.HitStateBehaviour>();
         }
         public override void OnDamage(Attack attack)
         {
+
             base.OnDamage(attack);
 
-            
             if (currentHealth > 0)
             {
-                for (int i = 0; i < attack.crowdControls.Count; i++)
+                ApplyCrowdControl(attack.crowdControl);
+
+                for (int i = 0; i < attack.debuffs.Count; i++)
                 {
-                    ApplyCrowdControl(attack.crowdControls[i]);
+                    ApplyDebuff(attack.debuffs[i]);
                 }
 
 
-                if (attack.crowdControls.Count == 0) // when there is no crowd control effect
+                if (attack.crowdControl == null) // when there is no crowd control effect
                 {
                     if (!isGroggy) //apply hit animation only when the enemy is not in groggy
                     {
-                        hitStateBehaviour.hitDuration = attack.hitDuration;
-                        hitStateBehaviour.hitAnim = "Damaged";
-                        enemyAI.Hit(MainCharacterManager.Instance.gameObject);
+                        ChangeToHitState(attack.hitDuration, "Damaged");
                     }
                     
                 }
@@ -45,17 +48,21 @@ namespace KMK
             {
                 enemyAI.Death();
             }
+
+            
         }
 
         public void ApplyCrowdControl(CrowdControl crowdControl)
         {
+            if (crowdControl == null)
+            {
+                return;
+            }
             switch (crowdControl.crowdControlType)
             {
                 case CrowdControlType.Stun:
                     ApplyGroggyForSecond(crowdControl.duration);
-                    hitStateBehaviour.hitDuration = crowdControl.duration;
-                    hitStateBehaviour.hitAnim = "Stunned";
-                    enemyAI.Hit(MainCharacterManager.Instance.gameObject);
+                    ChangeToHitState(crowdControl.duration, "Stunned");
                     Debug.Log("stun");
                     break;
 
@@ -66,13 +73,39 @@ namespace KMK
                 case CrowdControlType.Ground:
                     Debug.Log("ground");
                     break;
-
-                case CrowdControlType.ShieldBreak:
-                    Debug.Log("shield break");
-                    break;
-
-            
             }
+        }
+        public void ApplyDebuff(Debuff debuff)
+        {
+            if (debuff == null)
+            {
+                return;
+            }
+            Debug.Log($"debuff type is {debuff.debuffType} and duration is {debuff.duration}");
+            switch (debuff.debuffType)
+            {
+                
+                case DebuffType.ShieldBreak:
+                    if (shieldBreakTimer < debuff.duration)
+                    {
+                        shieldBreakTimer = debuff.duration;
+                        defense = (int) (creatureBaseStat.defense * debuff.debuffAmount / 100);
+                    }
+                    
+
+                    Debug.Log("shieldBreak");
+                    break;
+                case DebuffType.Slow:
+                    Debug.Log("slow");
+                    break;
+            }
+        }
+
+        public void ChangeToHitState(float duration, string animation)
+        {
+            hitStateBehaviour.hitDuration = duration;
+            hitStateBehaviour.hitAnim = animation;
+            enemyAI.Hit(MainCharacterManager.Instance.gameObject);
         }
 
     }

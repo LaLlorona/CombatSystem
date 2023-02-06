@@ -11,7 +11,7 @@ namespace KMK
         CharacterInventory characterInventory;
         MainCharacterManager mainCharacterManager;
         public InputReader input;
-        CharacterStats characterStats;
+        
 
 
         public MeleeDamageCollider swordCollider;

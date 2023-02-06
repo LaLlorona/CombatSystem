@@ -12,13 +12,14 @@ namespace KMK
         public GameObject individualCharacterGameobject;
 
         [Header("Character Info")]
-        
 
-        public float maxHp;
-        public float currentHp;
+        public CharacterCreature characterCreature;
 
-        public float maxMp;
-        public float currentMp;
+        //public float maxHp;
+        //public float currentHp;
+
+        //public float maxMp;
+        //public float currentMp;
 
         public WeaponItem characterWeapon;
         public CharacterItem characterItemInfo;
@@ -28,6 +29,7 @@ namespace KMK
             individualCharacterGameobject = transform.GetChild(0).gameObject;
             animatedController = individualCharacterGameobject.GetComponent<AnimatedController>();
             characterAnimationEventHandler = individualCharacterGameobject.GetComponent<CharacterAnimationEventHandler>();
+            characterCreature = GetComponent<CharacterCreature>();
 
             
         }

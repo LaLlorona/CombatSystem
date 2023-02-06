@@ -34,7 +34,8 @@ namespace KMK
             if (collision.gameObject.layer == LayerMask.NameToLayer("Static") || collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
             {
                 
-                Attack attack = new Attack(damage, crowdControls, hitDuration);
+                
+                Attack attack = new Attack(damage, crowdControl, debuffs);
                 CombatManager.Instance.DamageObject(collision.gameObject, attack);
                 DestroyThisObjectWithEffect();
 

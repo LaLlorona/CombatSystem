@@ -11,8 +11,13 @@ namespace KMK
         Stun,
         Airborne,
         Ground,
-        ShieldBreak,
 
+    }
+
+    public enum DebuffType
+    {
+        ShieldBreak,
+        Slow,
     }
 
     public enum CreatureType

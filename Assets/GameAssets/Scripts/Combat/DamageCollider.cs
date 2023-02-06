@@ -8,7 +8,8 @@ namespace KMK
     public class DamageCollider : MonoBehaviour
     {
         Collider damageCollider;
-        public List<CrowdControl> crowdControls;
+        public CrowdControl crowdControl;
+        public List<Debuff> debuffs;
 
 
         public float damage = 10f;
