@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 0}
   itemName: 
-  forwardVelocity: 30
+  forwardVelocity: 80
   upwardVelocity: 0
   mass: 0
   useGravity: 0

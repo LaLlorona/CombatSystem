@@ -10,7 +10,7 @@ namespace KMK
         {
             if (collision.gameObject.CompareTag("Enemy"))
             {
-                Attack attack = new Attack(damage, CrowdControl.None);
+                Attack attack = new Attack(damage, crowdControls);
                 CombatManager.Instance.DamageObject(collision.gameObject, attack);
             }
         }

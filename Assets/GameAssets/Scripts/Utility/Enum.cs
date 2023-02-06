@@ -5,9 +5,10 @@ using UnityEngine;
 namespace KMK
 {
 
-    public enum CrowdControl
+    public enum CrowdControlType
     {
         None,
+        Stun,
         Airborne,
         Ground,
         ShieldBreak,

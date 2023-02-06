@@ -10,12 +10,12 @@ namespace KMK
     {
         public float damage;
         public float hitDuration;
-        public CrowdControl crowdControl;
+        public List<CrowdControl> crowdControls;
 
-        public Attack (float damage, CrowdControl crowdControl, float hitDuration = 1f)
+        public Attack (float damage, List<CrowdControl> crowdControls, float hitDuration = 0.25f)
         {
             this.damage = damage;
-            this.crowdControl = crowdControl;
+            this.crowdControls = crowdControls;
             this.hitDuration = hitDuration;
         }
     }

@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f911a427e7d7e0548a62be9e4db06ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crowdControls:
+  - {fileID: 11400000, guid: b8f8a14d7b9fe0e40afc3b9721ea16c2, type: 2}
   damage: 10
   impactParticles: {fileID: 7031711661290200971, guid: 9a10e7fa8b74dcb46829ad3dce4ef4da,
     type: 3}
@@ -53,6 +55,8 @@ MonoBehaviour:
     type: 3}
   muzzleParticles: {fileID: 3686776489152041964, guid: ea55588be86a46d469f4669d2afe8fae,
     type: 3}
+  hitDuration: 5
+  destrotyAfter: 10
 --- !u!54 &5495496457291726542
 Rigidbody:
   m_ObjectHideFlags: 0

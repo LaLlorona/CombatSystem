@@ -9,9 +9,11 @@ namespace KMK
         public GameObject impactParticles;
         public GameObject projectileParticles;
         public GameObject muzzleParticles;
+        
+
         public float hitDuration = 5f;
 
-        bool hasCollided = false;
+     
         public float destrotyAfter = 10f;
 
         private float timer = 0.0f;
@@ -31,7 +33,8 @@ namespace KMK
         {
             if (collision.gameObject.layer == LayerMask.NameToLayer("Static") || collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
             {
-                Attack attack = new Attack(damage, CrowdControl.None, hitDuration);
+                
+                Attack attack = new Attack(damage, crowdControls, hitDuration);
                 CombatManager.Instance.DamageObject(collision.gameObject, attack);
                 DestroyThisObjectWithEffect();
 
