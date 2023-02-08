@@ -19,9 +19,27 @@ namespace KMK
         
 
         public bool isAttackButtonAlreadyPressed = false;
-       
 
-       
+
+        public void UpdateDamageColliderInformation(IndividualCharacterManager individualCharacterManager)
+        {
+            float weaponDamage = individualCharacterManager.characterWeapon.baseDamage + individualCharacterManager.characterCreature.strength;
+
+            if (individualCharacterManager.characterWeapon.weaponType == WeaponType.Sword)
+            {
+                swordCollider.damage = weaponDamage;
+            }
+
+            else if (individualCharacterManager.characterWeapon.weaponType == WeaponType.Knuckle)
+            {
+                fistCollider.damage = weaponDamage;
+            }
+
+            else if (individualCharacterManager.characterWeapon.weaponType == WeaponType.Wand)
+            {
+
+            }
+        }
 
         private void Awake()
         {
@@ -67,30 +85,27 @@ namespace KMK
             else
             {
                 Debug.Log("projectile weapon");
-                FireProjectile();
+                WandItem wandItem = (WandItem)mainCharacterManager.currentIndividualCharacterManager.characterWeapon;
+                FireProjectile(wandItem.projectileItem,
+                    wandItem.modelPrefab.GetComponentInChildren<ProjectileLocation>().transform.position
+                + mainCharacterManager.weaponSlotManager.rightHandSlot.transform.position);
             }
 
         }
 
-        public void FireProjectile()
+        public void FireProjectile(ProjectileItem projectileItem, Vector3 launchFrom)
         {
-            WandItem wandItem = (WandItem)mainCharacterManager.currentIndividualCharacterManager.characterWeapon;
-            ProjectileItem projectileItem = wandItem.projectileItem;
 
-            Vector3 launchTransform = wandItem.modelPrefab.GetComponentInChildren<ProjectileLocation>().transform.position
-                + mainCharacterManager.weaponSlotManager.rightHandSlot.transform.position;
-            Debug.Log(launchTransform);
-            GameObject projectile = Instantiate(projectileItem.projectileItem, launchTransform, mainCharacterManager.transform.rotation);
+        
+            GameObject projectile = Instantiate(projectileItem.projectileItem, launchFrom, mainCharacterManager.transform.rotation);
 
             projectile.transform.rotation = Quaternion.Euler(0, mainCharacterManager.transform.eulerAngles.y, 0);
 
             projectile.transform.parent = null;
 
+           
+            projectile.GetComponent<ProjectileDamageCollider>().finalDamage = projectileItem.damage + mainCharacterManager.currentIndividualCharacterManager.characterCreature.strength; 
             projectile.GetComponent<Rigidbody>().velocity = projectile.transform.forward * projectileItem.forwardVelocity;
-
-
-
-            //projectile.GetComponent<Rigidbody>().velocity = Vector3.forward * 4f;
         }
 
         public void HandleAttackClose()
@@ -119,7 +134,8 @@ namespace KMK
             mainCharacterManager.currentCharacterAnimationEventHandler.onEnableBaseAttack += EnableNextWeakAttack;
             mainCharacterManager.currentCharacterAnimationEventHandler.onAttackOpen += HandleAttackOpen;
             mainCharacterManager.currentCharacterAnimationEventHandler.onAttackClose += HandleAttackClose;
-
+            mainCharacterManager.currentCharacterAnimationEventHandler.onSkillOpen += ActivateSkill;
+            mainCharacterManager.currentCharacterAnimationEventHandler.onSkillClose += DeactivateSkill;
         }
 
         public void RemoveAttackInput()
@@ -127,6 +143,8 @@ namespace KMK
             mainCharacterManager.currentCharacterAnimationEventHandler.onEnableBaseAttack -= EnableNextWeakAttack;
             mainCharacterManager.currentCharacterAnimationEventHandler.onAttackOpen -= HandleAttackOpen;
             mainCharacterManager.currentCharacterAnimationEventHandler.onAttackClose -= HandleAttackClose;
+            mainCharacterManager.currentCharacterAnimationEventHandler.onSkillOpen -= ActivateSkill;
+            mainCharacterManager.currentCharacterAnimationEventHandler.onSkillClose -= DeactivateSkill;
         }
 
        
@@ -157,6 +175,16 @@ namespace KMK
 
         }
 
+        public void ActivateSkill()
+        {
+            mainCharacterManager.currentIndividualCharacterManager.characterWeapon.weaponSkill.OnSkillActivate();
+        }
+
+        public void DeactivateSkill()
+        {
+            mainCharacterManager.currentIndividualCharacterManager.characterWeapon.weaponSkill.OnSkillDeactivate();
+        }
+
 
 
 
@@ -172,6 +200,7 @@ namespace KMK
         public void UseWeaponArt()
         {
             Debug.Log($"current character name is {mainCharacterManager.currentIndividualCharacterManager.characterItemInfo.itemName}");
+            mainCharacterManager.currentCharacterAnimatedController.anim.SetBool(isAttackingHash, true);
             mainCharacterManager.currentCharacterAnimatedController.PlayTargetAnimation(mainCharacterManager.currentIndividualCharacterManager.characterWeapon.weaponArtName,
                true, 0.2f);
         }

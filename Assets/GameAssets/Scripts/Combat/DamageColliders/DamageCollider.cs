@@ -12,7 +12,7 @@ namespace KMK
         public List<Debuff> debuffs;
 
 
-        public float damage = 10f;
+        public float damage = 30f;
 
         private void Awake()
         {

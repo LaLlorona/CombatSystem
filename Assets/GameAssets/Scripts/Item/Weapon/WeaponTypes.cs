@@ -12,4 +12,11 @@ namespace KMK
         Wand,
 
     }
+
+    public enum SkillType
+    {
+        Area,
+        Projectile,
+        Buff,
+    }
 }

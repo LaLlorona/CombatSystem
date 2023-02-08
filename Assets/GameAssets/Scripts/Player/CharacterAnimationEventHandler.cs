@@ -13,6 +13,9 @@ public class CharacterAnimationEventHandler : MonoBehaviour
     public CharacterAnimationEvent onAttackOpen;
     public CharacterAnimationEvent onAttackClose;
 
+    public CharacterAnimationEvent onSkillOpen;
+    public CharacterAnimationEvent onSkillClose;
+
     
 
     
@@ -37,5 +40,14 @@ public class CharacterAnimationEventHandler : MonoBehaviour
         onAttackClose?.Invoke();
     }
 
+    public void OnSkillOpen()
+    {
+        onSkillOpen?.Invoke();
+    }
+
+    public void OnSkillClose()
+    {
+        onSkillClose?.Invoke();
+    }
 
 }

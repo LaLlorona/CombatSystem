@@ -9,9 +9,11 @@ namespace KMK
         public GameObject impactParticles;
         public GameObject projectileParticles;
         public GameObject muzzleParticles;
+
+        public float finalDamage;
         
 
-        public float hitDuration = 5f;
+        public float hitDuration = 0.25f;
 
      
         public float destrotyAfter = 10f;
@@ -35,7 +37,7 @@ namespace KMK
             {
                 
                 
-                Attack attack = new Attack(damage, crowdControl, debuffs);
+                Attack attack = new Attack(finalDamage, crowdControl, debuffs);
                 CombatManager.Instance.DamageObject(collision.gameObject, attack);
                 DestroyThisObjectWithEffect();
 

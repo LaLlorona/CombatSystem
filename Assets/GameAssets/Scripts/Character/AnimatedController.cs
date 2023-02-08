@@ -42,12 +42,14 @@ namespace KMK
         {
 
             characterAnimationEventHandler.onAttackOpen += DisableRotate;
+            characterAnimationEventHandler.onSkillOpen += DisableRotate;
         }
 
         private void OnDisable()
         {
 
             characterAnimationEventHandler.onAttackOpen -= DisableRotate;
+            characterAnimationEventHandler.onSkillOpen -= DisableRotate;
         }
 
         public void EnableRootMotion()

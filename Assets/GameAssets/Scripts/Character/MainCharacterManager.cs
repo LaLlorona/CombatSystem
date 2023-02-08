@@ -101,12 +101,18 @@ namespace KMK
             weaponSlotManager.LoadWeaponOnHand(currentIndividualCharacterManager.characterWeapon);
 
             uiManager.SetHPUI();
+
+            characterCombatHandler.UpdateDamageColliderInformation(currentIndividualCharacterManager);
+
+            
             //uiManager.SetMPUI();
 
 
             
 
         }
+
+        
 
         // Update is called once per frame
         void Update()

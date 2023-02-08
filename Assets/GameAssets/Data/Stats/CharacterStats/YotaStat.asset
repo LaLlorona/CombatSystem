@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 90
   maxMana: 130
-  strength: 5
-  magic: 15
+  strength: 25
+  magic: 25
   defense: 5
   magicDefense: 15

@@ -37,7 +37,11 @@ namespace KMK
                 {
                     if (!isGroggy) //apply hit animation only when the enemy is not in groggy
                     {
-                        ChangeToHitState(attack.hitDuration, "Damaged");
+                        if (attack.hitDuration >= 0.25f)
+                        {
+                            ChangeToHitState(attack.hitDuration, "Damaged");
+                        }
+               
                     }
                     
                 }

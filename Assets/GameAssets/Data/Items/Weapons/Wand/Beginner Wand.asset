@@ -16,6 +16,10 @@ MonoBehaviour:
   itemName: beginner wand
   modelPrefab: {fileID: 2691343971595153241, guid: 4f9345c743656e94ca59275bbccf6d70,
     type: 3}
+  baseDamage: 0
   weaponType: 2
+  skillType: 0
   weaponArtName: WandWeaponArt
+  weaponSkill: {fileID: 6833044346985822241, guid: d0eee8781c9fea747af026d12af30d13,
+    type: 3}
   projectileItem: {fileID: 11400000, guid: dd0038df1300b794daa8103d949f1dd4, type: 2}

@@ -10,16 +10,20 @@ namespace KMK
         public GameObject modelPrefab;
         //public bool isUnarmed;
 
+        public float baseDamage;
+
         
 
         [Header("WeaponType")]
         
         public WeaponType weaponType;
 
+        public SkillType skillType;
+
         [Header("Weapon Art Animation Name")]
         public string weaponArtName = "weaponArtAnimation"; //weapon art is a skill played when user press 'weapon art' button
-        
 
+        public Skill weaponSkill;
         
 
     }

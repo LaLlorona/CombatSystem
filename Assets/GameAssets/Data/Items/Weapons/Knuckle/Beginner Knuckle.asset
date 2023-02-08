@@ -16,5 +16,6 @@ MonoBehaviour:
   itemName: beginner knuckle
   modelPrefab: {fileID: 2691343971595153241, guid: 0c4c8a2cfef7ee642a73e7778f897e63,
     type: 3}
+  baseDamage: 15
   weaponType: 1
   weaponArtName: KnuckleWeaponArt

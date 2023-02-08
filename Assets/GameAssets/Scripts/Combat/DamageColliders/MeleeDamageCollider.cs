@@ -6,6 +6,7 @@ namespace KMK
 {
     public class MeleeDamageCollider : DamageCollider
     {
+        
         private void OnTriggerEnter(Collider collision)
         {
             if (collision.gameObject.CompareTag("Enemy"))
