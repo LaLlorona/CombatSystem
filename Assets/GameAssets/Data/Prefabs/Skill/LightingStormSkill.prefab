@@ -48,8 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mpCost: 0
-  skillDamage: 10
-  skillTransform: {x: -53.286835, y: 12.201046, z: -6.9211154}
+  skillBaseDamage: 1
+  skillFinalDamage: 15
+  skillTransform: {x: -68.68565, y: 12.201046, z: -6.8156724}
   damageAreaPrefab: {fileID: 6297767169455550669}
   skillDuration: 10
   destroyTimeGapAfterFinishCollider: 2
@@ -70,6 +71,7 @@ MonoBehaviour:
   damage: 10
   timeBetweenDamage: 0.5
   applyCCOnlyInFirstTick: 1
+  tickDuration: 0.1
 --- !u!65 &9107840387501352654
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -78,7 +80,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6297767169455550669}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 15, y: 5, z: 15}

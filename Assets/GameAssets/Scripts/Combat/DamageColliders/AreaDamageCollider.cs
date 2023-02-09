@@ -13,15 +13,9 @@ namespace KMK
         public bool applyCCOnlyInFirstTick = true;
         public float tickDuration = 0.1f;
 
+        private IEnumerator damageCoroutine;
 
-        private void Update()
-        {
-            Debug.Log("number of enemies in the area is " + enemiesInArea.Count);
-            foreach (Collider enemy in enemiesInArea)
-            {
-                Debug.Log(enemy.name);
-            }
-        }
+        
 
 
         private void OnTriggerEnter(Collider other)
@@ -42,34 +36,29 @@ namespace KMK
 
         private IEnumerator ApplyDamageCoroutine()
         {
-            Debug.Log("coroutine is playing");
-
-            Debug.Log("enemies are ");
-            foreach (Collider enemy in enemiesInArea)
-            {
-                Debug.Log(enemy.name);
-            }
+            
 
             while (true)
             {
-                foreach (Collider enemy in enemiesInArea)
+              
+                for (int i = 0; i < enemiesInArea.Count; i++)
                 {
-                    Debug.Log($"Apply Damage Coroutine, current enemies in area is {enemy.name}");
-
+                    Collider enemy = enemiesInArea[i];
                     if (enemy != null)
                     {
+        
                         Attack attack;
-                        Debug.Log($"damage in area per tick is {damage}");
+
                         if (applyCCOnlyInFirstTick && enemiesAffectedByCC.Contains(enemy))
                         { // only apply debuff and damage
-                            attack = new Attack(damage, null, debuffs,tickDuration);
+                            attack = new Attack(damage, null, debuffs, tickDuration);
                         }
                         else
                         {
                             enemiesAffectedByCC.Add(enemy);
-                            attack = new Attack(damage, crowdControl, debuffs,tickDuration);
+                            attack = new Attack(damage, crowdControl, debuffs, tickDuration);
                         }
-                        
+
                         CombatManager.Instance.DamageObject(enemy.gameObject, attack);
                     }
                     else
@@ -78,7 +67,8 @@ namespace KMK
                     }
                 }
                 yield return new WaitForSeconds(timeBetweenDamage);
-            }
+            
+            }      
         }
 
         public void StartDamageCoroutine()
@@ -86,13 +76,16 @@ namespace KMK
             Debug.Log("start coroutine called");
             enemiesAffectedByCC.Clear();
             EnableDamageCollider();
-            StartCoroutine(ApplyDamageCoroutine());
+
+            if (damageCoroutine != null)
+            {
+                StopCoroutine(damageCoroutine);
+            }
+            damageCoroutine = ApplyDamageCoroutine();
+            StartCoroutine(damageCoroutine);
         }
 
-        private void Start()
-        {
-            StartDamageCoroutine();
-        }
+        
     }
 
 }

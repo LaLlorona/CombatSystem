@@ -16,6 +16,8 @@ namespace KMK
 
         public MeleeDamageCollider swordCollider;
         public MeleeDamageCollider fistCollider;
+
+        public CrowdControlChecker crowdControlChecker;
         
 
         public bool isAttackButtonAlreadyPressed = false;
@@ -24,10 +26,12 @@ namespace KMK
         public void UpdateDamageColliderInformation(IndividualCharacterManager individualCharacterManager)
         {
             float weaponDamage = individualCharacterManager.characterWeapon.baseDamage + individualCharacterManager.characterCreature.strength;
-
+            swordCollider.DisableDamageCollider();
+            fistCollider.DisableDamageCollider();
             if (individualCharacterManager.characterWeapon.weaponType == WeaponType.Sword)
             {
                 swordCollider.damage = weaponDamage;
+                
             }
 
             else if (individualCharacterManager.characterWeapon.weaponType == WeaponType.Knuckle)

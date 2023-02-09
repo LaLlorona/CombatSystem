@@ -71,7 +71,8 @@ namespace KMK
                     break;
 
                 case CrowdControlType.Airborne:
-                    Debug.Log("Airborne");
+                    ApplyGroggyForSecond(crowdControl.duration);
+                    ChangeToHitState(crowdControl.duration, "Airborne");
                     break;
 
                 case CrowdControlType.Ground:
@@ -95,8 +96,6 @@ namespace KMK
                         shieldBreakTimer = debuff.duration;
                         defense = (int) (creatureBaseStat.defense * debuff.debuffAmount / 100);
                     }
-                    
-
                     Debug.Log("shieldBreak");
                     break;
                 case DebuffType.Slow:

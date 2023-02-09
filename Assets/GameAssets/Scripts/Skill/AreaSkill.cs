@@ -18,7 +18,7 @@ namespace KMK
             skillTransform = MainCharacterManager.Instance.transform.position;
             GameObject damageArea = Instantiate(damageAreaPrefab, skillTransform, Quaternion.identity);
             areaDamageCollider = damageArea.GetComponent<AreaDamageCollider>();
-            areaDamageCollider.damage = skillDamage;
+            areaDamageCollider.damage = skillFinalDamage;
             
             areaDamageCollider.StartDamageCoroutine();
 

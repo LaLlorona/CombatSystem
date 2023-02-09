@@ -25,9 +25,7 @@ namespace KMK
         public CreatureBaseStat creatureBaseStat;
         public int maxHealth;
         public int strength;
-        public int magic;
         public int defense;
-        public int magicDefense;
         public int maxMana;
 
 
@@ -82,7 +80,8 @@ namespace KMK
             
             if (canTakeDamage)
             {
-                currentHealth -= (attack.damage - defense);
+                Debug.Log($"attack damage is {attack.damage} and defense is {defense}, final damage is {attack.damage - defense}");
+                currentHealth -= Mathf.Max(0f, (attack.damage - defense));
                 onCreatureDamaged?.Invoke();
 
                 
@@ -118,9 +117,7 @@ namespace KMK
             maxHealth = creatureBaseStat.maxHealth;
             currentHealth = maxHealth;
             strength = creatureBaseStat.strength;
-            magic = creatureBaseStat.magic;
             defense = creatureBaseStat.defense;
-            magicDefense = creatureBaseStat.magicDefense;
             maxMana = creatureBaseStat.maxMana;
         }
 

@@ -11,7 +11,7 @@ namespace KMK
         public CrowdControl crowdControl;
         public List<Debuff> debuffs;
 
-
+        [HideInInspector]
         public float damage = 30f;
 
         private void Awake()

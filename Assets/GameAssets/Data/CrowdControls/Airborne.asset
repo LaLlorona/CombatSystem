@@ -9,12 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a58e525eeeef5ff4ca944f8cf89acdf5, type: 3}
-  m_Name: YotaStat
+  m_Script: {fileID: 11500000, guid: 77950f1225fcee0468f6b3e469ed5835, type: 3}
+  m_Name: Airborne
   m_EditorClassIdentifier: 
-  maxHealth: 90
-  maxMana: 130
-  strength: 10
-  magic: 10
-  defense: 5
-  magicDefense: 15
+  duration: 3.2
+  crowdControlType: 2

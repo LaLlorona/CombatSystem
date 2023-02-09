@@ -12,6 +12,7 @@ namespace KMK
 
             for (int i = 0; i < damageables.Length; i++ )
             {
+                Debug.Log(damageables[i]);
                 damageables[i].OnDamage(attack);
             }
         }
