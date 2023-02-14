@@ -87,6 +87,7 @@ namespace KMK
                 return;
             }
             Debug.Log($"debuff type is {debuff.debuffType} and duration is {debuff.duration}");
+            CreatureVFXManager.Instance.PlayDebuffVfx(debuff, gameObject.transform);
             switch (debuff.debuffType)
             {
                 

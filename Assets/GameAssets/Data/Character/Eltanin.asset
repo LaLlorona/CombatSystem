@@ -14,5 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 0}
   itemName: Eltanin
+  weaponController: {fileID: 0}
   characterLevel: 1
   aviableWeaponType: 1
+  qteSkill: {fileID: 7073586601907654707, guid: 71cf9a012d4b253408a3850f3d1915f9,
+    type: 3}
+  qteArtName: KnuckleQTEArt

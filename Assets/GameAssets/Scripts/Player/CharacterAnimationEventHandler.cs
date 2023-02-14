@@ -16,6 +16,8 @@ public class CharacterAnimationEventHandler : MonoBehaviour
     public CharacterAnimationEvent onSkillOpen;
     public CharacterAnimationEvent onSkillClose;
 
+    public CharacterAnimationEvent onQteOpen;
+
     
 
     
@@ -48,6 +50,11 @@ public class CharacterAnimationEventHandler : MonoBehaviour
     public void OnSkillClose()
     {
         onSkillClose?.Invoke();
+    }
+
+    public void OnQteOpen()
+    {
+        onQteOpen?.Invoke();
     }
 
 }

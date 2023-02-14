@@ -15,6 +15,8 @@ namespace KMK
 
         public WeaponType aviableWeaponType;
 
+        public Skill qteSkill;
+
         public string qteArtName = "qteArtAnimation"; //qte is a skill played when user change to this character while satisfying the condition
     }
 

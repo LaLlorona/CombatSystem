@@ -45,6 +45,8 @@ namespace KMK
         public bool isGrounded = false;
         public bool isShieldBreaked = false;
 
+        
+
         [Header("CC Timer")]
         public float shieldBreakTimer = 0f;
         public float shieldBreakAmount = 0f;

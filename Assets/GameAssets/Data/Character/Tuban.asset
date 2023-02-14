@@ -14,5 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 0}
   itemName: Tuban
+  weaponController: {fileID: 0}
   characterLevel: 1
   aviableWeaponType: 0
+  qteSkill: {fileID: 3052551476025076656, guid: 6b82c5b718fb9f6469fff6a2e931c045,
+    type: 3}
+  qteArtName: SwordQTEArt

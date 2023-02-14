@@ -104,6 +104,8 @@ namespace KMK
 
             characterCombatHandler.UpdateDamageColliderInformation(currentIndividualCharacterManager);
 
+            characterCombatHandler.PlayQTEAnimationOnChange();
+
             
             //uiManager.SetMPUI();
 

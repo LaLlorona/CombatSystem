@@ -43,6 +43,7 @@ namespace KMK
 
             characterAnimationEventHandler.onAttackOpen += DisableRotate;
             characterAnimationEventHandler.onSkillOpen += DisableRotate;
+            characterAnimationEventHandler.onQteOpen += DisableRotate;
         }
 
         private void OnDisable()
@@ -50,6 +51,7 @@ namespace KMK
 
             characterAnimationEventHandler.onAttackOpen -= DisableRotate;
             characterAnimationEventHandler.onSkillOpen -= DisableRotate;
+            characterAnimationEventHandler.onQteOpen -= DisableRotate;
         }
 
         public void EnableRootMotion()

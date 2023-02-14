@@ -23,6 +23,7 @@ namespace KMK
         [Header("Weapon Art Animation Name")]
         public string weaponArtName = "weaponArtAnimation"; //weapon art is a skill played when user press 'weapon art' button
 
+
         public Skill weaponSkill;
         
 

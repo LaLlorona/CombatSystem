@@ -16,6 +16,8 @@ namespace KMK
                 damageables[i].OnDamage(attack);
             }
         }
+
+        
     }
 
 }

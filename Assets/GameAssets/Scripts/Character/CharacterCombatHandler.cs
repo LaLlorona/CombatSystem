@@ -17,7 +17,7 @@ namespace KMK
         public MeleeDamageCollider swordCollider;
         public MeleeDamageCollider fistCollider;
 
-        public CrowdControlChecker crowdControlChecker;
+        
         
 
         public bool isAttackButtonAlreadyPressed = false;
@@ -42,6 +42,17 @@ namespace KMK
             else if (individualCharacterManager.characterWeapon.weaponType == WeaponType.Wand)
             {
 
+            }
+        }
+
+        public void PlayQTEAnimationOnChange()
+        {
+            if (true)
+            { //condition check for each character. Does it satisfies QTE conditions?
+
+                mainCharacterManager.currentCharacterAnimatedController.anim.SetBool(isAttackingHash, true);
+                mainCharacterManager.currentCharacterAnimatedController.PlayTargetAnimation(mainCharacterManager.currentIndividualCharacterManager.characterItemInfo.qteArtName,
+                   true, 0.2f);
             }
         }
 
@@ -140,6 +151,7 @@ namespace KMK
             mainCharacterManager.currentCharacterAnimationEventHandler.onAttackClose += HandleAttackClose;
             mainCharacterManager.currentCharacterAnimationEventHandler.onSkillOpen += ActivateSkill;
             mainCharacterManager.currentCharacterAnimationEventHandler.onSkillClose += DeactivateSkill;
+            mainCharacterManager.currentCharacterAnimationEventHandler.onQteOpen += ActivateQTE;
         }
 
         public void RemoveAttackInput()
@@ -149,6 +161,7 @@ namespace KMK
             mainCharacterManager.currentCharacterAnimationEventHandler.onAttackClose -= HandleAttackClose;
             mainCharacterManager.currentCharacterAnimationEventHandler.onSkillOpen -= ActivateSkill;
             mainCharacterManager.currentCharacterAnimationEventHandler.onSkillClose -= DeactivateSkill;
+            mainCharacterManager.currentCharacterAnimationEventHandler.onQteOpen -= ActivateQTE;
         }
 
        
@@ -187,6 +200,11 @@ namespace KMK
         public void DeactivateSkill()
         {
             mainCharacterManager.currentIndividualCharacterManager.characterWeapon.weaponSkill.OnSkillDeactivate();
+        }
+
+        public void ActivateQTE()
+        {
+            mainCharacterManager.currentIndividualCharacterManager.characterItemInfo.qteSkill.OnSkillActivate();
         }
 
 

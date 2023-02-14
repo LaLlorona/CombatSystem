@@ -14,7 +14,7 @@ namespace KMK{
             base.OnSkillActivate();
             
             skillTransform = MainCharacterManager.Instance.transform.position;
-            GameObject damageObject = Instantiate(damagePrefab, skillTransform, Quaternion.identity);
+            GameObject damageObject = Instantiate(damagePrefab, skillTransform, MainCharacterManager.Instance.transform.rotation);
 
            
             meleeDamageCollider = damageObject.GetComponent<MeleeDamageCollider>();
@@ -22,6 +22,7 @@ namespace KMK{
             meleeDamageCollider.damage = skillFinalDamage;
 
             Destroy(meleeDamageCollider, 0.25f);
+            Destroy(damageObject, 5f);
         }
     }
 }

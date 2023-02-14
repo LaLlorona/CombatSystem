@@ -20,5 +20,6 @@ MonoBehaviour:
   weaponType: 0
   skillType: 0
   weaponArtName: SwordWeaponArt
-  weaponSkill: {fileID: 3052551476025076656, guid: 6b82c5b718fb9f6469fff6a2e931c045,
+  qteArtName: SwordQTEArt
+  weaponSkill: {fileID: 8140756349131589600, guid: 8a4d44dad64a54c4fb3ef966718060a4,
     type: 3}
