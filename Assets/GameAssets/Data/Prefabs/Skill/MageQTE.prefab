@@ -4948,11 +4948,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mpCost: 0
-  skillBaseDamage: 5
-  skillFinalDamage: 0
-  skillTransform: {x: 0, y: 0, z: 0}
+  skillBaseDamage: 2
+  skillFinalDamage: 12
+  skillTransform: {x: -76.335976, y: 12.201048, z: -12.878585}
   damageAreaPrefab: {fileID: 1356578093923234125}
-  skillDuration: 10
+  skillDuration: 5
   destroyTimeGapAfterFinishCollider: 2
 --- !u!114 &8630141303658480706
 MonoBehaviour:
@@ -4966,7 +4966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4157d2607a0976478a50bcf0dfd096d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crowdControl: {fileID: 0}
+  crowdControl: {fileID: 11400000, guid: b8f8a14d7b9fe0e40afc3b9721ea16c2, type: 2}
   debuffs: []
   damage: 30
   timeBetweenDamage: 0.1

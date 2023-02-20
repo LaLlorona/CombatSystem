@@ -20,3 +20,5 @@ MonoBehaviour:
   qteSkill: {fileID: 2033318515387971166, guid: 701ca95191700f04194970d87964bbd4,
     type: 3}
   qteArtName: WandQTEArt
+  qteConditions:
+  - {fileID: 11400000, guid: 22a45b6061de6164c914cfbba0282f16, type: 2}

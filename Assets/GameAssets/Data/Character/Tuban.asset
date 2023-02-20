@@ -20,3 +20,5 @@ MonoBehaviour:
   qteSkill: {fileID: 3052551476025076656, guid: 6b82c5b718fb9f6469fff6a2e931c045,
     type: 3}
   qteArtName: SwordQTEArt
+  qteConditions:
+  - {fileID: 11400000, guid: b8f8a14d7b9fe0e40afc3b9721ea16c2, type: 2}

@@ -23,14 +23,16 @@ namespace KMK
 
             base.OnDamage(attack);
 
+            ApplyCrowdControl(attack.crowdControl);
+
+            for (int i = 0; i < attack.debuffs.Count; i++)
+            {
+                ApplyDebuff(attack.debuffs[i]);
+            }
+
             if (currentHealth > 0)
             {
-                ApplyCrowdControl(attack.crowdControl);
-
-                for (int i = 0; i < attack.debuffs.Count; i++)
-                {
-                    ApplyDebuff(attack.debuffs[i]);
-                }
+                
 
 
                 if (attack.crowdControl == null) // when there is no crowd control effect
@@ -62,23 +64,28 @@ namespace KMK
             {
                 return;
             }
-            switch (crowdControl.crowdControlType)
+            else
             {
-                case CrowdControlType.Stun:
-                    ApplyGroggyForSecond(crowdControl.duration);
-                    ChangeToHitState(crowdControl.duration, "Stunned");
-                    Debug.Log("stun");
-                    break;
+                MainCharacterManager.Instance.characterCombatHandler.AddAttackAdditionalEffectChecker(crowdControl);
+                switch (crowdControl.crowdControlType)
+                {
+                    case CrowdControlType.Stun:
+                        ApplyGroggyForSecond(crowdControl.duration);
+                        ChangeToHitState(crowdControl.duration, "Stunned");
+                        Debug.Log("stun");
+                        break;
 
-                case CrowdControlType.Airborne:
-                    ApplyGroggyForSecond(crowdControl.duration);
-                    ChangeToHitState(crowdControl.duration, "Airborne");
-                    break;
+                    case CrowdControlType.Airborne:
+                        ApplyGroggyForSecond(crowdControl.duration);
+                        ChangeToHitState(crowdControl.duration, "Airborne");
+                        break;
 
-                case CrowdControlType.Ground:
-                    Debug.Log("ground");
-                    break;
+                    case CrowdControlType.Ground:
+                        Debug.Log("ground");
+                        break;
+                }
             }
+            
         }
         public void ApplyDebuff(Debuff debuff)
         {
@@ -86,23 +93,28 @@ namespace KMK
             {
                 return;
             }
-            Debug.Log($"debuff type is {debuff.debuffType} and duration is {debuff.duration}");
-            CreatureVFXManager.Instance.PlayDebuffVfx(debuff, gameObject.transform);
-            switch (debuff.debuffType)
+            else
             {
-                
-                case DebuffType.ShieldBreak:
-                    if (shieldBreakTimer < debuff.duration)
-                    {
-                        shieldBreakTimer = debuff.duration;
-                        defense = (int) (creatureBaseStat.defense * debuff.debuffAmount / 100);
-                    }
-                    Debug.Log("shieldBreak");
-                    break;
-                case DebuffType.Slow:
-                    Debug.Log("slow");
-                    break;
+                MainCharacterManager.Instance.characterCombatHandler.AddAttackAdditionalEffectChecker(debuff);
+                Debug.Log($"debuff type is {debuff.debuffType} and duration is {debuff.duration}");
+                CreatureVFXManager.Instance.PlayDebuffVfx(debuff, gameObject.transform);
+                switch (debuff.debuffType)
+                {
+
+                    case DebuffType.ShieldBreak:
+                        if (shieldBreakTimer < debuff.duration)
+                        {
+                            shieldBreakTimer = debuff.duration;
+                            defense = (int)(creatureBaseStat.defense * debuff.debuffAmount / 100);
+                        }
+                        Debug.Log("shieldBreak");
+                        break;
+                    case DebuffType.Slow:
+                        Debug.Log("slow");
+                        break;
+                }
             }
+           
         }
 
         public void ChangeToHitState(float duration, string animation)

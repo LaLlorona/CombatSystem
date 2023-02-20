@@ -20,3 +20,5 @@ MonoBehaviour:
   qteSkill: {fileID: 7073586601907654707, guid: 71cf9a012d4b253408a3850f3d1915f9,
     type: 3}
   qteArtName: KnuckleQTEArt
+  qteConditions:
+  - {fileID: 11400000, guid: 7b6580efb42f16b42bd897a24ddc0199, type: 2}

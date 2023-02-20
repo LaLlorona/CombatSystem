@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static KMK.AnimationNameDefine;
 
@@ -17,44 +18,17 @@ namespace KMK
         public MeleeDamageCollider swordCollider;
         public MeleeDamageCollider fistCollider;
 
+        public List<AttackAdditionalEffect> attackAdditionalEffectChecker;
+
+        public float qteDuration = 5f;
+
         
         
 
         public bool isAttackButtonAlreadyPressed = false;
 
 
-        public void UpdateDamageColliderInformation(IndividualCharacterManager individualCharacterManager)
-        {
-            float weaponDamage = individualCharacterManager.characterWeapon.baseDamage + individualCharacterManager.characterCreature.strength;
-            swordCollider.DisableDamageCollider();
-            fistCollider.DisableDamageCollider();
-            if (individualCharacterManager.characterWeapon.weaponType == WeaponType.Sword)
-            {
-                swordCollider.damage = weaponDamage;
-                
-            }
-
-            else if (individualCharacterManager.characterWeapon.weaponType == WeaponType.Knuckle)
-            {
-                fistCollider.damage = weaponDamage;
-            }
-
-            else if (individualCharacterManager.characterWeapon.weaponType == WeaponType.Wand)
-            {
-
-            }
-        }
-
-        public void PlayQTEAnimationOnChange()
-        {
-            if (true)
-            { //condition check for each character. Does it satisfies QTE conditions?
-
-                mainCharacterManager.currentCharacterAnimatedController.anim.SetBool(isAttackingHash, true);
-                mainCharacterManager.currentCharacterAnimatedController.PlayTargetAnimation(mainCharacterManager.currentIndividualCharacterManager.characterItemInfo.qteArtName,
-                   true, 0.2f);
-            }
-        }
+        
 
         private void Awake()
         {
@@ -63,6 +37,8 @@ namespace KMK
             mainCharacterManager = GetComponent<MainCharacterManager>();
 
         }
+
+        
 
         private void OnEnable()
         {
@@ -81,6 +57,69 @@ namespace KMK
             input.onRollInput -= Roll;
             input.onWeaponArtInput -= UseWeaponArt;
 
+        }
+
+        public void UpdateDamageColliderInformation(IndividualCharacterManager individualCharacterManager)
+        {
+            float weaponDamage = individualCharacterManager.characterWeapon.baseDamage + individualCharacterManager.characterCreature.strength;
+            swordCollider.DisableDamageCollider();
+            fistCollider.DisableDamageCollider();
+            if (individualCharacterManager.characterWeapon.weaponType == WeaponType.Sword)
+            {
+                swordCollider.damage = weaponDamage;
+
+            }
+
+            else if (individualCharacterManager.characterWeapon.weaponType == WeaponType.Knuckle)
+            {
+                fistCollider.damage = weaponDamage;
+            }
+
+            else if (individualCharacterManager.characterWeapon.weaponType == WeaponType.Wand)
+            {
+
+            }
+        }
+
+        public void PlayQTEAnimationOnChange(CharacterItem characterToChange)
+        {
+            if (CanPlayQTEWhenChange(characterToChange))
+            { //condition check for each character. Does it satisfies QTE conditions?
+
+                mainCharacterManager.currentCharacterAnimatedController.anim.SetBool(isAttackingHash, true);
+                mainCharacterManager.currentCharacterAnimatedController.PlayTargetAnimation(mainCharacterManager.currentIndividualCharacterManager.characterItemInfo.qteArtName,
+                   true, 0.2f);
+            }
+        }
+
+        public bool CanPlayQTEWhenChange(CharacterItem characterToChange)
+        {
+
+            return characterToChange.qteConditions.Intersect(attackAdditionalEffectChecker).Any();
+        }
+
+        public void UpdateAttackAdditionalEffectChecker(AttackAdditionalEffect effect)
+        {
+            Debug.Log($"current number of CCs around here is {attackAdditionalEffectChecker.Count}");
+            for (int i = 0; i < attackAdditionalEffectChecker.Count; i++)
+            {
+                Debug.Log(attackAdditionalEffectChecker[i]);
+            }
+        }
+
+        public void AddAttackAdditionalEffectChecker(AttackAdditionalEffect effect)
+        {
+            StartCoroutine(AddAttackAdditionalEffectAndRemoveItAfterDuration(effect, qteDuration));
+        }
+
+        IEnumerator AddAttackAdditionalEffectAndRemoveItAfterDuration(AttackAdditionalEffect effect, float duration)
+        {
+            attackAdditionalEffectChecker.Add(effect);
+            UpdateAttackAdditionalEffectChecker(effect);
+            yield return new WaitForSeconds(duration);
+
+            attackAdditionalEffectChecker.Remove(effect);
+            UpdateAttackAdditionalEffectChecker(effect);
         }
 
         public void HandleAttackOpen()

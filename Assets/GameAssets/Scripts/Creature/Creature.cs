@@ -82,7 +82,7 @@ namespace KMK
             
             if (canTakeDamage)
             {
-                Debug.Log($"attack damage is {attack.damage} and defense is {defense}, final damage is {attack.damage - defense}");
+                //Debug.Log($"attack damage is {attack.damage} and defense is {defense}, final damage is {attack.damage - defense}");
                 currentHealth -= Mathf.Max(0f, (attack.damage - defense));
                 onCreatureDamaged?.Invoke();
 

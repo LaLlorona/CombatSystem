@@ -18,6 +18,8 @@ namespace KMK
         public Slider mpSlider;
         public TextMeshProUGUI mpNumber;
 
+   
+
 
         #region private
 
@@ -59,6 +61,8 @@ namespace KMK
         {
             return $"{(int)currentValue} / {(int)maxValue}";
         }
+
+        
     }
 
 }
