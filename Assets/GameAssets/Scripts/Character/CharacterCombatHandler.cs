@@ -101,15 +101,14 @@ namespace KMK
 
         public void UpdateAttackAdditionalEffectChecker()
         {
-            Debug.Log($"number of characer is {MainCharacterManager.Instance.individualCharacterManagers.Length}");
+            
             
             for (var i = 0; i < MainCharacterManager.Instance.individualCharacterManagers.Length; i++)
             {
                 CharacterItem currentCharacterItem = MainCharacterManager.Instance.individualCharacterManagers[i].characterItemInfo;
-                characterQteCondition[i] =
+                characterQteCondition[i] = MainCharacterManager.Instance.individualCharacterManagers[i].canChangeCharacter &&
                     currentCharacterItem.qteConditions.Intersect(attackAdditionalEffectChecker).Any();
-                
-                UIManager.Instance.ToggleQteIndicator(i, characterQteCondition[i]);
+                UIManager.Instance.ToggleQteIndicator(i, (characterQteCondition[i]));
                 
             }
         }

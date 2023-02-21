@@ -19,7 +19,12 @@ namespace KMK
         public TextMeshProUGUI mpNumber;
 
 
-        [Header("QTE UI Setting")] public List<GameObject> qteIndicators;
+        [Header("QTE UI Setting")] 
+        public List<GameObject> qteIndicators;
+
+        public List<Image> coolTimeMasks;
+
+        
 
    
 
@@ -44,9 +49,6 @@ namespace KMK
             maxHp = currentCreature.maxHealth;
             hpSlider.value = currentHp / maxHp;
             hpNumber.text = BuildText(currentHp, maxHp);
-
-
-
         }
 
         public void SetMPUI()
@@ -69,10 +71,11 @@ namespace KMK
         {
             qteIndicators[index].SetActive((toggle));
         }
-        
-        
 
-        
+        public void SetPortraitMaskRatio(int index, float ratio)
+        {
+            coolTimeMasks[index].fillAmount = ratio;
+        }
     }
 
 }

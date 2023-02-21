@@ -16,10 +16,9 @@ MonoBehaviour:
   itemName: beginner sword
   modelPrefab: {fileID: 919132149155446097, guid: d716218db698ae94b9a122082fc138d8,
     type: 3}
-  baseDamage: 30
+  baseDamage: 5
   weaponType: 0
   skillType: 0
   weaponArtName: SwordWeaponArt
-  qteArtName: SwordQTEArt
   weaponSkill: {fileID: 8140756349131589600, guid: 8a4d44dad64a54c4fb3ef966718060a4,
     type: 3}

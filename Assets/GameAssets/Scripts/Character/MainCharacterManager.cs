@@ -7,6 +7,7 @@ namespace KMK
 {
     public class MainCharacterManager : Singleton<MainCharacterManager>
     {
+        private const int INITIAL_CHARACTER_INDEX = -1;
         public bool isInteracting;
         public bool canDoCombo;
         public Animator anim;
@@ -16,6 +17,7 @@ namespace KMK
         public WeaponSlotManager weaponSlotManager;
         public LayerMask toDetect;
         public InputReader inputReader;
+       
          
 
 
@@ -59,11 +61,18 @@ namespace KMK
         private void Start()
         {
             individualCharacterManagers = GetComponentsInChildren<IndividualCharacterManager>();
+            for (int i = 0; i < individualCharacterManagers.Length; i++)
+            {
+                individualCharacterManagers[i].characterIndex = i;
+            }
             currentIndividualCharacterManager = individualCharacterManagers[0];
             currentCharacterAnimationEventHandler = currentIndividualCharacterManager.characterAnimationEventHandler;
             currentCharacterAnimatedController = currentIndividualCharacterManager.animatedController;
             characterCombatHandler.AssignAttackInput();
+
+            currentCharacterIndex = INITIAL_CHARACTER_INDEX;
             EnableCharacterWithIndex(0);
+            currentCharacterIndex = 0;
         }
 
         public void HideAllCharacterGameobjects()
@@ -86,7 +95,14 @@ namespace KMK
         }
         public void EnableCharacterWithIndex(int index)
         {
+            if (currentCharacterIndex == index || !individualCharacterManagers[index].canChangeCharacter)
+            {
+                return;
+            }
             HideAllCharacterGameobjects();
+            
+            
+            currentCharacterIndex = index;
             currentIndividualCharacterManager = individualCharacterManagers[index];
 
             currentIndividualCharacterManager.individualCharacterGameobject.SetActive(true);
@@ -97,6 +113,8 @@ namespace KMK
             currentWeaponType = currentIndividualCharacterManager.characterWeapon.weaponType;
 
             characterCombatHandler.AssignAttackInput();
+            
+            currentIndividualCharacterManager.BeginCharacterChangeTimer();
 
             weaponSlotManager.LoadWeaponOnHand(currentIndividualCharacterManager.characterWeapon);
 
@@ -105,6 +123,8 @@ namespace KMK
             characterCombatHandler.UpdateDamageColliderInformation(currentIndividualCharacterManager);
 
             characterCombatHandler.PlayQTEAnimationOnChange(index);
+            
+            characterCombatHandler.UpdateAttackAdditionalEffectChecker();
 
             
             //uiManager.SetMPUI();
