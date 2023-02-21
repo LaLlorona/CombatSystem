@@ -8,6 +8,8 @@ namespace KMK
     public class AttackAdditionalEffect : ScriptableObject
     {
         public float duration;
+        
+        
     }
 
 }

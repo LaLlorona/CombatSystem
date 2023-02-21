@@ -6,7 +6,7 @@ using TMPro;
 
 namespace KMK
 {
-    public class UIManager : MonoBehaviour
+    public class UIManager : Singleton<UIManager>
     {
         [Header("HP UI setting")]
         public GameObject healthBar;
@@ -17,6 +17,9 @@ namespace KMK
         public GameObject mpBar;
         public Slider mpSlider;
         public TextMeshProUGUI mpNumber;
+
+
+        [Header("QTE UI Setting")] public List<GameObject> qteIndicators;
 
    
 
@@ -57,10 +60,17 @@ namespace KMK
 
         }
 
-        public string BuildText(float currentValue, float maxValue)
+        private string BuildText(float currentValue, float maxValue)
         {
             return $"{(int)currentValue} / {(int)maxValue}";
         }
+
+        public void ToggleQteIndicator(int index, bool toggle)
+        {
+            qteIndicators[index].SetActive((toggle));
+        }
+        
+        
 
         
     }

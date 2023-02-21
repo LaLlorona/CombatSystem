@@ -9,7 +9,7 @@ namespace KMK
     public class CharacterCombatHandler : MonoBehaviour
     {
         
-        CharacterInventory characterInventory;
+        
         MainCharacterManager mainCharacterManager;
         public InputReader input;
         
@@ -20,10 +20,10 @@ namespace KMK
 
         public List<AttackAdditionalEffect> attackAdditionalEffectChecker;
 
+
+        private bool[] characterQteCondition = new bool[3];
         public float qteDuration = 5f;
 
-        
-        
 
         public bool isAttackButtonAlreadyPressed = false;
 
@@ -33,7 +33,7 @@ namespace KMK
         private void Awake()
         {
 
-            characterInventory = GetComponent<CharacterInventory>();
+            
             mainCharacterManager = GetComponent<MainCharacterManager>();
 
         }
@@ -81,9 +81,9 @@ namespace KMK
             }
         }
 
-        public void PlayQTEAnimationOnChange(CharacterItem characterToChange)
+        public void PlayQTEAnimationOnChange(int index)
         {
-            if (CanPlayQTEWhenChange(characterToChange))
+            if (CanPlayQteWhenChange(index))
             { //condition check for each character. Does it satisfies QTE conditions?
 
                 mainCharacterManager.currentCharacterAnimatedController.anim.SetBool(isAttackingHash, true);
@@ -92,18 +92,25 @@ namespace KMK
             }
         }
 
-        public bool CanPlayQTEWhenChange(CharacterItem characterToChange)
+        public bool CanPlayQteWhenChange(int index)
         {
 
-            return characterToChange.qteConditions.Intersect(attackAdditionalEffectChecker).Any();
+            // return characterToChange.qteConditions.Intersect(attackAdditionalEffectChecker).Any();
+            return characterQteCondition[index];
         }
 
-        public void UpdateAttackAdditionalEffectChecker(AttackAdditionalEffect effect)
+        public void UpdateAttackAdditionalEffectChecker()
         {
-            Debug.Log($"current number of CCs around here is {attackAdditionalEffectChecker.Count}");
-            for (int i = 0; i < attackAdditionalEffectChecker.Count; i++)
+            Debug.Log($"number of characer is {MainCharacterManager.Instance.individualCharacterManagers.Length}");
+            
+            for (var i = 0; i < MainCharacterManager.Instance.individualCharacterManagers.Length; i++)
             {
-                Debug.Log(attackAdditionalEffectChecker[i]);
+                CharacterItem currentCharacterItem = MainCharacterManager.Instance.individualCharacterManagers[i].characterItemInfo;
+                characterQteCondition[i] =
+                    currentCharacterItem.qteConditions.Intersect(attackAdditionalEffectChecker).Any();
+                
+                UIManager.Instance.ToggleQteIndicator(i, characterQteCondition[i]);
+                
             }
         }
 
@@ -112,14 +119,15 @@ namespace KMK
             StartCoroutine(AddAttackAdditionalEffectAndRemoveItAfterDuration(effect, qteDuration));
         }
 
+        // ReSharper disable Unity.PerformanceAnalysis
         IEnumerator AddAttackAdditionalEffectAndRemoveItAfterDuration(AttackAdditionalEffect effect, float duration)
         {
             attackAdditionalEffectChecker.Add(effect);
-            UpdateAttackAdditionalEffectChecker(effect);
+            UpdateAttackAdditionalEffectChecker();
             yield return new WaitForSeconds(duration);
 
             attackAdditionalEffectChecker.Remove(effect);
-            UpdateAttackAdditionalEffectChecker(effect);
+            UpdateAttackAdditionalEffectChecker();
         }
 
         public void HandleAttackOpen()
@@ -190,7 +198,7 @@ namespace KMK
             mainCharacterManager.currentCharacterAnimationEventHandler.onAttackClose += HandleAttackClose;
             mainCharacterManager.currentCharacterAnimationEventHandler.onSkillOpen += ActivateSkill;
             mainCharacterManager.currentCharacterAnimationEventHandler.onSkillClose += DeactivateSkill;
-            mainCharacterManager.currentCharacterAnimationEventHandler.onQteOpen += ActivateQTE;
+            mainCharacterManager.currentCharacterAnimationEventHandler.onQteOpen += ActivateQte;
         }
 
         public void RemoveAttackInput()
@@ -200,7 +208,7 @@ namespace KMK
             mainCharacterManager.currentCharacterAnimationEventHandler.onAttackClose -= HandleAttackClose;
             mainCharacterManager.currentCharacterAnimationEventHandler.onSkillOpen -= ActivateSkill;
             mainCharacterManager.currentCharacterAnimationEventHandler.onSkillClose -= DeactivateSkill;
-            mainCharacterManager.currentCharacterAnimationEventHandler.onQteOpen -= ActivateQTE;
+            mainCharacterManager.currentCharacterAnimationEventHandler.onQteOpen -= ActivateQte;
         }
 
        
@@ -241,7 +249,7 @@ namespace KMK
             mainCharacterManager.currentIndividualCharacterManager.characterWeapon.weaponSkill.OnSkillDeactivate();
         }
 
-        public void ActivateQTE()
+        public void ActivateQte()
         {
             mainCharacterManager.currentIndividualCharacterManager.characterItemInfo.qteSkill.OnSkillActivate();
         }
@@ -266,10 +274,7 @@ namespace KMK
                true, 0.2f);
         }
 
-        private void Update()
-        {
-
-        }
+   
     }
 }
 

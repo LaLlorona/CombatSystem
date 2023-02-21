@@ -15,6 +15,8 @@ namespace KMK
                 CombatManager.Instance.DamageObject(collision.gameObject, attack);
             }
         }
+        
+        
     }
     
 
