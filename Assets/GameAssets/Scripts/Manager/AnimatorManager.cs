@@ -13,7 +13,7 @@ namespace KMK
         public bool canDoCombo = true;
         public bool canBeInterrupted = true;
         public bool isAttacking = false;
-        public void PlayTargetAnimation(string targetAnim, bool isRootMotion, float crossFadeTime, bool setCanBeInterrupted = true)
+        public void PlayTargetAnimation(string targetAnim, bool isRootMotion, float crossFadeTime, bool setCanBeInterrupted = true, bool setCanRotate = true)
         {
             if (!canBeInterrupted)
             {
@@ -24,6 +24,7 @@ namespace KMK
             
             anim.SetBool(isRootMotionHash, isRootMotion);
             anim.SetBool(canBeInterruptedHash, setCanBeInterrupted);
+            anim.SetBool(canRotateHash, setCanRotate);
             anim.CrossFade(targetAnim, crossFadeTime);
 
             rootMotionEnabled = isRootMotion;

@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &873277323
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 873277324}
+  m_Layer: 28
+  m_Name: AttackVFXPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &873277324
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873277323}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.456, z: 0.277}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4339108149821634801}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1209647187
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,6 +62,67 @@ Transform:
   m_Father: {fileID: 4339108149821634801}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1829474179
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1829474180}
+  - component: {fileID: 1829474181}
+  - component: {fileID: 1829474182}
+  m_Layer: 0
+  m_Name: AttackParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1829474180
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829474179}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.27, z: 0.688}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4339108149821634801}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1829474181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829474179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f194e81d43e036443836506ec6fb318f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crowdControl: {fileID: 0}
+  debuffs: []
+  damage: 30
+--- !u!65 &1829474182
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829474179}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.52, y: 0.6, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4339108149821269199
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,7 +235,8 @@ GameObject:
   - component: {fileID: 1768960281}
   - component: {fileID: 1768960282}
   - component: {fileID: 1768960283}
-  - component: {fileID: 1768960285}
+  - component: {fileID: 1514500680}
+  - component: {fileID: 1514500693}
   m_Layer: 28
   m_Name: Tampora_A
   m_TagString: Enemy
@@ -167,6 +260,8 @@ Transform:
   - {fileID: 4339108149821634799}
   - {fileID: 1209647188}
   - {fileID: 2059811851}
+  - {fileID: 873277324}
+  - {fileID: 1829474180}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -490,7 +585,19 @@ MonoBehaviour:
     audioIndex: 0
   attackEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1514500693}
+        m_TargetAssemblyTypeName: KMK.EnemyDamageCollider, Assembly-CSharp
+        m_MethodName: SendVisualSignBeforeAttack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   attackInIntervals: 1
   attackInIntervalsTime: {x: 4, y: 6}
   playAttackIdleAudios: 0
@@ -616,7 +723,7 @@ MonoBehaviour:
   hitAnimT: 0.2
   hitAnimGap: 0.3
   hitDuration: 1
-  cancelAttackOnHit: 1
+  cancelAttackOnHit: 0
   playAudio: 0
   callOthersRadius: 5
   agentLayersToCall:
@@ -635,13 +742,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de4e959cf6860f4699445c06a5f10b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthLevel: 10
-  maxHealth: 100
   currentHealth: 100
-  staminaLevel: 10
-  maxStamina: 100
-  currentStamina: 100
-  creatureStat: {fileID: 11400000, guid: 874f5a9618d58fe45b5563a4cde991d7, type: 2}
+  creatureBaseStat: {fileID: 11400000, guid: 874f5a9618d58fe45b5563a4cde991d7, type: 2}
+  maxHealth: 100
+  strength: 0
+  defense: 0
+  maxMana: 0
   creatureType: 1
   isAlive: 1
   canTakeDamage: 1
@@ -650,10 +756,10 @@ MonoBehaviour:
   isAirborned: 0
   isGrounded: 0
   isShieldBreaked: 0
-  shieldBreakLeftTime: 0
+  shieldBreakTimer: 0
   shieldBreakAmount: 0
   enemyAI: {fileID: 0}
---- !u!114 &1768960285
+--- !u!114 &1514500680
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -689,10 +795,28 @@ MonoBehaviour:
   animatorIkData: []
   originalIkData: []
   selectionData: []
-  lastSelectAnimationClip: {fileID: 7400000, guid: e6a19bb039c90054699b88867deaaa9b,
+  lastSelectAnimationClip: {fileID: 7400000, guid: 5583ec706d4c4f24f96057a537c378dc,
     type: 2}
   handPoseList: []
   blendShapeList: []
+--- !u!114 &1514500693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4339108149821269201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20e1b9a53b36f7d4b9d8ac3f2c9177dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackSignSendTime: 0.5
+  attackDurationTime: 0.1
+  visualSignName: EnemyAttackShine
+  visualSignPosition: {fileID: 873277324}
+  enemyCreature: {fileID: 1768960283}
+  damageCollider: {fileID: 1829474181}
 --- !u!1 &4339108149821269203
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,13 +873,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4339108149821269205}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.009273002, y: 0.09705109, z: -0.002714784}
+  m_LocalPosition: {x: -0.009273002, y: 0.09705109, z: -0.0060037104}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4339108149821634809}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -28.195503, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.98212117, y: 0.000039834245, z: 0.0000037904422}
 --- !u!1 &4339108149821269207
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,13 +904,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4339108149821269207}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.009273616, y: -0.097051084, z: 0.002714784}
+  m_LocalPosition: {x: 0.009273616, y: -0.097051084, z: 0.0060036867}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4339108149821634811}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -28.195503, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.98205876, y: -0.00003983424, z: -0.0000037904422}
 --- !u!1 &4339108149821269209
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,15 +998,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4339108149821269213}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.32328802, z: 0}
+  m_LocalRotation: {x: 0.02450717, y: -0.00064129697, z: 0.026150912, w: 0.9993574}
+  m_LocalPosition: {x: -0, y: 0.3297715, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5442511767984105162}
   m_Father: {fileID: 4339108149821634815}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -14.254477, y: 0.5084159, z: -3.5527892}
+  m_LocalEulerAnglesHint: {x: -3.022769, y: 0, z: 0}
 --- !u!1 &4339108149821269215
 GameObject:
   m_ObjectHideFlags: 0
@@ -907,7 +1031,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4339108149821269215}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.10656437, z: 0}
+  m_LocalPosition: {x: 0, y: 0.10656437, z: -0.0032889151}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -916,7 +1040,7 @@ Transform:
   - {fileID: 4339108149821634809}
   m_Father: {fileID: 4339108149821634803}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.9820948, y: 1.1736324e-10, z: 1.0627567e-10}
 --- !u!1 &5732220080828157686
 GameObject:
   m_ObjectHideFlags: 0

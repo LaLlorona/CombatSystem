@@ -81,6 +81,7 @@ namespace KMK
             for (int i = 0; i < individualCharacterManagers.Length; i++)
             {
                 individualCharacterManagers[i].individualCharacterGameobject.SetActive(false);
+                individualCharacterManagers[i].characterCreature.isCharacterActive = false;
             }
         }
 
@@ -116,6 +117,8 @@ namespace KMK
             
             currentIndividualCharacterManager.BeginCharacterChangeTimer();
 
+            currentIndividualCharacterManager.characterCreature.isCharacterActive = true;
+
             weaponSlotManager.LoadWeaponOnHand(currentIndividualCharacterManager.characterWeapon);
 
             uiManager.SetHPUI();
@@ -125,6 +128,8 @@ namespace KMK
             characterCombatHandler.PlayQTEAnimationOnChange(index);
             
             characterCombatHandler.UpdateAttackAdditionalEffectChecker();
+            
+            
 
             
             //uiManager.SetMPUI();

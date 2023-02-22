@@ -259,10 +259,14 @@ namespace KMK
 
         public void Roll()
         {
-            mainCharacterManager.characterLocomotion.MoveRoll(); //change direction of the character
-            mainCharacterManager.currentCharacterAnimatedController.EnableRootMotion();
-            mainCharacterManager.currentCharacterAnimatedController.anim.SetBool(canRotateHash, false);
-            mainCharacterManager.currentCharacterAnimatedController.anim.SetTrigger(rollingHash);
+            if (mainCharacterManager.currentCharacterAnimatedController.canBeInterrupted)
+            {
+                mainCharacterManager.characterLocomotion.MoveRoll(); //change direction of the character
+                mainCharacterManager.currentCharacterAnimatedController.EnableRootMotion();
+                mainCharacterManager.currentCharacterAnimatedController.anim.SetBool(canRotateHash, false);
+                mainCharacterManager.currentCharacterAnimatedController.anim.SetTrigger(rollingHash);
+            }
+            
         }
 
         public void UseWeaponArt()
