@@ -11,6 +11,7 @@ namespace KMK
         
         BlazeAISpace.HitStateBehaviour hitStateBehaviour;
         
+        
 
         public override void Awake()
         {
@@ -32,14 +33,11 @@ namespace KMK
 
             if (currentHealth > 0)
             {
-                
-
-
                 if (attack.crowdControl == null) // when there is no crowd control effect
                 {
                     if (!isGroggy) //apply hit animation only when the enemy is not in groggy
                     {
-                        if (attack.hitDuration >= 0.25f)
+                        if (attack.hitDuration >= 0.25f && !enemyAI.isAttacking)
                         {
                             ChangeToHitState(attack.hitDuration, "Damaged");
                         }
