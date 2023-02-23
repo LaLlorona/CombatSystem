@@ -123,6 +123,8 @@ namespace KMK
             maxMana = creatureBaseStat.maxMana;
         }
 
+        
+
         private void Update()
         {
             CheckDebuffTimer();

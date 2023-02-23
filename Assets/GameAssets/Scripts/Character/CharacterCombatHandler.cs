@@ -62,8 +62,7 @@ namespace KMK
         public void UpdateDamageColliderInformation(IndividualCharacterManager individualCharacterManager)
         {
             float weaponDamage = individualCharacterManager.characterWeapon.baseDamage + individualCharacterManager.characterCreature.strength;
-            swordCollider.DisableDamageCollider();
-            fistCollider.DisableDamageCollider();
+            DisableWeaponColliders();
             if (individualCharacterManager.characterWeapon.weaponType == WeaponType.Sword)
             {
                 swordCollider.damage = weaponDamage;
@@ -79,6 +78,12 @@ namespace KMK
             {
 
             }
+        }
+
+        public void DisableWeaponColliders()
+        {
+            swordCollider.DisableDamageCollider();
+            fistCollider.DisableDamageCollider(); 
         }
 
         public void PlayQTEAnimationOnChange(int index)
@@ -198,6 +203,7 @@ namespace KMK
             mainCharacterManager.currentCharacterAnimationEventHandler.onSkillOpen += ActivateSkill;
             mainCharacterManager.currentCharacterAnimationEventHandler.onSkillClose += DeactivateSkill;
             mainCharacterManager.currentCharacterAnimationEventHandler.onQteOpen += ActivateQte;
+            mainCharacterManager.currentCharacterAnimationEventHandler.onRollInvincibleEnd += OnRollEnd;
         }
 
         public void RemoveAttackInput()
@@ -208,6 +214,7 @@ namespace KMK
             mainCharacterManager.currentCharacterAnimationEventHandler.onSkillOpen -= ActivateSkill;
             mainCharacterManager.currentCharacterAnimationEventHandler.onSkillClose -= DeactivateSkill;
             mainCharacterManager.currentCharacterAnimationEventHandler.onQteOpen -= ActivateQte;
+            mainCharacterManager.currentCharacterAnimationEventHandler.onRollInvincibleEnd -= OnRollEnd;
         }
 
        
@@ -261,12 +268,21 @@ namespace KMK
         {
             if (mainCharacterManager.currentCharacterAnimatedController.canBeInterrupted)
             {
+                mainCharacterManager.currentIndividualCharacterManager.characterCreature.canTakeDamage = false;
+                DisableWeaponColliders();
                 mainCharacterManager.characterLocomotion.MoveRoll(); //change direction of the character
                 mainCharacterManager.currentCharacterAnimatedController.EnableRootMotion();
                 mainCharacterManager.currentCharacterAnimatedController.anim.SetBool(canRotateHash, false);
                 mainCharacterManager.currentCharacterAnimatedController.anim.SetTrigger(rollingHash);
+                
+                
             }
             
+        }
+
+        public void OnRollEnd()
+        {
+            mainCharacterManager.currentIndividualCharacterManager.characterCreature.canTakeDamage = true;
         }
 
         public void UseWeaponArt()

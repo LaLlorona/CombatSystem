@@ -18,6 +18,8 @@ public class CharacterAnimationEventHandler : MonoBehaviour
 
     public CharacterAnimationEvent onQteOpen;
 
+    public CharacterAnimationEvent onRollInvincibleEnd;
+
     
 
     
@@ -55,6 +57,11 @@ public class CharacterAnimationEventHandler : MonoBehaviour
     public void OnQteOpen()
     {
         onQteOpen?.Invoke();
+    }
+
+    public void OnRollInvincibleEnd()
+    {
+        onRollInvincibleEnd?.Invoke();
     }
 
 }

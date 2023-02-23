@@ -117,7 +117,7 @@ namespace KMK
             
             currentIndividualCharacterManager.BeginCharacterChangeTimer();
 
-            currentIndividualCharacterManager.characterCreature.isCharacterActive = true;
+            currentIndividualCharacterManager.characterCreature.SetCharacterActive();
 
             weaponSlotManager.LoadWeaponOnHand(currentIndividualCharacterManager.characterWeapon);
 

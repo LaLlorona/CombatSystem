@@ -10,12 +10,18 @@ namespace KMK
         // Start is called before the first frame update
         public override void OnDamage(Attack attack)
         {
-            if (isCharacterActive)
+            if (isCharacterActive && canTakeDamage)
             {
                 base.OnDamage(attack);
                 MainCharacterManager.Instance.currentCharacterAnimatedController.PlayTargetAnimation("Damaged", true, 0.2f, false, false);
 
             }
+        }
+        
+        public void SetCharacterActive()
+        {
+            isCharacterActive = true;
+            canTakeDamage = true;
         }
     }
 

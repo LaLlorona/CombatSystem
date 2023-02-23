@@ -31,7 +31,8 @@ namespace KMK
         private float characterChangeCooltime = 10f;
         private float characterChangeRemainTime;
         private float timerInterval = 0.1f;
-
+        
+        
         public bool canChangeCharacter = true;
         
         private void Awake()
