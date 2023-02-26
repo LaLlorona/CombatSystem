@@ -8,7 +8,7 @@ namespace  KMK
 {
     public class EnemyMeleeAttackBehavior : EnemyAttackBehavior
     {
-        public EnemyMeleeDamageCollider damageCollider;
+        public EnemyDamageCollider damageCollider;
 
 
         private void Start()

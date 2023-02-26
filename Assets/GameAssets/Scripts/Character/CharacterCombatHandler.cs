@@ -8,7 +8,10 @@ namespace KMK
 {
     public class CharacterCombatHandler : MonoBehaviour
     {
-        
+    
+        [Header("evade setting")]
+        public GameObject characterEvadeShadow;
+        private  float evadeShadowWindowTime = 0.5f;
         
         MainCharacterManager mainCharacterManager;
         public InputReader input;
@@ -195,6 +198,8 @@ namespace KMK
 
         
 
+        
+
         public void AssignAttackInput()
         {
             mainCharacterManager.currentCharacterAnimationEventHandler.onEnableBaseAttack += EnableNextWeakAttack;
@@ -203,7 +208,7 @@ namespace KMK
             mainCharacterManager.currentCharacterAnimationEventHandler.onSkillOpen += ActivateSkill;
             mainCharacterManager.currentCharacterAnimationEventHandler.onSkillClose += DeactivateSkill;
             mainCharacterManager.currentCharacterAnimationEventHandler.onQteOpen += ActivateQte;
-            mainCharacterManager.currentCharacterAnimationEventHandler.onRollInvincibleEnd += OnRollEnd;
+            mainCharacterManager.currentCharacterAnimationEventHandler.onInvincibleEnd += OnRollEnd;
         }
 
         public void RemoveAttackInput()
@@ -214,7 +219,7 @@ namespace KMK
             mainCharacterManager.currentCharacterAnimationEventHandler.onSkillOpen -= ActivateSkill;
             mainCharacterManager.currentCharacterAnimationEventHandler.onSkillClose -= DeactivateSkill;
             mainCharacterManager.currentCharacterAnimationEventHandler.onQteOpen -= ActivateQte;
-            mainCharacterManager.currentCharacterAnimationEventHandler.onRollInvincibleEnd -= OnRollEnd;
+            mainCharacterManager.currentCharacterAnimationEventHandler.onInvincibleEnd -= OnRollEnd;
         }
 
        
@@ -274,8 +279,11 @@ namespace KMK
                 mainCharacterManager.currentCharacterAnimatedController.EnableRootMotion();
                 mainCharacterManager.currentCharacterAnimatedController.anim.SetBool(canRotateHash, false);
                 mainCharacterManager.currentCharacterAnimatedController.anim.SetTrigger(rollingHash);
+                GameObject evadeShadow = Instantiate(characterEvadeShadow, MainCharacterManager.Instance.transform);
+                Destroy(evadeShadow, evadeShadowWindowTime);
                 
-                
+
+
             }
             
         }
@@ -285,12 +293,26 @@ namespace KMK
             mainCharacterManager.currentIndividualCharacterManager.characterCreature.canTakeDamage = true;
         }
 
+        public bool CanUseWeaponArt()
+        {
+            IndividualCharacterManager currentCharacterManager =
+                MainCharacterManager.Instance.currentIndividualCharacterManager;
+            return currentCharacterManager.characterCreature.currentMp >=
+                   currentCharacterManager.characterWeapon.weaponMpConsume;
+        }
+
         public void UseWeaponArt()
         {
-            Debug.Log($"current character name is {mainCharacterManager.currentIndividualCharacterManager.characterItemInfo.itemName}");
-            mainCharacterManager.currentCharacterAnimatedController.anim.SetBool(isAttackingHash, true);
-            mainCharacterManager.currentCharacterAnimatedController.PlayTargetAnimation(mainCharacterManager.currentIndividualCharacterManager.characterWeapon.weaponArtName,
-               true, 0.2f);
+            if (CanUseWeaponArt())
+            {
+                MainCharacterManager.Instance.currentIndividualCharacterManager.characterCreature.ChangeMpValue(-MainCharacterManager.Instance.currentIndividualCharacterManager.characterWeapon.weaponMpConsume); 
+                    
+                Debug.Log($"current character name is {mainCharacterManager.currentIndividualCharacterManager.characterItemInfo.itemName}");
+                mainCharacterManager.currentCharacterAnimatedController.anim.SetBool(isAttackingHash, true);
+                mainCharacterManager.currentCharacterAnimatedController.PlayTargetAnimation(mainCharacterManager.currentIndividualCharacterManager.characterWeapon.weaponArtName,
+                    true, 0.2f);
+            }
+            
         }
 
    

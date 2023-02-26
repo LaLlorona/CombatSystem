@@ -22,4 +22,5 @@ MonoBehaviour:
   weaponArtName: WandWeaponArt
   weaponSkill: {fileID: 6833044346985822241, guid: d0eee8781c9fea747af026d12af30d13,
     type: 3}
+  weaponMpConsume: 50
   projectileItem: {fileID: 11400000, guid: dd0038df1300b794daa8103d949f1dd4, type: 2}

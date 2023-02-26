@@ -6,6 +6,11 @@ namespace KMK
 {
     public class CombatManager : Singleton<CombatManager>
     {
+        public delegate void CombatEvent();
+
+        public CombatEvent onEvadeSuccess;
+
+    
         public void DamageObject(GameObject objectToDamage, Attack attack)
         {
             IDamageable[] damageables = objectToDamage.gameObject.GetComponentsInChildren<IDamageable>();
@@ -15,6 +20,11 @@ namespace KMK
                 Debug.Log(damageables[i]);
                 damageables[i].OnDamage(attack);
             }
+        }
+        
+        public void OnEvadeSuccess()
+        {
+         onEvadeSuccess?.Invoke();   
         }
 
         

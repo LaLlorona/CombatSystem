@@ -55,8 +55,8 @@ namespace KMK
         {
             CharacterCreature currentCreature = MainCharacterManager.Instance.currentIndividualCharacterManager.characterCreature;
 
-            currentMp = 0;
-            maxMp = currentCreature.maxMana;
+            currentMp = currentCreature.currentMp;
+            maxMp = currentCreature.maxMp;
             mpSlider.value = currentMp / maxMp;
             mpNumber.text = BuildText(currentMp, maxMp);
 

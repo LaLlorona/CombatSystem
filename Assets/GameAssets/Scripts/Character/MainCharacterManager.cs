@@ -73,6 +73,9 @@ namespace KMK
             currentCharacterIndex = INITIAL_CHARACTER_INDEX;
             EnableCharacterWithIndex(0);
             currentCharacterIndex = 0;
+            
+            //event subscription
+            
         }
 
         public void HideAllCharacterGameobjects()
@@ -83,6 +86,11 @@ namespace KMK
                 individualCharacterManagers[i].individualCharacterGameobject.SetActive(false);
                 individualCharacterManagers[i].characterCreature.isCharacterActive = false;
             }
+        }
+
+        public void SetCharacterInvincible()
+        {
+            currentIndividualCharacterManager.characterCreature.canTakeDamage = false;
         }
 
         private void OnEnable()
@@ -122,6 +130,7 @@ namespace KMK
             weaponSlotManager.LoadWeaponOnHand(currentIndividualCharacterManager.characterWeapon);
 
             uiManager.SetHPUI();
+            uiManager.SetMPUI();
 
             characterCombatHandler.UpdateDamageColliderInformation(currentIndividualCharacterManager);
 

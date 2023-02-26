@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace KMK
 {
-    public class EnemyMeleeDamageCollider : DamageCollider
+    public class EnemyDamageCollider : DamageCollider
     {
         private void OnTriggerEnter(Collider collision)
         {
@@ -12,6 +12,12 @@ namespace KMK
             {
                 Attack attack = new Attack(damage, crowdControl, debuffs);
                 CombatManager.Instance.DamageObject(collision.gameObject, attack);
+            }
+            
+            if (collision.gameObject.CompareTag("EvadeShadow"))
+            {
+                Debug.Log("Enemy hits the evade shadow, it will play additional effect defends on the character");
+                CombatManager.Instance.OnEvadeSuccess();
             }
         }
     }

@@ -22,3 +22,4 @@ MonoBehaviour:
   weaponArtName: SwordWeaponArt
   weaponSkill: {fileID: 8140756349131589600, guid: 8a4d44dad64a54c4fb3ef966718060a4,
     type: 3}
+  weaponMpConsume: 30

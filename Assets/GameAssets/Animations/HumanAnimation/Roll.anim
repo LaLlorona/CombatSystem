@@ -69226,7 +69226,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.9
-    functionName: OnRollInvincibleEnd
+    functionName: OnInvincibleEnd
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

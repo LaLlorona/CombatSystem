@@ -25,7 +25,7 @@ namespace KMK
 
 
         public Skill weaponSkill;
-        
+        public float weaponMpConsume;
 
     }
 }

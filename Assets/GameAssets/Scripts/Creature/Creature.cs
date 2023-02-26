@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace KMK
 {
@@ -16,6 +17,7 @@ namespace KMK
         //public int healthLevel = 10;
         //public float maxHealth;
         public float currentHealth;
+        public float currentMp;
 
         //public int staminaLevel = 10;
         //public float maxStamina;
@@ -26,7 +28,7 @@ namespace KMK
         public int maxHealth;
         public int strength;
         public int defense;
-        public int maxMana;
+        public int maxMp;
 
 
         [Header("CreatureStatus")]
@@ -56,7 +58,7 @@ namespace KMK
             SetCharacterStat();
         }
 
-        private void Start()
+        protected virtual void Start()
         {
             
 
@@ -120,7 +122,7 @@ namespace KMK
             currentHealth = maxHealth;
             strength = creatureBaseStat.strength;
             defense = creatureBaseStat.defense;
-            maxMana = creatureBaseStat.maxMana;
+            maxMp = creatureBaseStat.maxMana;
         }
 
         
@@ -142,6 +144,8 @@ namespace KMK
                 defense = creatureBaseStat.defense;
             }
         }
+        
+        
 
 
     }
