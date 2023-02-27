@@ -24,6 +24,7 @@ namespace KMK
         public string weaponArtName = "weaponArtAnimation"; //weapon art is a skill played when user press 'weapon art' button
 
 
+        public Sprite weaponSkillSprite;
         public Skill weaponSkill;
         public float weaponMpConsume;
 

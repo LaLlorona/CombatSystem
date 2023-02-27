@@ -20,6 +20,8 @@ MonoBehaviour:
   weaponType: 1
   skillType: 0
   weaponArtName: KnuckleWeaponArt
+  weaponSkillSprite: {fileID: 7280518115278199883, guid: fe987f8242776db42b6c3dffcdb1cba0,
+    type: 3}
   weaponSkill: {fileID: 470424030085705630, guid: 085ff11d0d50007469e032b6ee76b7fd,
     type: 3}
   weaponMpConsume: 25

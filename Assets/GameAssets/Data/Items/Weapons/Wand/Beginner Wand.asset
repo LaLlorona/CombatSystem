@@ -20,6 +20,8 @@ MonoBehaviour:
   weaponType: 2
   skillType: 0
   weaponArtName: WandWeaponArt
+  weaponSkillSprite: {fileID: 4348255816843825616, guid: fe987f8242776db42b6c3dffcdb1cba0,
+    type: 3}
   weaponSkill: {fileID: 6833044346985822241, guid: d0eee8781c9fea747af026d12af30d13,
     type: 3}
   weaponMpConsume: 50

@@ -209,6 +209,7 @@ namespace KMK
             mainCharacterManager.currentCharacterAnimationEventHandler.onSkillClose += DeactivateSkill;
             mainCharacterManager.currentCharacterAnimationEventHandler.onQteOpen += ActivateQte;
             mainCharacterManager.currentCharacterAnimationEventHandler.onInvincibleEnd += OnRollEnd;
+            
         }
 
         public void RemoveAttackInput()

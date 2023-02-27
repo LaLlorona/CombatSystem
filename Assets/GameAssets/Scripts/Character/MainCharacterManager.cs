@@ -35,15 +35,18 @@ namespace KMK
 
         public UIManager uiManager;
 
-        
-
-
-
-
 
         public InteractablePopupUI interactablePopupUI;
         public GameObject interactableUIGameobject;
         public GameObject itemDescriptionUIGameobject;
+        
+        #region Events
+        public delegate void MainCharacterEvent(int index);
+
+        public MainCharacterEvent onCharacterChange;
+
+        
+        #endregion
 
         // Start is called before the first frame update
         public override void Awake()
@@ -111,6 +114,7 @@ namespace KMK
             HideAllCharacterGameobjects();
             
             
+            
             currentCharacterIndex = index;
             currentIndividualCharacterManager = individualCharacterManagers[index];
 
@@ -137,6 +141,8 @@ namespace KMK
             characterCombatHandler.PlayQTEAnimationOnChange(index);
             
             characterCombatHandler.UpdateAttackAdditionalEffectChecker();
+            
+            onCharacterChange?.Invoke(index);
             
             
 
