@@ -74,6 +74,7 @@ namespace KMK
             currentMp += change;
             currentMp = Mathf.Min(currentMp, maxMp);
             currentMp = Mathf.Max(0, currentMp);
+            MainCharacterManager.Instance.characterCombatHandler.characterSkillHandler.CheckSkillAvailabilityAndSetUI(0);
             UIManager.Instance.SetMPUI();
         }
     }

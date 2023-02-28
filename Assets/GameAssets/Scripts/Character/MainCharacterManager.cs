@@ -61,6 +61,7 @@ namespace KMK
             weaponSlotManager = GetComponent<WeaponSlotManager>();
         }
 
+        
         private void Start()
         {
             individualCharacterManagers = GetComponentsInChildren<IndividualCharacterManager>();

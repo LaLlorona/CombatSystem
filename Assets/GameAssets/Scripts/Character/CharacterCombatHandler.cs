@@ -8,7 +8,9 @@ namespace KMK
 {
     public class CharacterCombatHandler : MonoBehaviour
     {
-    
+
+
+        [Header("Reference")] public CharacterSkillHandler characterSkillHandler;
         [Header("evade setting")]
         public GameObject characterEvadeShadow;
         private  float evadeShadowWindowTime = 0.5f;
@@ -29,6 +31,8 @@ namespace KMK
 
 
         public bool isAttackButtonAlreadyPressed = false;
+        
+        
 
 
         
@@ -38,6 +42,7 @@ namespace KMK
 
             
             mainCharacterManager = GetComponent<MainCharacterManager>();
+            characterSkillHandler = GetComponent <CharacterSkillHandler>();
 
         }
 
@@ -49,7 +54,7 @@ namespace KMK
 
             input.onAttackButtonInput += PressWeakAttackButton;
             input.onRollInput += Roll;
-            input.onWeaponArtInput += UseWeaponArt;
+            input.onWeaponArtInput += characterSkillHandler.UseWeaponArt;
 
         }
 
@@ -58,7 +63,7 @@ namespace KMK
         
             input.onAttackButtonInput -= PressWeakAttackButton;
             input.onRollInput -= Roll;
-            input.onWeaponArtInput -= UseWeaponArt;
+            input.onWeaponArtInput -= characterSkillHandler.UseWeaponArt;
 
         }
 
@@ -294,27 +299,7 @@ namespace KMK
             mainCharacterManager.currentIndividualCharacterManager.characterCreature.canTakeDamage = true;
         }
 
-        public bool CanUseWeaponArt()
-        {
-            IndividualCharacterManager currentCharacterManager =
-                MainCharacterManager.Instance.currentIndividualCharacterManager;
-            return currentCharacterManager.characterCreature.currentMp >=
-                   currentCharacterManager.characterWeapon.weaponMpConsume;
-        }
-
-        public void UseWeaponArt()
-        {
-            if (CanUseWeaponArt())
-            {
-                MainCharacterManager.Instance.currentIndividualCharacterManager.characterCreature.ChangeMpValue(-MainCharacterManager.Instance.currentIndividualCharacterManager.characterWeapon.weaponMpConsume); 
-                    
-                Debug.Log($"current character name is {mainCharacterManager.currentIndividualCharacterManager.characterItemInfo.itemName}");
-                mainCharacterManager.currentCharacterAnimatedController.anim.SetBool(isAttackingHash, true);
-                mainCharacterManager.currentCharacterAnimatedController.PlayTargetAnimation(mainCharacterManager.currentIndividualCharacterManager.characterWeapon.weaponArtName,
-                    true, 0.2f);
-            }
-            
-        }
+        
 
    
     }

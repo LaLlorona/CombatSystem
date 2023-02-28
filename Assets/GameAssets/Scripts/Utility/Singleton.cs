@@ -13,6 +13,7 @@ namespace KMK
         {
             get
             {
+            
                 if (_instance == null)
                 {
                     _instance = FindObjectOfType<T>();
@@ -37,6 +38,7 @@ namespace KMK
             }
             else
             {
+                Debug.Log("Destory Singleton object, because duplicated");
                 Destroy(gameObject);
             }
         }

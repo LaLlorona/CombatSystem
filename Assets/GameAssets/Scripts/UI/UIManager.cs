@@ -24,6 +24,11 @@ namespace KMK
 
         public List<Image> coolTimeMasks;
 
+        [Header("Skill Icon Information")] public Image skillInfoIcon;
+        public TextMeshProUGUI skillSpNumber;
+
+        public float skillDisabledOpacity = 0.5f;
+
         
 
    
@@ -75,6 +80,30 @@ namespace KMK
         public void SetPortraitMaskRatio(int index, float ratio)
         {
             coolTimeMasks[index].fillAmount = ratio;
+        }
+
+        public void SetSkillIconInfo(Sprite newSkillIcon, float mpConsume)
+        {
+            skillInfoIcon.sprite = newSkillIcon;
+            skillSpNumber.text = $"{mpConsume}";
+        }
+
+        public void ToggleSkillEnable(bool toggle)
+        {
+            if (toggle)
+            {
+                Color color = skillInfoIcon.color;
+                color.a = 1f; // Set the alpha value to 1 
+                skillInfoIcon.color = color;
+                
+                
+            }
+            else
+            {
+                Color color = skillInfoIcon.color;
+                color.a = skillDisabledOpacity; // Set the alpha value to 0.5 (50% transparency)
+                skillInfoIcon.color = color;
+            }
         }
     }
 
