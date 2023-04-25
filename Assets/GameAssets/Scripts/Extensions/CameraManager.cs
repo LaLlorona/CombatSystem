@@ -146,16 +146,14 @@ namespace KMK
             for (int i = 0; i < colliders.Length; i++)
             {
                 CharacterManager character = colliders[i].GetComponent<CharacterManager>();
-
+                
                 if (character != null)
                 {
                     Vector3 lockTargetDirection = character.transform.position - characterLocomotion.transform.position;
 
                     float viewableAngle = Vector3.Angle(lockTargetDirection, mainCamera.transform.forward);
 
-                    if (characterLocomotion.transform.root != character.transform.root && viewableAngle > -50 && viewableAngle < 50
-
-                        )
+                    if (characterLocomotion.transform.root != character.transform.root && viewableAngle > -50 && viewableAngle < 50)
                     {
                         avaiableTargets.Add(character);
                     }
@@ -164,7 +162,6 @@ namespace KMK
 
             for (int i = 0; i < avaiableTargets.Count; i++)
             {
-                
                 float distanceFromTarget = Vector3.SqrMagnitude(avaiableTargets[i].transform.position - characterLocomotion.transform.position);
 
                 if (distanceFromTarget < shortestDistance)

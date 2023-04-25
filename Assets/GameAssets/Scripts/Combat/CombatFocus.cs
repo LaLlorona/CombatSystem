@@ -108,7 +108,7 @@ namespace KMK
             else
             {
                 closestCreature = enemyColliderInRange[nearestEnemyIndex].gameObject.GetComponent<Creature>();
-                currentFocus = closestCreature.transform;
+                currentFocus = closestCreature.GetComponent<CharacterManager>().lockOnTransform;
                 MainCharacterManager.Instance.targetEnemy = currentFocus.gameObject;
             }
         }

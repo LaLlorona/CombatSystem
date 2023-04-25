@@ -209,10 +209,13 @@ namespace KMK
         {
             mainCharacterManager.currentCharacterAnimationEventHandler.onEnableBaseAttack += EnableNextWeakAttack;
             mainCharacterManager.currentCharacterAnimationEventHandler.onAttackOpen += HandleAttackOpen;
+
             mainCharacterManager.currentCharacterAnimationEventHandler.onAttackClose += HandleAttackClose;
             mainCharacterManager.currentCharacterAnimationEventHandler.onSkillOpen += ActivateSkill;
+           
             mainCharacterManager.currentCharacterAnimationEventHandler.onSkillClose += DeactivateSkill;
             mainCharacterManager.currentCharacterAnimationEventHandler.onQteOpen += ActivateQte;
+
             mainCharacterManager.currentCharacterAnimationEventHandler.onInvincibleEnd += OnRollEnd;
             
         }
@@ -221,8 +224,10 @@ namespace KMK
         {
             mainCharacterManager.currentCharacterAnimationEventHandler.onEnableBaseAttack -= EnableNextWeakAttack;
             mainCharacterManager.currentCharacterAnimationEventHandler.onAttackOpen -= HandleAttackOpen;
+            
             mainCharacterManager.currentCharacterAnimationEventHandler.onAttackClose -= HandleAttackClose;
             mainCharacterManager.currentCharacterAnimationEventHandler.onSkillOpen -= ActivateSkill;
+            
             mainCharacterManager.currentCharacterAnimationEventHandler.onSkillClose -= DeactivateSkill;
             mainCharacterManager.currentCharacterAnimationEventHandler.onQteOpen -= ActivateQte;
             mainCharacterManager.currentCharacterAnimationEventHandler.onInvincibleEnd -= OnRollEnd;
