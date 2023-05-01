@@ -132,8 +132,8 @@ Material:
     - _FadeScrollYSpeed: 0
     - _FadeTransition: 0.075
     - _FishEyeUvAmount: 0.35
-    - _Glow: 30
-    - _GlowGlobal: 30
+    - _Glow: 1
+    - _GlowGlobal: 1
     - _HandDrawnAmount: 10
     - _HandDrawnSpeed: 5
     - _HsvBright: 1

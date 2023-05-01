@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using KMK;
 using UnityEngine;
 
 public class CharacterAnimationEventHandler : MonoBehaviour
@@ -20,6 +21,9 @@ public class CharacterAnimationEventHandler : MonoBehaviour
 
     public CharacterAnimationEvent onInvincibleEnd;
 
+    public int attackAnimationIndex;
+    
+
     
 
     
@@ -34,13 +38,16 @@ public class CharacterAnimationEventHandler : MonoBehaviour
         onEnableBaseAttack?.Invoke();
     }
 
-    public void OnAttackOpen()
+    public void OnAttackOpen(AnimationEvent evt)
     {
+        attackAnimationIndex = evt.intParameter;
+        CreatureVFXManager.Instance.PlayWeaponEffect();
         onAttackOpen?.Invoke();
     }
 
     public void OnAttackClose()
     {
+        
         onAttackClose?.Invoke();
     }
 
