@@ -206,6 +206,15 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Emote"",
+                    ""type"": ""Button"",
+                    ""id"": ""ce66e97e-f675-46ef-a7c4-0746554c3338"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -670,6 +679,17 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dcc65a5f-9edf-44c6-a427-b52b53d5c7bc"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Emote"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -760,6 +780,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         m_Gameplay_CharacterChange2 = m_Gameplay.FindAction("CharacterChange2", throwIfNotFound: true);
         m_Gameplay_CharacterChange3 = m_Gameplay.FindAction("CharacterChange3", throwIfNotFound: true);
         m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
+        m_Gameplay_Emote = m_Gameplay.FindAction("Emote", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Inventory = m_UI.FindAction("Inventory", throwIfNotFound: true);
@@ -842,6 +863,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_CharacterChange2;
     private readonly InputAction m_Gameplay_CharacterChange3;
     private readonly InputAction m_Gameplay_Interact;
+    private readonly InputAction m_Gameplay_Emote;
     public struct GameplayActions
     {
         private @MovementActions m_Wrapper;
@@ -866,6 +888,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         public InputAction @CharacterChange2 => m_Wrapper.m_Gameplay_CharacterChange2;
         public InputAction @CharacterChange3 => m_Wrapper.m_Gameplay_CharacterChange3;
         public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
+        public InputAction @Emote => m_Wrapper.m_Gameplay_Emote;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -935,6 +958,9 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
+                @Emote.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnEmote;
+                @Emote.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnEmote;
+                @Emote.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnEmote;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -999,6 +1025,9 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @Emote.started += instance.OnEmote;
+                @Emote.performed += instance.OnEmote;
+                @Emote.canceled += instance.OnEmote;
             }
         }
     }
@@ -1085,6 +1114,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
         void OnCharacterChange2(InputAction.CallbackContext context);
         void OnCharacterChange3(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnEmote(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -184,6 +184,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Emote",
+                    "type": "Button",
+                    "id": "ce66e97e-f675-46ef-a7c4-0746554c3338",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -646,6 +655,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dcc65a5f-9edf-44c6-a427-b52b53d5c7bc",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Emote",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

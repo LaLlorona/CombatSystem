@@ -100,11 +100,13 @@ namespace KMK
         private void OnEnable()
         {
             inputReader.OnCharacterChange += EnableCharacterWithIndex;
+            inputReader.onEmoteInput += PlayEmote;
         }
 
         private void OnDisable()
         {
             inputReader.OnCharacterChange -= EnableCharacterWithIndex;
+            inputReader.onEmoteInput -= PlayEmote;
         }
         public void EnableCharacterWithIndex(int index)
         {
@@ -222,6 +224,15 @@ namespace KMK
         }
 
         #endregion
+
+        public void PlayEmote()
+        {
+            currentCharacterAnimatedController.PlayTargetAnimation("Emote",
+                false, 0.2f);
+            
+            GameManager.Instance.HandleGameEndingUI();
+            
+        }
     }
 }
 

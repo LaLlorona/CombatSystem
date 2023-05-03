@@ -21,6 +21,8 @@ namespace KMK
         public InputEvent onAttackButtonInput;
         public InputEvent onRollInput;
         public InputEvent onWeaponArtInput;
+        
+        public InputEvent onEmoteInput;
 
         public CharacterChangeInputEvent OnCharacterChange;
 
@@ -136,6 +138,11 @@ namespace KMK
             movementActions.Gameplay.DPadLeft.performed += ctx => OnDpadLeft(ctx);
             movementActions.Gameplay.DPadLeft.canceled+= ctx => OnDpadLeftEnded(ctx);
 
+            movementActions.Gameplay.Emote.performed += ctx =>
+            {
+                onEmoteInput?.Invoke();
+            };
+
             movementActions.Gameplay.Interact.performed += ctx =>
             {
                 aInput = true;
@@ -194,6 +201,8 @@ namespace KMK
                 Debug.Log("weapon art used");
                 onWeaponArtInput?.Invoke();
             };
+            
+            
 
 
 
