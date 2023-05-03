@@ -18,15 +18,20 @@ namespace KMK
         {
             IDamageable[] damageables = objectToDamage.gameObject.GetComponentsInChildren<IDamageable>();
             GameObject effect;
-            if (objectToDamage.CompareTag("Enemy"))
+            if (objectToDamage.CompareTag("Enemy") && objectToDamage.GetComponent<Creature>().isAlive)
             {
-                TimeManager.Instance.ChangeTimeScale(0.1f, 0.1f);
+                
                 effect = Instantiate(hitEffect, objectToDamage.GetComponent<EnemyManager>().lockOnTransform.position, quaternion.identity);
                 Destroy(effect, 2);
                 PlayerCameraManager.Instance.DoPlayerCamShake();
+
+                if (attack.isInvokeHitstop)
+                {
+                    TimeManager.Instance.ChangeTimeScale(0.05f, 0.1f);
+                }
             }
 
-            else if (objectToDamage.CompareTag("Player"))
+            else if (objectToDamage.CompareTag("Player") && MainCharacterManager.Instance.currentIndividualCharacterManager.characterCreature.canTakeDamage)
             {
                 effect = Instantiate(hitEffect, objectToDamage.transform.position, quaternion.identity);
                 Destroy(effect, 2);

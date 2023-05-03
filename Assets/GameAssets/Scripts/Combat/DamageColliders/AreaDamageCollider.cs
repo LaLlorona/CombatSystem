@@ -51,12 +51,12 @@ namespace KMK
 
                         if (applyCCOnlyInFirstTick && enemiesAffectedByCC.Contains(enemy))
                         { // only apply debuff and damage
-                            attack = new Attack(damage, null, debuffs, tickDuration);
+                            attack = new Attack(damage, null, debuffs, tickDuration, false);
                         }
                         else
                         {
                             enemiesAffectedByCC.Add(enemy);
-                            attack = new Attack(damage, crowdControl, debuffs, tickDuration);
+                            attack = new Attack(damage, crowdControl, debuffs, tickDuration, false);
                         }
 
                         CombatManager.Instance.DamageObject(enemy.gameObject, attack);

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: e3fbaccf07df9b64a97c63860df0d26d, type: 3}
   itemName: beginner sword
-  modelPrefab: {fileID: 919132149155446097, guid: d716218db698ae94b9a122082fc138d8,
+  modelPrefab: {fileID: 5892145709314406469, guid: 6d4a823919146084b86bb7d785447737,
     type: 3}
   baseDamage: 5
   weaponType: 0

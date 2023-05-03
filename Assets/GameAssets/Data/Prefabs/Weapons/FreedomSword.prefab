@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9728a1c65c1e7f048b0e7a88085ce771, type: 2}
+  - {fileID: 2100000, guid: b2d18de5b7b6e75479a2ba2108b901ea, type: 2}
   - {fileID: 2100000, guid: e0c7ead9333a88c4f8d54d566ddc4015, type: 2}
   - {fileID: 2100000, guid: 76c448d99539e384f838eea1a563b8a8, type: 2}
   m_StaticBatchInfo:
@@ -112,4 +112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8e896799e968ee4fa91bc47aabbee65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWeaponDamage: 25
+  crowdControl: {fileID: 0}
+  debuffs: []
+  damage: 30
