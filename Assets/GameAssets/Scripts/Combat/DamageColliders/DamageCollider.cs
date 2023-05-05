@@ -31,9 +31,6 @@ namespace KMK
         {
             damageCollider.enabled = false;
         }
-
-     
-
     }
 }
 

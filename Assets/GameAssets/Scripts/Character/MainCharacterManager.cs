@@ -115,9 +115,6 @@ namespace KMK
                 return;
             }
             HideAllCharacterGameobjects();
-            
-            
-            
             currentCharacterIndex = index;
             currentIndividualCharacterManager = individualCharacterManagers[index];
 
@@ -146,15 +143,6 @@ namespace KMK
             characterCombatHandler.UpdateAttackAdditionalEffectChecker();
             
             onCharacterChange?.Invoke(index);
-            
-            
-
-            
-            //uiManager.SetMPUI();
-
-
-            
-
         }
 
         
